@@ -1,6 +1,6 @@
-# Studies in Repair & Space
+# AI for Interdisciplinary Design — Midterm Portfolio
 
-Shreya Venkataramanan's DSC 598 midterm portfolio website.
+Shreya Ramanan's DSC 598 midterm portfolio website.
 
 ## Pages
 
@@ -26,4 +26,4 @@ python3 -m http.server 8000
 
 ## Credits
 
-Concepts and documented prompts by Shreya Venkataramanan. Portfolio visuals were rebuilt from those prompts for this website using OpenAI ImageGen. Website implementation and interaction were created with Codex.
+Concepts, prompts, process documentation, and project visuals by Shreya Ramanan. Project images were extracted from the student's Week 4 and Week 6 final presentations. The website follows the typography and layout language of `shreyaramanandesigns.com` without reproducing its project content. Website implementation and interaction were created with Codex.

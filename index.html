@@ -3,91 +3,106 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Shreya Venkataramanan's interdisciplinary design portfolio: a stitched-heart album cover, a personal studio environment, and an interactive drawing.">
-  <meta name="theme-color" content="#f3eee4">
-  <title>Shreya Venkataramanan — Studies in Repair & Space</title>
+  <meta name="description" content="Shreya Ramanan's DSC 598 midterm portfolio: an AI-assisted album cover and a personal studio environment.">
+  <meta name="theme-color" content="#fcfbf9">
+  <title>Shreya Ramanan — AI for Interdisciplinary Design</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
-  <a class="skip-link" href="#main">Skip to work</a>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <a class="wordmark" href="index.html" aria-label="Shreya Venkataramanan, home">SV</a>
+    <a class="brand" href="index.html" aria-label="Shreya Ramanan, home">Shreya Ramanan</a>
     <nav aria-label="Primary navigation">
-      <a href="#work">Projects</a>
+      <a class="active" href="index.html">Home</a>
+      <a href="#projects">Projects</a>
       <a href="#about">About</a>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="eyebrow">Interdisciplinary design portfolio · 2026</p>
-        <h1>Studies in<br><em>repair & space.</em></h1>
-        <p class="hero-intro">Two projects about the things we keep close: an image of repair and a room built around attention.</p>
-      </div>
-
-      <div class="interaction-shell">
-        <div class="interaction-heading">
-          <p><strong>Make a mark</strong><br>Click or tap to add a stitched bloom.</p>
-          <button class="text-button" id="clear-canvas" type="button">Start again</button>
+    <section class="home-hero dot-field">
+      <div class="playground-card">
+        <div class="playground-label">
+          <p><strong>Interactive sketch</strong><br>Click or tap to leave a stitched mark.</p>
+          <button class="quiet-button" id="clear-canvas" type="button">Reset</button>
         </div>
         <canvas id="stitch-canvas" tabindex="0" role="img" aria-label="Interactive drawing area. Click, tap, or press Enter to add a stitched bloom."></canvas>
         <p class="sr-only" id="canvas-status" aria-live="polite"></p>
       </div>
-    </section>
 
-    <section class="projects-section" id="work" aria-labelledby="work-title">
-      <div class="section-heading">
-        <p class="eyebrow">Selected projects</p>
-        <h2 id="work-title">Image, material, environment.</h2>
-      </div>
-
-      <div class="project-grid">
-        <a class="project-card cover-card" href="stitched-heart.html">
-          <div class="card-image square-image">
-            <img src="assets/stitched-heart.jpg" alt="A crimson paper heart repaired with cream stitches on warm handmade paper" width="1254" height="1254">
-            <span class="card-number">01</span>
-          </div>
-          <div class="card-meta">
-            <div>
-              <p class="eyebrow">Album cover · Image study</p>
-              <h3>Stitched Heart</h3>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </div>
-        </a>
-
-        <a class="project-card studio-card" href="personal-studio.html">
-          <div class="card-image landscape-image">
-            <img src="assets/studio-overview.jpg" alt="A sunlit personal studio with a burgundy reading wall, white desk, and oak gallery shelves" width="1536" height="1024">
-            <span class="card-number">02</span>
-          </div>
-          <div class="card-meta">
-            <div>
-              <p class="eyebrow">3D environment · Spatial study</p>
-              <h3>Personal Studio</h3>
-            </div>
-            <span aria-hidden="true">↗</span>
-          </div>
-        </a>
+      <div class="hero-copy">
+        <p class="kicker">DSC 598 · AI FOR INTERDISCIPLINARY DESIGN · FALL 2026</p>
+        <h1>Making ideas<br>visible through AI.</h1>
+        <p class="hero-deck">Two projects exploring how precise prompts, visual systems, and focused iteration can shape an image and a space.</p>
+        <div class="hero-actions">
+          <a class="pill pill-dark" href="#projects">View projects →</a>
+          <a class="pill" href="#about">About this work</a>
+        </div>
       </div>
     </section>
 
-    <section class="about-section" id="about" aria-labelledby="about-title">
-      <p class="eyebrow">About</p>
-      <div class="about-grid">
-        <h2 id="about-title">I design by making the idea visible, testing what changed, and refining one decision at a time.</h2>
+    <section class="selected-work" id="projects" aria-labelledby="projects-title">
+      <div class="section-intro">
         <div>
-          <p>This portfolio brings together image-making, spatial storytelling, and interaction. Each project began with a clear visual intention, moved through documented prompt iterations, and ended with a result tested at more than one scale.</p>
-          <p class="signature">Shreya Venkataramanan<br><span>DSC 598 · Fall 2026</span></p>
+          <p class="kicker">MIDTERM PROJECTS</p>
+          <h2 id="projects-title">Two studies in control, consistency, and atmosphere.</h2>
+        </div>
+        <p class="section-note">The work shown here comes directly from my Week 4 and Week 6 process presentations.</p>
+      </div>
+
+      <div class="project-list">
+        <a class="work-card album-card" href="stitched-heart.html">
+          <div class="work-image album-frame">
+            <img src="assets/album-final.jpg" alt="Final Mess It Up concept cover with a small red cross-stitched heart and loose thread on linen" width="600" height="600">
+          </div>
+          <div class="work-copy">
+            <p class="kicker">AI IMAGE-MAKING · ART DIRECTION</p>
+            <h3>Designing an Album Cover with AI</h3>
+            <p>A measurable visual system turns the quiet anxiety of Gracie Abrams' “Mess It Up” into one embroidered heart and a loose thread.</p>
+            <span>View case study →</span>
+          </div>
+        </a>
+
+        <a class="work-card studio-card" href="personal-studio.html">
+          <div class="work-image studio-frame">
+            <img src="assets/studio-final.png" alt="Warm minimalist studio with burgundy wall, terracotta chair, oak shelving, white desk, and sunlit window" width="396" height="288">
+          </div>
+          <div class="work-copy">
+            <p class="kicker">AI ENVIRONMENT DESIGN · SPATIAL SYSTEM</p>
+            <h3>Personal Studio Space</h3>
+            <p>A warm minimalist sanctuary organized into reading, display, and work zones through exact color, furniture, and lighting prompts.</p>
+            <span>View case study →</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="method-section" aria-labelledby="method-title">
+      <p class="kicker">WHAT I EXPLORED</p>
+      <h2 id="method-title">A repeatable way to design with AI.</h2>
+      <div class="method-grid">
+        <article><span>01</span><h3>Define</h3><p>Translate a mood or spatial goal into observable visual decisions.</p></article>
+        <article><span>02</span><h3>Measure</h3><p>Use placement, scale, color values, and constraints to check what changed.</p></article>
+        <article><span>03</span><h3>Refine</h3><p>Change one variable at a time, preserve what works, and verify the result.</p></article>
+      </div>
+    </section>
+
+    <section class="about-band" id="about" aria-labelledby="about-title">
+      <p class="kicker">ABOUT THIS PORTFOLIO</p>
+      <div class="about-layout">
+        <h2 id="about-title">I used AI as a design material—not a shortcut around design decisions.</h2>
+        <div>
+          <p>Each project began with a specific intention, developed through documented prompt iterations, and ended with a final result tested for consistency and clarity.</p>
+          <p>Created by Shreya Ramanan for DSC 598: AI for Interdisciplinary Design.</p>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>Shreya Venkataramanan</p>
-    <a href="#main">Back to top ↑</a>
+  <footer class="site-footer">
+    <div><strong>Shreya Ramanan</strong><p>AI-assisted image and spatial design.</p></div>
+    <div><span>PAGE</span><a href="index.html">Home</a><a href="#projects">Projects</a><a href="#about">About</a></div>
+    <button class="back-top" type="button" data-back-top>Back to top ↑</button>
   </footer>
   <script src="site.js"></script>
 </body>
