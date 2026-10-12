@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shreya Venkataramanan's interdisciplinary design portfolio: a stitched-heart album cover, a personal studio environment, and an interactive drawing.">
+  <meta name="theme-color" content="#f3eee4">
+  <title>Shreya Venkataramanan — Studies in Repair & Space</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="home-page">
+  <a class="skip-link" href="#main">Skip to work</a>
+  <header class="site-header">
+    <a class="wordmark" href="index.html" aria-label="Shreya Venkataramanan, home">SV</a>
+    <nav aria-label="Primary navigation">
+      <a href="#work">Projects</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Interdisciplinary design portfolio · 2026</p>
+        <h1>Studies in<br><em>repair & space.</em></h1>
+        <p class="hero-intro">Two projects about the things we keep close: an image of repair and a room built around attention.</p>
+      </div>
+
+      <div class="interaction-shell">
+        <div class="interaction-heading">
+          <p><strong>Make a mark</strong><br>Click or tap to add a stitched bloom.</p>
+          <button class="text-button" id="clear-canvas" type="button">Start again</button>
+        </div>
+        <canvas id="stitch-canvas" tabindex="0" role="img" aria-label="Interactive drawing area. Click, tap, or press Enter to add a stitched bloom."></canvas>
+        <p class="sr-only" id="canvas-status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="projects-section" id="work" aria-labelledby="work-title">
+      <div class="section-heading">
+        <p class="eyebrow">Selected projects</p>
+        <h2 id="work-title">Image, material, environment.</h2>
+      </div>
+
+      <div class="project-grid">
+        <a class="project-card cover-card" href="stitched-heart.html">
+          <div class="card-image square-image">
+            <img src="assets/stitched-heart.jpg" alt="A crimson paper heart repaired with cream stitches on warm handmade paper" width="1254" height="1254">
+            <span class="card-number">01</span>
+          </div>
+          <div class="card-meta">
+            <div>
+              <p class="eyebrow">Album cover · Image study</p>
+              <h3>Stitched Heart</h3>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </a>
+
+        <a class="project-card studio-card" href="personal-studio.html">
+          <div class="card-image landscape-image">
+            <img src="assets/studio-overview.jpg" alt="A sunlit personal studio with a burgundy reading wall, white desk, and oak gallery shelves" width="1536" height="1024">
+            <span class="card-number">02</span>
+          </div>
+          <div class="card-meta">
+            <div>
+              <p class="eyebrow">3D environment · Spatial study</p>
+              <h3>Personal Studio</h3>
+            </div>
+            <span aria-hidden="true">↗</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <p class="eyebrow">About</p>
+      <div class="about-grid">
+        <h2 id="about-title">I design by making the idea visible, testing what changed, and refining one decision at a time.</h2>
+        <div>
+          <p>This portfolio brings together image-making, spatial storytelling, and interaction. Each project began with a clear visual intention, moved through documented prompt iterations, and ended with a result tested at more than one scale.</p>
+          <p class="signature">Shreya Venkataramanan<br><span>DSC 598 · Fall 2026</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Shreya Venkataramanan</p>
+    <a href="#main">Back to top ↑</a>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>

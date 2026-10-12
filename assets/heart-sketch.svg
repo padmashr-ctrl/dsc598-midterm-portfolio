@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Stitched Heart composition sketch</title>
+  <desc id="desc">A drafting-style diagram showing a small centered heart and a clear upper area.</desc>
+  <rect width="1200" height="900" fill="#eee7dc"/>
+  <path d="M0 405H1200" stroke="#ad2f39" stroke-width="2" stroke-dasharray="12 12"/>
+  <text x="46" y="388" font-family="Arial, sans-serif" font-size="22" fill="#ad2f39">TOP 45% CLEAR</text>
+  <rect x="72" y="70" width="1056" height="760" fill="none" stroke="#8b837a" stroke-width="2"/>
+  <path d="M600 708C548 668 441 590 441 492C441 425 491 390 545 390C579 390 608 408 628 438C648 408 678 390 713 390C768 390 817 425 817 492C817 590 710 668 658 708L628 730Z" fill="none" stroke="#ad2f39" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M628 438L600 480L648 514L613 553L651 595L621 634L658 708" fill="none" stroke="#181615" stroke-width="4" stroke-dasharray="8 9"/>
+  <path d="M441 770H817M441 756V784M817 756V784" stroke="#181615" stroke-width="2"/>
+  <text x="566" y="814" font-family="Arial, sans-serif" font-size="21" fill="#181615">≈ 29% WIDTH</text>
+  <circle cx="628" cy="560" r="5" fill="#181615"/>
+  <path d="M628 560H928" stroke="#181615" stroke-width="2"/>
+  <text x="942" y="554" font-family="Arial, sans-serif" font-size="20" fill="#181615">CENTERED</text>
+  <text x="942" y="580" font-family="Arial, sans-serif" font-size="16" fill="#706a63">repair line remains visible</text>
+</svg>
