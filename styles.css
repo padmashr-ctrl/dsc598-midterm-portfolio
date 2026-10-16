@@ -61,7 +61,7 @@ h1,h2,h3{color:var(--ink);font-family:Boska,Georgia,serif}
 .playground-label p{font-size:.8rem;line-height:1.4}
 .quiet-button{padding:.15rem 0;border:0;border-bottom:1px solid currentColor;background:none;color:var(--muted);font-size:.78rem;cursor:pointer;pointer-events:auto}
 .quiet-button:hover,.quiet-button:focus-visible{color:var(--green)}
-#stitch-canvas{width:100%;height:560px;cursor:crosshair;touch-action:pan-y}
+#stitch-canvas{width:100%;height:560px;cursor:crosshair;touch-action:none}
 #stitch-canvas:focus-visible{outline:3px solid var(--green);outline-offset:-4px}
 
 .selected-work,.method-section,.about-band{padding:clamp(6rem,10vw,10rem) var(--pad)}
