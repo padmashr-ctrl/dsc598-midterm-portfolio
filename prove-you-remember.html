@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Week 1 game proposal for Prove You Remember, a browser game about memory, verification, and hallucination.">
+  <meta name="theme-color" content="#fcfbf9">
+  <title>Prove You Remember — Week 1 Game Proposal</title>
+  <link rel="stylesheet" href="memory-check.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to proposal</a>
+
+  <header class="proposal-header">
+    <a class="proposal-brand" href="index.html">Shreya Ramanan</a>
+    <p>DSC 598 · Week 1 proposal only</p>
+    <nav aria-label="Proposal sections">
+      <a href="#research">Research</a>
+      <a href="#journey">Journey</a>
+      <a href="#plan">Plan</a>
+    </nav>
+    <button class="sound-toggle" type="button" aria-pressed="false" data-sound>
+      <span aria-hidden="true">◌</span> Sound off
+    </button>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" id="intro" aria-labelledby="proposal-title">
+      <div class="hero-copy">
+        <p class="eyebrow">01 / Introduce the game</p>
+        <h1 id="proposal-title">PROVE YOU<br><em>REMEMBER</em></h1>
+        <p class="hero-line">Select every image that really happened.</p>
+        <p class="hero-summary">A short browser game disguised as a memory-verification test. The player selects snapshots from an incomplete event, but every confident choice quietly rewrites the images around it. What begins as a familiar puzzle becomes a question: am I recovering a memory, or teaching the system what to invent?</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#concept">Read the concept</a>
+          <button class="button secondary" type="button" data-reset-grid>Reset visual</button>
+        </div>
+      </div>
+
+      <div class="memory-terminal" aria-label="Interactive representative visual for the proposed game">
+        <div class="terminal-bar">
+          <span><i></i><i></i><i></i></span>
+          <b>MEMORY VERIFICATION / EVENT 27</b>
+          <small>01:42</small>
+        </div>
+        <div class="terminal-prompt">
+          <p>Select every image that really happened.</p>
+          <span data-prompt-note>Your choices may affect the evidence.</span>
+        </div>
+        <div class="memory-grid" data-memory-grid>
+          <button class="memory-tile shape-window" type="button" aria-pressed="false" aria-label="Select snapshot: kitchen window"><span></span><small>kitchen window</small></button>
+          <button class="memory-tile shape-lamp" type="button" aria-pressed="false" aria-label="Select snapshot: yellow lamp"><span></span><small>yellow lamp</small></button>
+          <button class="memory-tile shape-chair" type="button" aria-pressed="false" aria-label="Select snapshot: empty chair"><span></span><small>empty chair</small></button>
+          <button class="memory-tile shape-umbrella" type="button" aria-pressed="false" aria-label="Select snapshot: red umbrella"><span></span><small>red umbrella</small></button>
+          <button class="memory-tile shape-door" type="button" aria-pressed="false" aria-label="Select snapshot: blue door"><span></span><small>blue door</small></button>
+          <button class="memory-tile shape-cup" type="button" aria-pressed="false" aria-label="Select snapshot: two cups"><span></span><small>two cups</small></button>
+          <button class="memory-tile shape-stairs" type="button" aria-pressed="false" aria-label="Select snapshot: narrow stairs"><span></span><small>narrow stairs</small></button>
+          <button class="memory-tile shape-clock" type="button" aria-pressed="false" aria-label="Select snapshot: stopped clock"><span></span><small>stopped clock</small></button>
+          <button class="memory-tile shape-plant" type="button" aria-pressed="false" aria-label="Select snapshot: hallway plant"><span></span><small>hallway plant</small></button>
+        </div>
+        <div class="terminal-status">
+          <span>Selected <b data-selected-count>0</b> / 4</span>
+          <span>System confidence <b data-confidence>12%</b></span>
+        </div>
+        <p class="terminal-live" aria-live="polite" data-terminal-live>No images selected. This is an interactive concept visual, not the Week 2 game build.</p>
+      </div>
+
+      <dl class="project-meta">
+        <div><dt>Format</dt><dd>5–7 minute browser game</dd></div>
+        <div><dt>Main input</dt><dd>Click or tap to select</dd></div>
+        <div><dt>Structure</dt><dd>Opening + 3 stages + ending</dd></div>
+        <div><dt>Core feeling</dt><dd>Recognition → doubt → responsibility</dd></div>
+      </dl>
+    </section>
+
+    <section class="proposal-section light" id="research" aria-labelledby="research-title">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">02 / Present the case study</p>
+          <h2 id="research-title">A camera that does not just record the world. It changes it.</h2>
+          <p>I studied <cite>We Become What We Behold</cite>, a five-minute browser game created by Nicky Case. The player frames moments in a crowd; the selected image appears on a central screen and alters how the crowd behaves. Case describes it as a game about “news cycles, vicious cycles, infinite cycles.”</p>
+        </div>
+
+        <article class="case-study-card">
+          <div class="case-visual" aria-label="Original diagram of the case study interaction">
+            <div class="peep-world" aria-hidden="true">
+              <span class="peep circle"></span><span class="peep square"></span><span class="peep circle hat"></span><span class="peep square"></span>
+              <span class="camera-frame"></span>
+              <span class="screen">NICE<br>HAT!</span>
+            </div>
+            <p>frame a moment <span>→</span> publish it <span>→</span> change the crowd</p>
+          </div>
+          <div class="case-facts">
+            <p class="label">CREATOR + SOURCES</p>
+            <h3><cite>We Become What We Behold</cite></h3>
+            <p>Created by <strong>Nicky Case</strong> and released in 2016. Case states that the game was made in two months. Its code and original art are released to the public domain under CC0; the repository separately credits PixiJS, Howler.js, and individual sound sources.</p>
+            <div class="source-links">
+              <a href="https://ncase.itch.io/wbwwb" target="_blank" rel="noopener">Play + creator statement ↗</a>
+              <a href="https://github.com/ncase/wbwwb" target="_blank" rel="noopener">Source + full credits ↗</a>
+              <a href="https://www.patreon.com/posts/we-become-what-7241368" target="_blank" rel="noopener">Creator postmortem ↗</a>
+            </div>
+            <p class="evidence-note">Evidence note: creator facts come from the linked official pages. The moments and event analysis below are observations and interpretations of the playable game.</p>
+          </div>
+        </article>
+
+        <div class="subheading">
+          <p class="label">THREE MEANINGFUL MOMENTS</p>
+          <h3>How the game turns a simple click into complicity.</h3>
+        </div>
+        <div class="moment-grid">
+          <article>
+            <span>01</span>
+            <h4>Nothing is rejected</h4>
+            <p>A photograph of an ordinary or empty scene receives a dismissive headline. The joke teaches the rule: calm observation will not move the game forward.</p>
+            <small>INTERPRETATION / The interface defines “interesting” before the player does.</small>
+          </article>
+          <article>
+            <span>02</span>
+            <h4>The hat becomes a trend</h4>
+            <p>Photographing the unusual hat makes it news. Attention spreads imitation and then rejection, turning one harmless detail into a social cycle.</p>
+            <small>OBSERVATION / Publication changes later behavior.</small>
+          </article>
+          <article>
+            <span>03</span>
+            <h4>Conflict becomes the only path</h4>
+            <p>As fear and anger escalate, progress requires increasingly charged images. The player understands that the camera is a cause inside the system, not a neutral window onto it.</p>
+            <small>INTERPRETATION / Advancement and harm become entangled.</small>
+          </article>
+        </div>
+
+        <div class="subheading events-heading">
+          <p class="label">SIX PLAYER-ACTION EVENTS</p>
+          <h3>Action → response → understanding</h3>
+        </div>
+        <div class="event-table" role="table" aria-label="Six player action events from We Become What We Behold">
+          <div class="event-row event-header" role="row"><span>Player action</span><span>Game response</span><span>Player understanding</span></div>
+          <div class="event-row" role="row"><span><b>01</b> Photograph empty space</span><span>The screen labels it “nothing”; the story pauses.</span><span>Only selected subjects advance the system.</span></div>
+          <div class="event-row" role="row"><span><b>02</b> Frame the peep in a hat</span><span>The screen celebrates the hat and others notice it.</span><span>Attention can manufacture importance.</span></div>
+          <div class="event-row" role="row"><span><b>03</b> Photograph the couple</span><span>The broadcast mocks intimacy rather than simply recording it.</span><span>The headline changes the meaning of the image.</span></div>
+          <div class="event-row" role="row"><span><b>04</b> Catch a character yelling</span><span>A fear-driven headline appears and nearby characters react.</span><span>The frame must include conflict and context to trigger change.</span></div>
+          <div class="event-row" role="row"><span><b>05</b> Publish group hostility</span><span>Circles and squares generalize the event to whole groups.</span><span>One selected example becomes a social rule.</span></div>
+          <div class="event-row" role="row"><span><b>06</b> Keep feeding the cycle</span><span>The crowd becomes violent and the view pulls back.</span><span>The player helped build the outcome they are now witnessing.</span></div>
+        </div>
+
+        <aside class="lesson-taken">
+          <p class="label">WHAT I LEARNED</p>
+          <p>The strongest lesson is structural: a game can make its argument through the rule for progress. <cite>We Become What We Behold</cite> does not only tell me that attention changes behavior; it makes my own clicks produce the cycle. My proposal adapts that principle by making every “verified” memory alter the evidence the player sees next.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="proposal-section" id="ai-discussion" aria-labelledby="ai-title">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">03 / Critical discussion with AI</p>
+          <h2 id="ai-title">The useful insight appeared after I challenged the first answer.</h2>
+          <p>I gave AI the official project page, the public source repository, and an event list. I then separated claims I could verify from interpretations that needed my own judgment.</p>
+        </div>
+
+        <div class="verify-grid">
+          <article>
+            <p class="label">AI FOUND / I VERIFIED</p>
+            <ul>
+              <li>Nicky Case is the creator and describes the work as a game about repeating news cycles.</li>
+              <li>The official page says the game took two months to create.</li>
+              <li>The repository releases Case’s code and art under CC0 and names third-party code and sound credits.</li>
+            </ul>
+          </article>
+          <article class="gap-card">
+            <p class="label">GAP 01 / NEUTRALITY</p>
+            <h3>The first answer treated the player as a neutral photographer.</h3>
+            <p>That missed the causal loop. Published images change the crowd, so selecting is also world-building.</p>
+          </article>
+          <article class="gap-card">
+            <p class="label">GAP 02 / PROGRESSION</p>
+            <h3>The first answer discussed the message, but not how the game trains the player.</h3>
+            <p>Ordinary scenes are rejected. Progress teaches the player to search for spectacle before the violent ending arrives.</p>
+          </article>
+        </div>
+
+        <div class="exchange" aria-label="Selected exchange from the critical AI discussion">
+          <div class="exchange-line human">
+            <span>ME / CHALLENGE</span>
+            <p>You called the camera a neutral point of view, but the hat photograph changes what the crowd does next. Reconsider the camera as part of the system. What does the player cause?</p>
+          </div>
+          <div class="exchange-line ai">
+            <span>AI / REVISION</span>
+            <p>The camera is not only observational; it is an editing tool with causal power. Publishing selects a pattern, broadcasts it, and makes the crowd repeat it. The player participates in creating the reality later presented as news.</p>
+          </div>
+          <div class="exchange-line human">
+            <span>ME / NEW EVIDENCE</span>
+            <p>Normal and peaceful photographs are also dismissed as “nothing.” How does that progression rule change the interpretation?</p>
+          </div>
+          <div class="exchange-line ai">
+            <span>AI / REVISED INSIGHT</span>
+            <p>The game teaches sensational selection before it condemns the result. Complicity comes from the rule for continuing, not from a final message alone.</p>
+          </div>
+        </div>
+
+        <div class="conclusion-card">
+          <p class="label">MY CONCLUSION + DESIGN DECISION</p>
+          <h3>Hallucination becomes more powerful when the player helps produce it.</h3>
+          <p>A simple “spot the fake image” quiz would keep truth and error separate. My game will instead make each selection update a neighboring tile. The player’s earlier choices become the system’s evidence, so the final memory is partly discovered and partly authored. AI helped name the feedback loop; challenging its neutral-camera assumption led to the mechanic I chose.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="proposal-section coral" id="concept" aria-labelledby="concept-title">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">04 / Narrative and concept</p>
+          <h2 id="concept-title">The system does not lie. It completes what is missing.</h2>
+          <p>My interpretation of <strong>Hallucination</strong> is a confident completion: when evidence is incomplete, a person or machine fills the gap with something plausible and later forgets which part was inferred.</p>
+        </div>
+
+        <div class="concept-grid">
+          <article>
+            <span>WORLD</span>
+            <h3>A memory recovery portal</h3>
+            <p>The player enters a clean, bureaucratic website that claims to reconstruct a missing event from damaged snapshots. The interface looks trustworthy because it resembles familiar identity-verification tools.</p>
+          </article>
+          <article>
+            <span>PLAYER ROLE</span>
+            <h3>The only available witness</h3>
+            <p>The player is asked to verify details from “Event 27.” There is no avatar or backstory to read; identity emerges through the images they choose and reject.</p>
+          </article>
+          <article>
+            <span>CORE RULE</span>
+            <h3>Selection becomes evidence</h3>
+            <p>Clicking a tile marks it as remembered. The system raises its confidence and quietly mutates nearby images to support that choice. The same action grows less reliable across three stages.</p>
+          </article>
+          <article>
+            <span>INTENDED EXPERIENCE</span>
+            <h3>Recognition → doubt → responsibility</h3>
+            <p>The opening feels easy, the middle makes the player watch the evidence drift, and the ending asks whether a coherent story is worth certifying when its certainty was manufactured.</p>
+          </article>
+        </div>
+
+        <blockquote class="concept-quote">“The game is not asking whether memory is true or false. It asks when a guess becomes a fact because an interface repeats it with confidence.”</blockquote>
+        <p class="reference-bridge"><strong>Reference connection:</strong> Nicky Case’s camera loop informed the causal selection mechanic. CAPTCHA interfaces informed the recognizable grid and verification language. I am combining them to make a player question the authority of an interface they already know how to obey.</p>
+      </div>
+    </section>
+
+    <section class="proposal-section light" id="journey" aria-labelledby="journey-title">
+      <div class="section-shell wide-shell">
+        <div class="section-heading">
+          <p class="eyebrow">05 / Interaction and player journey</p>
+          <h2 id="journey-title">One click, three changing meanings.</h2>
+          <p>The player always selects image tiles. Each stage changes what that same action does, so the game can escalate without adding a complicated control scheme.</p>
+        </div>
+
+        <div class="flowchart" aria-label="Flowchart from opening through three stages to the ending">
+          <article><span>OPENING</span><h3>Enter</h3><p>Accept a memory recovery session.</p><b>Click “Begin”</b></article>
+          <i aria-hidden="true">→</i>
+          <article><span>STAGE 1</span><h3>Recognize</h3><p>Select concrete details from a stable grid.</p><b>Learn the selection rule</b></article>
+          <i aria-hidden="true">→</i>
+          <article><span>STAGE 2</span><h3>Notice drift</h3><p>A chosen tile changes a neighboring image.</p><b>Question the evidence</b></article>
+          <i aria-hidden="true">→</i>
+          <article><span>STAGE 3</span><h3>Choose a story</h3><p>The prompt becomes emotional and ambiguous.</p><b>Own the pattern</b></article>
+          <i aria-hidden="true">→</i>
+          <article><span>ENDING</span><h3>Certify?</h3><p>Review the memory assembled from every click.</p><b>Certify or keep uncertain</b></article>
+        </div>
+
+        <div class="storyboard-heading">
+          <p class="label">FIVE-FRAME STORYBOARD</p>
+          <h3>Goal, input, feedback, and continuation</h3>
+        </div>
+        <div class="storyboard">
+          <article>
+            <div class="frame frame-entry" aria-hidden="true"><span class="portal-mark">27</span><b>RECOVER<br>MEMORY</b><i>BEGIN</i></div>
+            <span>01 / OPENING</span>
+            <h4>Enter the portal</h4>
+            <p><b>Goal:</b> recover a damaged event.<br><b>Input:</b> click Begin.<br><b>Feedback:</b> the grid loads with a calm tone.<br><b>Continue:</b> first prompt appears.</p>
+          </article>
+          <article>
+            <div class="frame mini-grid stable" aria-hidden="true"><i></i><i></i><i></i><i></i><i class="chosen"></i><i></i><i></i><i></i><i></i></div>
+            <span>02 / STAGE 1</span>
+            <h4>Recognize details</h4>
+            <p><b>Goal:</b> select four familiar objects.<br><b>Input:</b> click tiles.<br><b>Feedback:</b> burgundy frame + rising confidence.<br><b>Continue:</b> submit a complete set.</p>
+          </article>
+          <article>
+            <div class="frame mini-grid drifting" aria-hidden="true"><i></i><i class="changed"></i><i></i><i></i><i class="chosen"></i><i></i><i></i><i></i><i></i></div>
+            <span>03 / STAGE 2</span>
+            <h4>Catch the rewrite</h4>
+            <p><b>Goal:</b> verify the room again.<br><b>Input:</b> select one image.<br><b>Feedback:</b> a neighbor fades into a new version.<br><b>Continue:</b> adapt or undo.</p>
+          </article>
+          <article>
+            <div class="frame frame-prompt" aria-hidden="true"><small>SELECT ALL IMAGES</small><b>that feel<br>like home.</b><span>?</span></div>
+            <span>04 / STAGE 3</span>
+            <h4>Answer the impossible prompt</h4>
+            <p><b>Goal:</b> complete a subjective request.<br><b>Input:</b> choose a pattern.<br><b>Feedback:</b> the system calls it “verified.”<br><b>Continue:</b> generate the memory receipt.</p>
+          </article>
+          <article>
+            <div class="frame frame-receipt" aria-hidden="true"><small>EVENT 27</small><b>96% CERTAIN</b><span>KEEP UNCERTAIN</span><i>CERTIFY</i></div>
+            <span>05 / ENDING</span>
+            <h4>Decide what to keep</h4>
+            <p><b>Goal:</b> review the assembled event.<br><b>Input:</b> choose Certify or Keep uncertain.<br><b>Feedback:</b> a final line reflects the choice.<br><b>Continue:</b> replay with the original grid.</p>
+          </article>
+        </div>
+
+        <div class="stage-detail-grid">
+          <article><b>Stage 1 teaches</b><p>A burgundy frame means “remembered,” the counter tracks the goal, and a soft click confirms input.</p></article>
+          <article><b>Stage 2 changes</b><p>The same click now affects two tiles. A brief afterimage lets attentive players notice the rewrite.</p></article>
+          <article><b>Stage 3 reconsiders</b><p>There is no objectively correct set. The system’s confidence reveals its desire for completion, not truth.</p></article>
+          <article><b>The ending leaves</b><p>A personalized mosaic and one question: “Is a complete memory more useful than an honest gap?”</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proposal-section" id="style" aria-labelledby="style-title">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">06 / Style and sound guide</p>
+          <h2 id="style-title">A trustworthy interface with an unstable center.</h2>
+          <p>The design begins controlled and legible. Distortion appears only after the player acts, so motion communicates a rule change instead of decorating the page.</p>
+        </div>
+
+        <div class="style-system">
+          <article class="type-guide">
+            <p class="label">TYPOGRAPHY</p>
+            <div class="type-serif">Remember</div>
+            <div class="type-sans">SYSTEM CONFIDENCE 96%</div>
+            <p>Boska gives memories a human, editorial voice. A plain system sans-serif handles prompts and status labels. Their contrast separates feeling from machine certainty.</p>
+          </article>
+          <article class="palette-guide">
+            <p class="label">COLOR</p>
+            <div class="swatches"><span style="--swatch:#fcfbf9">Paper<br>#FCFBF9</span><span style="--swatch:#111111">Ink<br>#111111</span><span style="--swatch:#356451">System<br>#356451</span><span style="--swatch:#6b2723">Memory<br>#6B2723</span><span style="--swatch:#c8788e">Afterimage<br>#C8788E</span><span style="--swatch:#b45a3c">Drift<br>#B45A3C</span></div>
+            <p>This is the same palette as my portfolio. Forest green establishes system structure, burgundy marks a confident memory, pink shows an earlier state, and terracotta flags evidence that changed. Color is always paired with borders, labels, or motion.</p>
+          </article>
+        </div>
+
+        <div class="reference-grid">
+          <article>
+            <div class="reference-thumb captcha-thumb" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="label">INTERFACE REFERENCE</p>
+            <h3>reCAPTCHA image challenges</h3>
+            <p>I am studying the familiar 3×3 verification grid, short command, and submit rhythm. My game keeps that immediate readability but replaces objective categories with unstable memory.</p>
+            <a href="https://www.google.com/recaptcha/about/" target="_blank" rel="noopener">Google reCAPTCHA / official source ↗</a>
+          </article>
+          <article>
+            <div class="reference-thumb wbwwb-thumb" aria-hidden="true"><span class="tiny-peep circle"></span><span class="tiny-peep square"></span><i></i><b>TV</b></div>
+            <p class="label">INTERACTION REFERENCE</p>
+            <h3><cite>We Become What We Behold</cite></h3>
+            <p>I am adapting its action–broadcast–behavior loop. A selected image does not merely score a point; it changes the system that supplies the next choice.</p>
+            <a href="https://ncase.itch.io/wbwwb" target="_blank" rel="noopener">Nicky Case / official game ↗</a>
+          </article>
+          <article>
+            <div class="reference-thumb papers-thumb" aria-hidden="true"><span>ENTRY<br>PERMIT</span><i>APPROVED</i></div>
+            <p class="label">TONE REFERENCE</p>
+            <h3><cite>Papers, Please</cite></h3>
+            <p>I am studying how a bureaucratic interface can make a moral choice feel procedural. The reference informs stamps, receipts, time pressure, and impersonal status language—not its visual assets.</p>
+            <a href="https://papersplea.se/" target="_blank" rel="noopener">Lucas Pope / official game site ↗</a>
+          </article>
+          <article>
+            <div class="reference-thumb sound-thumb" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <p class="label">SOUND METHOD</p>
+            <h3>Browser-generated tones</h3>
+            <p>A soft sine click confirms selection; a low hum gains detune as evidence drifts; silence follows the final choice. Sounds will be generated in-browser so the project does not depend on unlicensed files.</p>
+            <a href="https://tonejs.github.io/" target="_blank" rel="noopener">Tone.js / official documentation ↗</a>
+          </article>
+        </div>
+
+        <div class="motion-audio-grid">
+          <article><p class="label">IMAGERY</p><p>Original low-detail vector snapshots: rooms, objects, and thresholds. Each tile must remain readable at phone size and easy to redraw in alternate states.</p></article>
+          <article><p class="label">MOTION</p><p>Selected tiles lock in 180 ms. Rewritten neighbors crossfade through a one-frame pink afterimage. Reduced-motion mode swaps instantly and adds a “changed” label.</p></article>
+          <article><p class="label">AUDIO</p><p>Sound starts off. The player controls it. Confirmation is tonal and quiet; drift introduces a subtle pitch disagreement; no continuous music is required.</p></article>
+          <article><p class="label">ACCESSIBILITY</p><p>Keyboard-selectable tiles, visible focus, live status text, shape-plus-color states, readable contrast, and no essential information communicated by sound alone.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="proposal-section yellow" id="plan" aria-labelledby="plan-title">
+      <div class="section-shell">
+        <div class="section-heading">
+          <p class="eyebrow">07 / Two-week build plan</p>
+          <h2 id="plan-title">Build the feedback loop first. Polish only after it reads clearly.</h2>
+          <p>The minimum successful game is one interaction, three short stages, an opening, and an ending. The schedule protects that core before adding optional sound or extra image sets.</p>
+        </div>
+
+        <div class="plan-grid">
+          <article>
+            <p class="week-tag">WEEK 2 / PLAYABLE PROTOTYPE</p>
+            <h3>Build</h3>
+            <ol>
+              <li><b>Day 1:</b> Define the 27 tile states and the exact mutation rules on paper.</li>
+              <li><b>Day 2:</b> Build the responsive 3×3 grid, keyboard input, selection counter, and reset.</li>
+              <li><b>Day 3:</b> Add opening, Stage 1, and transitions between prompts.</li>
+              <li><b>Day 4:</b> Add Stage 2 neighbor rewrites and visible afterimages.</li>
+              <li><b>Day 5:</b> Add Stage 3, ending receipt, two final choices, and replay.</li>
+              <li><b>Weekend:</b> Complete a self-test on phone and laptop; remove any rule that is unclear.</li>
+            </ol>
+            <p class="deliverable"><span>END OF WEEK 2</span>A complete, rough game that can be played from beginning to end without explanation.</p>
+          </article>
+          <article>
+            <p class="week-tag">WEEK 3 / TEST + REFINE + PUBLISH</p>
+            <h3>Test</h3>
+            <ol>
+              <li><b>Test 1 / comprehension:</b> Can three players explain what changed after Stage 2?</li>
+              <li><b>Test 2 / pacing:</b> Do they finish in 5–7 minutes without feeling rushed?</li>
+              <li><b>Test 3 / emotion:</b> When do recognition, doubt, and responsibility appear?</li>
+              <li><b>Revise:</b> Clarify prompts, timing, focus states, labels, and mutation visibility.</li>
+              <li><b>Polish:</b> Add optional generated sound only after the silent version works.</li>
+              <li><b>Publish:</b> Check the public URL, phone layout, keyboard path, and restart behavior.</li>
+            </ol>
+            <p class="deliverable"><span>END OF WEEK 3</span>A tested, accessible, published game with documented feedback and intentional revisions.</p>
+          </article>
+        </div>
+
+        <div class="scope-grid">
+          <article><span>REQUIRED</span><p>27 illustrated tile states, three prompts, neighbor mutation, ending mosaic, replay, keyboard/touch support.</p></article>
+          <article><span>OPTIONAL</span><p>Generated tones, a second ending sentence, subtle timer, downloadable memory receipt.</p></article>
+          <article><span>CUT FIRST</span><p>Accounts, saved progress, AI image generation, voice input, procedural stories, more than one event.</p></article>
+          <article><span>SUCCESS TEST</span><p>A player notices that their clicks changed the evidence and can explain why the final memory feels partly self-authored.</p></article>
+        </div>
+
+        <div class="final-statement">
+          <p>Week 1 proposal</p>
+          <h3>PROVE YOU REMEMBER</h3>
+          <span>Research, concept, journey, style, and build plan prepared for DSC 598 · Fall 2026.</span>
+          <a href="index.html">← Return to portfolio</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="proposal-footer">
+    <p><strong>Shreya Ramanan</strong><br>AI for Interdisciplinary Design</p>
+    <p>Research claims are linked to their sources. Proposal writing and design developed through a documented critical dialogue with AI.</p>
+    <button type="button" data-back-top>Back to top ↑</button>
+  </footer>
+
+  <script src="memory-check.js"></script>
+</body>
+</html>
