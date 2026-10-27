@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Week 1 game proposal for Prove You Remember, a browser game about memory, verification, and hallucination.">
-  <meta name="theme-color" content="#fcfbf9">
+  <meta name="theme-color" content="#f9fafc">
   <title>Prove You Remember — Week 1 Game Proposal</title>
   <link rel="stylesheet" href="memory-check.css">
   <link rel="stylesheet" href="memory-check-plus.css">
@@ -292,63 +292,63 @@
           <svg viewBox="0 0 1100 470" role="img" aria-labelledby="flow-title flow-desc">
             <title id="flow-title">Player journey flowchart</title>
             <desc id="flow-desc">Opening leads to Stage 1, where the player selects four tiles and submits. Stage 2 adds rewrites: each selection changes a neighbour, and undo removes the choice but not the rewrite. Stage 3 accepts any selection as verified. The ending shows a receipt and asks the player to certify or keep uncertain; both lead to a final line and replay.</desc>
-            <defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>
-            <g font-family="Helvetica Neue, Inter, Arial, sans-serif" fill="#111">
-              <g fill="#fff" stroke="#111" stroke-width="1.5">
+            <defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#0c0e16"/></marker></defs>
+            <g font-family="Helvetica Neue, Inter, Arial, sans-serif" fill="#0c0e16">
+              <g fill="#fff" stroke="#0c0e16" stroke-width="1.5">
                 <rect x="10" y="40" width="170" height="96" rx="12"/>
                 <rect x="230" y="40" width="190" height="96" rx="12"/>
                 <rect x="470" y="40" width="190" height="96" rx="12"/>
                 <rect x="710" y="40" width="190" height="96" rx="12"/>
               </g>
-              <path d="M1005 40l85 48-85 48-85-48z" fill="#f4e6e7" stroke="#6b2723" stroke-width="1.5"/>
-              <g font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#356451">
+              <path d="M1005 40l85 48-85 48-85-48z" fill="#ece6f7" stroke="#5a2ca0" stroke-width="1.5"/>
+              <g font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#3346c8">
                 <text x="26" y="64">OPENING</text><text x="246" y="64">STAGE 1</text><text x="486" y="64">STAGE 2</text><text x="726" y="64">STAGE 3</text>
               </g>
               <g font-family="Boska, Georgia, serif" font-size="21" font-weight="700">
                 <text x="26" y="92">Enter</text><text x="246" y="92">Recognize</text><text x="486" y="92">Notice drift</text><text x="726" y="92">Choose a story</text>
               </g>
-              <g font-size="12.5" fill="#555">
+              <g font-size="12.5" fill="#474e63">
                 <text x="26" y="116">Click “Begin verification”</text>
                 <text x="246" y="116">Select 4 → Submit</text>
                 <text x="486" y="116">Select 3 → each one</text><text x="486" y="131">rewrites a neighbour</text>
                 <text x="726" y="116">“Select all images that</text><text x="726" y="131">feel like home”</text>
               </g>
-              <text x="1005" y="84" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#6b2723">RECEIPT</text>
-              <text x="1005" y="102" text-anchor="middle" font-size="12.5" fill="#6b2723">96% certain</text>
-              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+              <text x="1005" y="84" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#5a2ca0">RECEIPT</text>
+              <text x="1005" y="102" text-anchor="middle" font-size="12.5" fill="#5a2ca0">96% certain</text>
+              <g stroke="#0c0e16" stroke-width="1.5" fill="none" marker-end="url(#fa)">
                 <path d="M180 88h46"/><path d="M420 88h46"/><path d="M660 88h46"/><path d="M900 88h16"/>
               </g>
               <!-- loops -->
               <g fill="none" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#fa)">
-                <path d="M300 136v46h60v-42" stroke="#356451"/>
-                <path d="M530 136v46h70v-42" stroke="#b45a3c"/>
-                <path d="M770 136v46h70v-42" stroke="#c8788e"/>
+                <path d="M300 136v46h60v-42" stroke="#3346c8"/>
+                <path d="M530 136v46h70v-42" stroke="#e0912b"/>
+                <path d="M770 136v46h70v-42" stroke="#1fa3c2"/>
               </g>
               <g font-size="12">
-                <text x="246" y="204" fill="#356451">Not 4 yet → keep choosing</text>
-                <text x="470" y="204" fill="#b45a3c">Undo → choice removed,</text><text x="470" y="220" fill="#b45a3c">rewrite stays</text>
-                <text x="716" y="204" fill="#c8788e">Any choice is “verified”</text>
+                <text x="246" y="204" fill="#3346c8">Not 4 yet → keep choosing</text>
+                <text x="470" y="204" fill="#e0912b">Undo → choice removed,</text><text x="470" y="220" fill="#e0912b">rewrite stays</text>
+                <text x="716" y="204" fill="#1fa3c2">Any choice is “verified”</text>
               </g>
               <!-- branches -->
-              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+              <g stroke="#0c0e16" stroke-width="1.5" fill="none" marker-end="url(#fa)">
                 <path d="M1005 136v120H900"/><path d="M1005 136v170"/>
               </g>
-              <g fill="#fff" stroke="#111" stroke-width="1.5">
-                <rect x="690" y="226" width="210" height="62" rx="12" fill="#f4e6e7" stroke="#6b2723"/>
-                <rect x="920" y="310" width="170" height="62" rx="12" fill="#dfe9e3" stroke="#356451"/>
+              <g fill="#fff" stroke="#0c0e16" stroke-width="1.5">
+                <rect x="690" y="226" width="210" height="62" rx="12" fill="#ece6f7" stroke="#5a2ca0"/>
+                <rect x="920" y="310" width="170" height="62" rx="12" fill="#e2e7fb" stroke="#3346c8"/>
               </g>
-              <text x="706" y="252" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#6b2723">Certify memory</text>
-              <text x="706" y="274" font-size="12" fill="#6b2723">“Event 27 is now how it happened.”</text>
-              <text x="936" y="336" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#183c30">Keep uncertain</text>
-              <text x="936" y="358" font-size="12" fill="#183c30">“The gaps stay.”</text>
-              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+              <text x="706" y="252" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#5a2ca0">Certify memory</text>
+              <text x="706" y="274" font-size="12" fill="#5a2ca0">“Event 27 is now how it happened.”</text>
+              <text x="936" y="336" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#141b52">Keep uncertain</text>
+              <text x="936" y="358" font-size="12" fill="#141b52">“The gaps stay.”</text>
+              <g stroke="#0c0e16" stroke-width="1.5" fill="none" marker-end="url(#fa)">
                 <path d="M690 257H560v138"/><path d="M1005 372v40H674"/>
               </g>
-              <rect x="220" y="398" width="450" height="64" rx="12" fill="#111"/>
-              <text x="238" y="422" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#c8788e">ENDING</text>
+              <rect x="220" y="398" width="450" height="64" rx="12" fill="#0c0e16"/>
+              <text x="238" y="422" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#1fa3c2">ENDING</text>
               <text x="238" y="446" font-family="Boska, Georgia, serif" font-size="16.5" fill="#fff">“Is a complete memory more useful than an honest gap?”</text>
-              <g stroke="#111" stroke-width="1.5" fill="none" stroke-dasharray="5 5" marker-end="url(#fa)"><path d="M220 430H95V140"/></g>
-              <text x="84" y="290" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90 84 290)">Replay with the original grid</text>
+              <g stroke="#0c0e16" stroke-width="1.5" fill="none" stroke-dasharray="5 5" marker-end="url(#fa)"><path d="M220 430H95V140"/></g>
+              <text x="84" y="290" text-anchor="middle" font-size="12" fill="#474e63" transform="rotate(-90 84 290)">Replay with the original grid</text>
             </g>
           </svg>
         </div>
@@ -417,7 +417,7 @@
           </article>
           <article class="palette-guide">
             <p class="label">COLOR</p>
-            <div class="swatches"><span style="--swatch:#fcfbf9">Paper<br>#FCFBF9</span><span style="--swatch:#111111">Ink<br>#111111</span><span style="--swatch:#356451">System<br>#356451</span><span style="--swatch:#6b2723">Memory<br>#6B2723</span><span style="--swatch:#c8788e">Afterimage<br>#C8788E</span><span style="--swatch:#b45a3c">Drift<br>#B45A3C</span></div>
+            <div class="swatches"><span style="--swatch:#f9fafc">Paper<br>#f9fafc</span><span style="--swatch:#0c0e16">Ink<br>#0c0e16</span><span style="--swatch:#3346c8">System<br>#3346c8</span><span style="--swatch:#5a2ca0">Memory<br>#5a2ca0</span><span style="--swatch:#1fa3c2">Afterimage<br>#1fa3c2</span><span style="--swatch:#e0912b">Drift<br>#e0912b</span></div>
             <p>This is the same palette as my portfolio. Forest green establishes system structure, burgundy marks a confident memory, pink shows an earlier state, and terracotta flags evidence that changed. Color is always paired with borders, labels, or motion.</p>
           </article>
         </div>
