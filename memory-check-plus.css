@@ -106,3 +106,7 @@
 @media(prefers-reduced-motion:reduce){
   .memory-tile .afterimage,.memory-tile.is-changed .tile-art,.terminal-overlay{animation:none}
 }
+
+/* ---------- my play notes on the moment cards ---------- */
+.my-play{margin:.2rem 0 .9rem;padding:.7rem .85rem;border-left:3px solid var(--pink);border-radius:0 6px 6px 0;background:var(--yellow-soft);color:var(--ink);font-size:.88rem;line-height:1.5}
+.my-play b{display:block;margin-bottom:.2rem;color:var(--green);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase}
