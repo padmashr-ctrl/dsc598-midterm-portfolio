@@ -7,6 +7,7 @@
   <meta name="theme-color" content="#fcfbf9">
   <title>Prove You Remember — Week 1 Game Proposal</title>
   <link rel="stylesheet" href="memory-check.css">
+  <link rel="stylesheet" href="memory-check-plus.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to proposal</a>
@@ -15,8 +16,12 @@
     <a class="proposal-brand" href="index.html">Shreya Ramanan</a>
     <p>DSC 598 · Week 1 proposal only</p>
     <nav aria-label="Proposal sections">
+      <a href="#intro">Game</a>
       <a href="#research">Research</a>
+      <a href="#ai-discussion">AI</a>
+      <a href="#concept">Concept</a>
       <a href="#journey">Journey</a>
+      <a href="#style">Style</a>
       <a href="#plan">Plan</a>
     </nav>
     <button class="sound-toggle" type="button" aria-pressed="false" data-sound>
@@ -33,36 +38,31 @@
         <p class="hero-summary">A short browser game disguised as a memory-verification test. The player selects snapshots from an incomplete event, but every confident choice quietly rewrites the images around it. What begins as a familiar puzzle becomes a question: am I recovering a memory, or teaching the system what to invent?</p>
         <div class="hero-actions">
           <a class="button primary" href="#concept">Read the concept</a>
-          <button class="button secondary" type="button" data-reset-grid>Reset visual</button>
+          <button class="button secondary" type="button" data-reset-grid>Restart demo</button>
         </div>
       </div>
 
-      <div class="memory-terminal" aria-label="Interactive representative visual for the proposed game">
+      <div class="memory-terminal" data-game data-stage="0" aria-label="Playable concept sketch of the proposed game: opening, three stages and ending">
         <div class="terminal-bar">
           <span><i></i><i></i><i></i></span>
-          <b>MEMORY VERIFICATION / EVENT 27</b>
-          <small>01:42</small>
+          <b data-stage-label>MEMORY VERIFICATION / EVENT 27</b>
+          <span class="stage-dots" data-stage-dots aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </div>
         <div class="terminal-prompt">
-          <p>Select every image that really happened.</p>
+          <p data-prompt>Select every image that really happened.</p>
           <span data-prompt-note>Your choices may affect the evidence.</span>
         </div>
-        <div class="memory-grid" data-memory-grid>
-          <button class="memory-tile shape-window" type="button" aria-pressed="false" aria-label="Select snapshot: kitchen window"><span></span><small>kitchen window</small></button>
-          <button class="memory-tile shape-lamp" type="button" aria-pressed="false" aria-label="Select snapshot: yellow lamp"><span></span><small>yellow lamp</small></button>
-          <button class="memory-tile shape-chair" type="button" aria-pressed="false" aria-label="Select snapshot: empty chair"><span></span><small>empty chair</small></button>
-          <button class="memory-tile shape-umbrella" type="button" aria-pressed="false" aria-label="Select snapshot: red umbrella"><span></span><small>red umbrella</small></button>
-          <button class="memory-tile shape-door" type="button" aria-pressed="false" aria-label="Select snapshot: blue door"><span></span><small>blue door</small></button>
-          <button class="memory-tile shape-cup" type="button" aria-pressed="false" aria-label="Select snapshot: two cups"><span></span><small>two cups</small></button>
-          <button class="memory-tile shape-stairs" type="button" aria-pressed="false" aria-label="Select snapshot: narrow stairs"><span></span><small>narrow stairs</small></button>
-          <button class="memory-tile shape-clock" type="button" aria-pressed="false" aria-label="Select snapshot: stopped clock"><span></span><small>stopped clock</small></button>
-          <button class="memory-tile shape-plant" type="button" aria-pressed="false" aria-label="Select snapshot: hallway plant"><span></span><small>hallway plant</small></button>
-        </div>
+        <div class="memory-grid" data-memory-grid></div>
         <div class="terminal-status">
-          <span>Selected <b data-selected-count>0</b> / 4</span>
+          <span>Selected <b data-selected-count>0</b> / <b data-goal>4</b></span>
           <span>System confidence <b data-confidence>12%</b></span>
         </div>
-        <p class="terminal-live" aria-live="polite" data-terminal-live>No images selected. This is an interactive concept visual, not the Week 2 game build.</p>
+        <div class="terminal-actions">
+          <button type="button" class="ghost-btn" data-undo disabled>Undo last</button>
+          <button type="button" class="button primary" data-submit disabled>Submit</button>
+        </div>
+        <p class="terminal-live" aria-live="polite" data-terminal-live>Playable concept sketch, not the Week 2 build.</p>
+        <div class="terminal-overlay" data-overlay></div>
       </div>
 
       <dl class="project-meta">
@@ -93,7 +93,7 @@
           <div class="case-facts">
             <p class="label">CREATOR + SOURCES</p>
             <h3><cite>We Become What We Behold</cite></h3>
-            <p>Created by <strong>Nicky Case</strong> and released in 2016. Case states that the game was made in two months. Its code and original art are released to the public domain under CC0; the repository separately credits PixiJS, Howler.js, and individual sound sources.</p>
+            <p>Created by <strong>Nicky Case</strong> and released in 2016. Case states on the itch.io page that the game was made “in two months.” Built with PixiJS (graphics) and Howler.js (sound). Case releases their own code and art to the public domain; the 14 sound effects come from Freesound creators under CC0 or CC BY, and the ending modifies a CC0 Unsplash photo. All third-party credits are listed in the repository README.</p>
             <div class="source-links">
               <a href="https://ncase.itch.io/wbwwb" target="_blank" rel="noopener">Play + creator statement ↗</a>
               <a href="https://github.com/ncase/wbwwb" target="_blank" rel="noopener">Source + full credits ↗</a>
@@ -102,6 +102,20 @@
             <p class="evidence-note">Evidence note: creator facts come from the linked official pages. The moments and event analysis below are observations and interpretations of the playable game.</p>
           </div>
         </article>
+
+        <div class="evidence-key" aria-label="How evidence is labelled on this page">
+          <span class="ek creator">Creator statement</span><span>what Case says, linked to the exact page</span>
+          <span class="ek observation">Observation</span><span>what I saw, heard or did while playing</span>
+          <span class="ek interpretation">Interpretation</span><span>what I think it means, and how sure I am</span>
+        </div>
+
+        <!-- Screenshot slots: save your own screenshots as images/wbwwb-01.png ... wbwwb-03.png.
+             A slot stays hidden until its file exists, so nothing broken shows if one is missing. -->
+        <div class="shot-strip" data-shots>
+          <figure data-shot><img src="images/wbwwb-01.png" alt="My screenshot: an empty frame on the TV is labelled as nothing" loading="lazy"><figcaption><b>01</b> My first photo: an empty frame. The screen dismisses it.</figcaption></figure>
+          <figure data-shot><img src="images/wbwwb-02.png" alt="My screenshot: the hat photo on the TV" loading="lazy"><figcaption><b>02</b> The hat photo goes on air, and the crowd starts reacting to it.</figcaption></figure>
+          <figure data-shot><img src="images/wbwwb-03.png" alt="My screenshot: the crowd at the end of the game" loading="lazy"><figcaption><b>03</b> The ending: the camera pulls back from what my photos built.</figcaption></figure>
+        </div>
 
         <div class="subheading">
           <p class="label">THREE MEANINGFUL MOMENTS</p>
@@ -157,22 +171,30 @@
           <p>I gave AI the official project page, the public source repository, and an event list. I then separated claims I could verify from interpretations that needed my own judgment.</p>
         </div>
 
+        <div class="ledger" role="table" aria-label="Verification ledger for claims from the AI research">
+          <div class="ledger-row ledger-head" role="row"><span role="columnheader">Claim from the AI research</span><span role="columnheader">Where I checked it</span><span role="columnheader">Status</span></div>
+          <div class="ledger-row" role="row"><span role="cell">Created by Nicky Case</span><span role="cell"><a href="https://ncase.itch.io/wbwwb" target="_blank" rel="noopener">itch.io page</a>, <a href="https://github.com/ncase/wbwwb" target="_blank" rel="noopener">README</a></span><span role="cell"><em class="st ok">Verified · primary</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">“A game about news cycles, vicious cycles, infinite cycles”</span><span role="cell">itch.io page, README</span><span role="cell"><em class="st ok">Verified · primary</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">Made in two months</span><span role="cell">itch.io page: “created by me, Nicky Case, in two months!”</span><span role="cell"><em class="st ok">Verified · primary</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">Built with PixiJS and Howler.js</span><span role="cell">README credits; itch.io “Made with PixiJS”</span><span role="cell"><em class="st ok">Verified · primary</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">Sounds are from Freesound, under CC0 or CC BY</span><span role="cell">README lists 14 sound credits</span><span role="cell"><em class="st ok">Verified · primary</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">“All code and art are CC0”</span><span role="cell">README says CC0, but the itch.io page lists code as <i>Unlicense</i> and assets as CC0</span><span role="cell"><em class="st warn">Sources disagree</em></span></div>
+          <div class="ledger-row" role="row"><span role="cell">Case wrote a postmortem about the game</span><span role="cell">Patreon link blocks automated checks</span><span role="cell"><em class="st open">Check by hand</em></span></div>
+        </div>
+
         <div class="verify-grid">
-          <article>
-            <p class="label">AI FOUND / I VERIFIED</p>
-            <ul>
-              <li>Nicky Case is the creator and describes the work as a game about repeating news cycles.</li>
-              <li>The official page says the game took two months to create.</li>
-              <li>The repository releases Case’s code and art under CC0 and names third-party code and sound credits.</li>
-            </ul>
+          <article class="gap-card">
+            <p class="label">GAP 01 / CONTRADICTION</p>
+            <h3>My first draft accepted “everything is CC0.”</h3>
+            <p>The README does say that, but the itch.io page lists the code under the Unlicense. Both are public-domain dedications, so the practical meaning is close, but two primary sources disagree. I now describe both instead of picking one. This changed how I credit my own game: I list every outside asset with its exact licence.</p>
           </article>
           <article class="gap-card">
-            <p class="label">GAP 01 / NEUTRALITY</p>
+            <p class="label">GAP 02 / NEUTRALITY</p>
             <h3>The first answer treated the player as a neutral photographer.</h3>
             <p>That missed the causal loop. Published images change the crowd, so selecting is also world-building.</p>
           </article>
           <article class="gap-card">
-            <p class="label">GAP 02 / PROGRESSION</p>
+            <p class="label">GAP 03 / PROGRESSION</p>
             <h3>The first answer discussed the message, but not how the game trains the player.</h3>
             <p>Ordinary scenes are rejected. Progress teaches the player to search for spectacle before the violent ending arrives.</p>
           </article>
@@ -195,6 +217,23 @@
             <span>AI / REVISED INSIGHT</span>
             <p>The game teaches sensational selection before it condemns the result. Complicity comes from the rule for continuing, not from a final message alone.</p>
           </div>
+        </div>
+
+        <div class="rival-readings">
+          <p class="label">TWO RIVAL READINGS I ASKED AI TO COMPARE</p>
+          <div>
+            <article>
+              <h3>A · The game is about the media</h3>
+              <p>The TV is the villain: it twists harmless moments into outrage, and the crowd copies it.</p>
+              <small><b>Support:</b> Case’s own tagline names “news cycles.” Headlines change the meaning of each photo.</small>
+            </article>
+            <article>
+              <h3>B · The game is about the player</h3>
+              <p>The TV only shows what I framed. The rule for progress trains me to want spectacle.</p>
+              <small><b>Support:</b> Calm photos are dismissed as “nothing,” so the only way forward is to choose conflict.</small>
+            </article>
+          </div>
+          <p class="rival-verdict"><b>My verdict:</b> B is better supported by how the game actually plays; A is what it says on the surface. I designed <cite>Prove You Remember</cite> around B: the system never invents anything on its own. It only extends what the player chose.</p>
         </div>
 
         <div class="conclusion-card">
@@ -249,17 +288,71 @@
           <p>The player always selects image tiles. Each stage changes what that same action does, so the game can escalate without adding a complicated control scheme.</p>
         </div>
 
-        <div class="flowchart" aria-label="Flowchart from opening through three stages to the ending">
-          <article><span>OPENING</span><h3>Enter</h3><p>Accept a memory recovery session.</p><b>Click “Begin”</b></article>
-          <i aria-hidden="true">→</i>
-          <article><span>STAGE 1</span><h3>Recognize</h3><p>Select concrete details from a stable grid.</p><b>Learn the selection rule</b></article>
-          <i aria-hidden="true">→</i>
-          <article><span>STAGE 2</span><h3>Notice drift</h3><p>A chosen tile changes a neighboring image.</p><b>Question the evidence</b></article>
-          <i aria-hidden="true">→</i>
-          <article><span>STAGE 3</span><h3>Choose a story</h3><p>The prompt becomes emotional and ambiguous.</p><b>Own the pattern</b></article>
-          <i aria-hidden="true">→</i>
-          <article><span>ENDING</span><h3>Certify?</h3><p>Review the memory assembled from every click.</p><b>Certify or keep uncertain</b></article>
+        <div class="flow-svg">
+          <svg viewBox="0 0 1100 470" role="img" aria-labelledby="flow-title flow-desc">
+            <title id="flow-title">Player journey flowchart</title>
+            <desc id="flow-desc">Opening leads to Stage 1, where the player selects four tiles and submits. Stage 2 adds rewrites: each selection changes a neighbour, and undo removes the choice but not the rewrite. Stage 3 accepts any selection as verified. The ending shows a receipt and asks the player to certify or keep uncertain; both lead to a final line and replay.</desc>
+            <defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#111"/></marker></defs>
+            <g font-family="Helvetica Neue, Inter, Arial, sans-serif" fill="#111">
+              <g fill="#fff" stroke="#111" stroke-width="1.5">
+                <rect x="10" y="40" width="170" height="96" rx="12"/>
+                <rect x="230" y="40" width="190" height="96" rx="12"/>
+                <rect x="470" y="40" width="190" height="96" rx="12"/>
+                <rect x="710" y="40" width="190" height="96" rx="12"/>
+              </g>
+              <path d="M1005 40l85 48-85 48-85-48z" fill="#f4e6e7" stroke="#6b2723" stroke-width="1.5"/>
+              <g font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#356451">
+                <text x="26" y="64">OPENING</text><text x="246" y="64">STAGE 1</text><text x="486" y="64">STAGE 2</text><text x="726" y="64">STAGE 3</text>
+              </g>
+              <g font-family="Boska, Georgia, serif" font-size="21" font-weight="700">
+                <text x="26" y="92">Enter</text><text x="246" y="92">Recognize</text><text x="486" y="92">Notice drift</text><text x="726" y="92">Choose a story</text>
+              </g>
+              <g font-size="12.5" fill="#555">
+                <text x="26" y="116">Click “Begin verification”</text>
+                <text x="246" y="116">Select 4 → Submit</text>
+                <text x="486" y="116">Select 3 → each one</text><text x="486" y="131">rewrites a neighbour</text>
+                <text x="726" y="116">“Select all images that</text><text x="726" y="131">feel like home”</text>
+              </g>
+              <text x="1005" y="84" text-anchor="middle" font-size="10.5" font-weight="700" letter-spacing="1.4" fill="#6b2723">RECEIPT</text>
+              <text x="1005" y="102" text-anchor="middle" font-size="12.5" fill="#6b2723">96% certain</text>
+              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+                <path d="M180 88h46"/><path d="M420 88h46"/><path d="M660 88h46"/><path d="M900 88h16"/>
+              </g>
+              <!-- loops -->
+              <g fill="none" stroke-width="1.5" stroke-dasharray="5 5" marker-end="url(#fa)">
+                <path d="M300 136v46h60v-42" stroke="#356451"/>
+                <path d="M530 136v46h70v-42" stroke="#b45a3c"/>
+                <path d="M770 136v46h70v-42" stroke="#c8788e"/>
+              </g>
+              <g font-size="12">
+                <text x="246" y="204" fill="#356451">Not 4 yet → keep choosing</text>
+                <text x="470" y="204" fill="#b45a3c">Undo → choice removed,</text><text x="470" y="220" fill="#b45a3c">rewrite stays</text>
+                <text x="716" y="204" fill="#c8788e">Any choice is “verified”</text>
+              </g>
+              <!-- branches -->
+              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+                <path d="M1005 136v120H900"/><path d="M1005 136v170"/>
+              </g>
+              <g fill="#fff" stroke="#111" stroke-width="1.5">
+                <rect x="690" y="226" width="210" height="62" rx="12" fill="#f4e6e7" stroke="#6b2723"/>
+                <rect x="920" y="310" width="170" height="62" rx="12" fill="#dfe9e3" stroke="#356451"/>
+              </g>
+              <text x="706" y="252" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#6b2723">Certify memory</text>
+              <text x="706" y="274" font-size="12" fill="#6b2723">“Event 27 is now how it happened.”</text>
+              <text x="936" y="336" font-family="Boska, Georgia, serif" font-size="18" font-weight="700" fill="#183c30">Keep uncertain</text>
+              <text x="936" y="358" font-size="12" fill="#183c30">“The gaps stay.”</text>
+              <g stroke="#111" stroke-width="1.5" fill="none" marker-end="url(#fa)">
+                <path d="M690 257H560v138"/><path d="M1005 372v40H674"/>
+              </g>
+              <rect x="220" y="398" width="450" height="64" rx="12" fill="#111"/>
+              <text x="238" y="422" font-size="10.5" font-weight="700" letter-spacing="1.6" fill="#c8788e">ENDING</text>
+              <text x="238" y="446" font-family="Boska, Georgia, serif" font-size="16.5" fill="#fff">“Is a complete memory more useful than an honest gap?”</text>
+              <g stroke="#111" stroke-width="1.5" fill="none" stroke-dasharray="5 5" marker-end="url(#fa)"><path d="M220 430H95V140"/></g>
+              <text x="84" y="290" text-anchor="middle" font-size="12" fill="#555" transform="rotate(-90 84 290)">Replay with the original grid</text>
+            </g>
+          </svg>
         </div>
+        <p class="flow-caption">Try the whole loop in the playable sketch at the top of the page.</p>
 
         <div class="storyboard-heading">
           <p class="label">FIVE-FRAME STORYBOARD</p>
