@@ -78,6 +78,9 @@ h1,h2,h3{color:var(--ink);font-family:Boska,Georgia,serif}
 .album-frame{aspect-ratio:1.22;background:#ede5d6;padding:clamp(1.5rem,4vw,4rem)}
 .album-frame img{object-fit:contain;border-radius:7px;box-shadow:0 14px 35px rgba(65,42,28,.12)}
 .studio-frame{aspect-ratio:1.5}
+.game-frame{aspect-ratio:1.22;background:linear-gradient(135deg,#141b52,#5a2ca0);padding:clamp(1.5rem,4vw,4rem) clamp(1.5rem,4vw,4rem) 0}
+.game-frame img{object-fit:cover;object-position:top;border-radius:10px 10px 0 0;box-shadow:0 18px 40px rgba(12,16,40,.35)}
+.current-work{border-top:0}
 .work-card:hover .work-image img,.work-card:focus-visible .work-image img{transform:scale(1.025)}
 .work-card:focus-visible{outline:2px solid var(--ink);outline-offset:8px;border-radius:4px}
 .work-copy h3{margin:.25rem 0 1rem;font-size:clamp(2.4rem,4vw,4.2rem);font-weight:500;line-height:1.02;letter-spacing:-.02em}
