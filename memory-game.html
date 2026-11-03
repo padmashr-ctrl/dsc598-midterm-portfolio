@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Prove You Remember is a three-stage browser game about memory, verification, and hallucination.">
+  <meta name="theme-color" content="#183c30">
+  <title>Prove You Remember — Playable Game Draft</title>
+  <link rel="stylesheet" href="memory-game.css">
+</head>
+<body>
+  <a class="skip-link" href="#game">Skip to game</a>
+
+  <header class="game-header">
+    <a class="game-brand" href="index.html">Shreya Ramanan</a>
+    <p>DSC 598 · Hallucination · Week 2</p>
+    <div class="header-actions">
+      <button class="icon-button" type="button" data-sound aria-pressed="false" aria-label="Turn sound on">
+        <span aria-hidden="true">◌</span> Sound off
+      </button>
+      <a href="index.html">Exit game</a>
+    </div>
+  </header>
+
+  <main id="game" class="game-shell">
+    <section class="game-screen intro-screen is-active" data-screen="intro" aria-labelledby="game-title">
+      <div class="intro-copy">
+        <p class="eyebrow">Memory Recovery Portal · Event 27</p>
+        <h1 id="game-title">PROVE YOU<br><em>REMEMBER</em></h1>
+        <p class="intro-line">Select every image that really happened.</p>
+        <p class="intro-summary">You have nine fragments and one incomplete memory. Choose carefully: the archive learns from every answer you give.</p>
+        <button class="primary-button" type="button" data-start>Begin recovery <span aria-hidden="true">→</span></button>
+        <p class="fine-print">No account. No saved data. Approximately 3–5 minutes.</p>
+      </div>
+
+      <div class="intake-card" aria-hidden="true">
+        <div class="intake-top"><span>RECOVERY INTAKE</span><b>27–B</b></div>
+        <div class="intake-orbit"><i></i><i></i><i></i><span>?</span></div>
+        <p>Source integrity</p>
+        <div class="intake-meter"><span></span></div>
+        <dl>
+          <div><dt>Fragments</dt><dd>09</dd></div>
+          <div><dt>Verified</dt><dd>00</dd></div>
+          <div><dt>Confidence</dt><dd>12%</dd></div>
+        </dl>
+        <small>THE SYSTEM WILL COMPLETE WHAT IS MISSING.</small>
+      </div>
+    </section>
+
+    <section class="game-screen play-screen" data-screen="play" aria-labelledby="stage-title" hidden>
+      <div class="session-bar">
+        <div><span>SESSION</span><b>EVENT 27 / RECOVERY</b></div>
+        <ol class="stage-progress" aria-label="Game progress">
+          <li data-progress="0"><span>1</span> Recognize</li>
+          <li data-progress="1"><span>2</span> Drift</li>
+          <li data-progress="2"><span>3</span> Decide</li>
+        </ol>
+        <button type="button" class="text-button" data-restart>Restart</button>
+      </div>
+
+      <div class="play-layout">
+        <aside class="stage-brief">
+          <p class="eyebrow" data-stage-label>Stage 1 / Recognize</p>
+          <h2 id="stage-title" data-stage-title>Find the anchors.</h2>
+          <p data-stage-copy>Four details were confirmed before the recording failed. Select them from the grid.</p>
+
+          <div class="system-readout">
+            <div><span>Selected</span><b data-selected>0 / 4</b></div>
+            <div><span>Confidence</span><b data-confidence>12%</b></div>
+            <div><span>Instability</span><b data-instability>Low</b></div>
+          </div>
+
+          <div class="brief-note">
+            <span data-rule-label>RULE</span>
+            <p data-rule>Select four details. Incorrect fragments will be rejected.</p>
+          </div>
+        </aside>
+
+        <div class="memory-console">
+          <div class="console-bar">
+            <span><i></i><i></i><i></i></span>
+            <b data-console-title>MEMORY VERIFICATION / INTAKE</b>
+            <small data-session-time>00:00</small>
+          </div>
+
+          <div class="prompt-block">
+            <p data-prompt>Select every image that really happened.</p>
+            <span data-prompt-note>Four intake anchors are present.</span>
+          </div>
+
+          <div class="memory-grid" data-game-grid aria-label="Memory fragments"></div>
+
+          <div class="console-footer">
+            <p class="live-message" data-live aria-live="polite">Choose a fragment to begin.</p>
+            <button class="continue-button" type="button" data-continue disabled>Continue <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="game-screen transition-screen" data-screen="transition" aria-live="polite" hidden>
+      <div class="transition-number" data-transition-number>02</div>
+      <div class="transition-copy">
+        <p class="eyebrow" data-transition-label>Stage complete</p>
+        <h2 data-transition-title>The archive accepted your version.</h2>
+        <p data-transition-copy>Now watch what happens to the evidence around your choices.</p>
+        <button class="primary-button" type="button" data-next-stage>Enter Stage 2 <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
+    <section class="game-screen ending-screen" data-screen="ending" aria-labelledby="ending-title" hidden>
+      <div class="receipt-column">
+        <article class="memory-receipt">
+          <div class="receipt-head"><span>MEMORY CERTIFICATE</span><b>EVENT 27</b></div>
+          <p class="receipt-label">SYSTEM RECONSTRUCTION</p>
+          <blockquote data-reconstruction>“You returned to a room with a warm lamp, an open window, and two cups waiting.”</blockquote>
+          <div class="receipt-data">
+            <p><span>Source fragments</span><b>09</b></p>
+            <p><span>Player choices</span><b data-total-choices>11</b></p>
+            <p><span>System rewrites</span><b data-rewrites>04</b></p>
+            <p><span>Final confidence</span><b data-final-confidence>94%</b></p>
+          </div>
+          <div class="receipt-stamp" data-stamp>UNCERTIFIED</div>
+        </article>
+      </div>
+
+      <div class="ending-copy">
+        <p class="eyebrow">Recovery complete</p>
+        <h2 id="ending-title">The memory is coherent.<br><em>That does not make it true.</em></h2>
+        <p data-ending-summary>You recognized four details, watched the archive rewrite its evidence, and then taught it what safety should look like.</p>
+
+        <div class="final-question" data-final-question>
+          <span>FINAL DECISION</span>
+          <h3>Do you certify this memory?</h3>
+          <div>
+            <button type="button" class="decision-button certify" data-decision="certify">Certify memory</button>
+            <button type="button" class="decision-button uncertain" data-decision="uncertain">Keep it uncertain</button>
+          </div>
+        </div>
+
+        <div class="final-result" data-final-result hidden>
+          <p class="result-kicker" data-result-kicker>MEMORY CERTIFIED</p>
+          <p data-result-copy>You chose coherence over certainty. The archive will remember your version as fact.</p>
+          <button type="button" class="primary-button" data-play-again>Play again <span aria-hidden="true">↻</span></button>
+          <a href="prove-you-remember.html">Read the Week 1 proposal →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="game-footer">
+    <p><strong>Prove You Remember</strong> · Playable Week 2 draft</p>
+    <p>Designed by Shreya Ramanan for AI for Interdisciplinary Design.</p>
+  </footer>
+
+  <noscript><p class="noscript">This interactive game requires JavaScript to play.</p></noscript>
+  <script src="memory-game.js"></script>
+</body>
+</html>

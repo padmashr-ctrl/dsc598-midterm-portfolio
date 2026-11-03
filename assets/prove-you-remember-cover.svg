@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Prove You Remember playable game cover</title>
+  <desc id="desc">A warm portfolio-colored memory verification screen with a three by three grid of abstract snapshots, two selected in burgundy, and the prompt select every image that really happened.</desc>
+  <rect width="1200" height="760" rx="28" fill="#fcfbf9"/>
+  <rect width="1200" height="92" rx="28" fill="#183c30"/>
+  <path d="M0 92h1200M0 640h1200" stroke="#dedad2" stroke-width="2"/>
+  <circle cx="48" cy="46" r="8" fill="#6b2723"/>
+  <circle cx="76" cy="46" r="8" fill="#b45a3c"/>
+  <circle cx="104" cy="46" r="8" fill="#c8788e"/>
+  <text x="600" y="52" fill="#f8f4ea" font-family="Arial, sans-serif" font-size="18" text-anchor="middle" letter-spacing="4">MEMORY VERIFICATION / EVENT 27</text>
+
+  <text x="70" y="155" fill="#111111" font-family="Georgia, serif" font-size="56">Select every image</text>
+  <text x="70" y="213" fill="#111111" font-family="Georgia, serif" font-size="56">that really happened.</text>
+  <text x="72" y="254" fill="#66625d" font-family="Arial, sans-serif" font-size="18">Your choices may affect the evidence.</text>
+
+  <g transform="translate(632 124)">
+    <g fill="#f2efe9" stroke="#d8d2c9" stroke-width="2">
+      <rect width="142" height="142" rx="8"/>
+      <rect x="154" width="142" height="142" rx="8"/>
+      <rect x="308" width="142" height="142" rx="8"/>
+      <rect y="154" width="142" height="142" rx="8"/>
+      <rect x="154" y="154" width="142" height="142" rx="8"/>
+      <rect x="308" y="154" width="142" height="142" rx="8"/>
+      <rect y="308" width="142" height="142" rx="8"/>
+      <rect x="154" y="308" width="142" height="142" rx="8"/>
+      <rect x="308" y="308" width="142" height="142" rx="8"/>
+    </g>
+
+    <g stroke="#356451" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 104h82M43 104V58h56v46M55 58V37h32v21"/>
+      <path d="M190 104c6-41 64-63 82-13M191 104h80M231 104V58"/>
+      <path d="M344 104h69l-8-41h-53zM378 63V34"/>
+      <path d="M31 250c25-48 57-48 82 0M51 239h42M72 239v22"/>
+      <path d="M189 248h72M202 248v-58h46v58M216 204h18"/>
+      <path d="M343 252h76M354 252l8-51h39l8 51M369 200v-19h25v19"/>
+      <path d="M34 405h75M42 405v-47h59v47M58 358v-18h27v18"/>
+      <path d="M185 410h80M197 410l11-61h46l11 61M230 349v-20"/>
+      <path d="M347 412h68M359 412v-53h44v53M371 378h20"/>
+    </g>
+
+    <rect x="154" y="154" width="142" height="142" rx="8" fill="#ead6d9" fill-opacity=".55" stroke="#6b2723" stroke-width="6"/>
+    <path d="M270 171l9 9 17-20" fill="none" stroke="#6b2723" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="308" y="308" width="142" height="142" rx="8" fill="#ead6d9" fill-opacity=".55" stroke="#6b2723" stroke-width="6"/>
+    <path d="M424 325l9 9 17-20" fill="none" stroke="#6b2723" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <rect x="70" y="320" width="458" height="126" rx="10" fill="#f2efe9" stroke="#dedad2" stroke-width="2"/>
+  <text x="94" y="356" fill="#356451" font-family="Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="2">SYSTEM NOTE</text>
+  <text x="94" y="393" fill="#111111" font-family="Georgia, serif" font-size="28">Confidence is rising.</text>
+  <text x="94" y="422" fill="#66625d" font-family="Arial, sans-serif" font-size="16">The neighboring memories have been updated.</text>
+
+  <text x="70" y="698" fill="#6b2723" font-family="Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="3">PROVE YOU REMEMBER</text>
+  <text x="1130" y="698" fill="#356451" font-family="Arial, sans-serif" font-size="17" text-anchor="end">PLAYABLE WEEK 2 DRAFT</text>
+</svg>
