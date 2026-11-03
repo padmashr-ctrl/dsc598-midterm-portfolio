@@ -154,7 +154,7 @@
 
   function renderGrid() {
     grid.innerHTML = fragments.map((fragment, index) => `
-      <button class="fragment" type="button" data-fragment="${index}" aria-pressed="${selected.has(index)}" aria-label="${selected.has(index) ? 'Deselect' : 'Select'} memory fragment: ${fragment.label}">
+      <button class="fragment fragment--${fragment.icon}" style="--fragment-index:${index}" type="button" data-fragment="${index}" aria-pressed="${selected.has(index)}" aria-label="${selected.has(index) ? 'Deselect' : 'Select'} memory fragment: ${fragment.label}">
         <span class="fragment-id">${fragment.id}</span>
         ${iconSvg(fragment.icon)}
         <span class="fragment-label">${fragment.label}</span>
@@ -184,6 +184,7 @@
 
   function loadStage(index) {
     stageIndex = index;
+    document.body.dataset.stage = String(index + 1);
     selected = new Set();
     const stage = stages[index];
     fragments = (index === 2 ? stageThree : baseFragments).map((item) => ({ ...item }));
@@ -318,6 +319,7 @@
     startedAt = 0;
     window.clearInterval(timerId);
     ui.time.textContent = '00:00';
+    delete document.body.dataset.stage;
     showScreen('intro');
     startButton.focus();
   }
