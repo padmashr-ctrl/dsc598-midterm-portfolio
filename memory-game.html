@@ -35,7 +35,11 @@
 
       <div class="intake-card" aria-hidden="true">
         <div class="intake-top"><span>RECOVERY INTAKE</span><b>27–B</b></div>
-        <div class="intake-orbit"><i></i><i></i><i></i><span>?</span></div>
+        <figure class="intake-photo">
+          <img src="assets/stock/memory-room.jpg" alt="" width="1600" height="1067">
+          <div class="photo-scan"></div>
+          <figcaption><span>RECOVERED FRAME</span><b>00:06</b></figcaption>
+        </figure>
         <p>Source integrity</p>
         <div class="intake-meter"><span></span></div>
         <dl>
@@ -47,6 +51,32 @@
       </div>
     </section>
 
+    <section class="game-screen recall-screen" data-screen="recall" aria-labelledby="recall-title" hidden>
+      <div class="recall-hud">
+        <div><span>MISSION 01 / MEMORY FLASH</span><b>EVENT 27</b></div>
+        <p>FRAME EXPIRES IN <strong data-flash-countdown>06</strong></p>
+      </div>
+      <div class="recall-stage">
+        <div class="recall-scene">
+          <img src="assets/stock/memory-room.jpg" alt="A warm room shown briefly as the source memory" width="1600" height="1067">
+          <div class="recall-vignette"></div>
+          <div class="recall-reticle" aria-hidden="true"></div>
+          <div class="recall-copy">
+            <p class="eyebrow">ORIGINAL MEMORY · ONE VIEW ONLY</p>
+            <h2 id="recall-title">Memorize the four anchors.</h2>
+            <p>The archive will remove this frame. Your first mission is to identify the evidence that belongs to it.</p>
+          </div>
+        </div>
+        <div class="anchor-strip" aria-label="Memory anchors to remember">
+          <figure><img src="assets/stock/window.jpg" alt="Kitchen window"><figcaption>A1 · Window</figcaption></figure>
+          <figure><img src="assets/stock/lamp.jpg" alt="Yellow lamp"><figcaption>A2 · Lamp</figcaption></figure>
+          <figure><img src="assets/stock/door.jpg" alt="Blue door"><figcaption>C1 · Door</figcaption></figure>
+          <figure><img src="assets/stock/clock.jpg" alt="Stopped clock"><figcaption>D2 · Clock</figcaption></figure>
+        </div>
+        <button class="primary-button recall-skip" type="button" data-skip-flash>Start test now <span aria-hidden="true">→</span></button>
+      </div>
+    </section>
+
     <section class="game-screen play-screen" data-screen="play" aria-labelledby="stage-title" hidden>
       <div class="session-bar">
         <div><span>SESSION</span><b>EVENT 27 / RECOVERY</b></div>
@@ -55,6 +85,10 @@
           <li data-progress="1"><span>2</span> Drift</li>
           <li data-progress="2"><span>3</span> Decide</li>
         </ol>
+        <div class="mission-stats" aria-label="Game status">
+          <span>INTEGRITY <b data-lives>♥ ♥ ♥</b></span>
+          <span>SIGNAL SCORE <b data-score>000</b></span>
+        </div>
         <button type="button" class="text-button" data-restart>Restart</button>
       </div>
 
@@ -183,6 +217,10 @@
       <article><span>02</span><h3>Visible intervention</h3><p>A trace view pairs the original evidence with every system rewrite.</p></article>
       <article><span>03</span><h3>Ethical reflection</h3><p>The final certification asks whether coherence should ever be treated as truth.</p></article>
     </div>
+    <details class="stock-credits">
+      <summary>Stock image credits</summary>
+      <p>Free photographs used under the Unsplash License by <a href="https://unsplash.com/@christopherstites">Christopher Stites</a>, <a href="https://unsplash.com/@kazma233">LingYu Zeng</a>, <a href="https://unsplash.com/@lycan">Velizar Ivanov</a>, <a href="https://unsplash.com/@nikolloz">Nick Osipov</a>, <a href="https://unsplash.com/@zane404">Zane Lee</a>, <a href="https://unsplash.com/@lensfables">Lens Fables</a>, <a href="https://unsplash.com/@huuthong">Huu Thong</a>, <a href="https://unsplash.com/@dewang">Dewang Gupta</a>, <a href="https://unsplash.com/@real_jansen">real_ jansen</a>, and <a href="https://unsplash.com/@anniespratt">Annie Spratt</a>.</p>
+    </details>
   </section>
 
   <footer class="game-footer">

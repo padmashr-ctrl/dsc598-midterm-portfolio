@@ -4,6 +4,7 @@
   const startButton = document.querySelector('[data-start]');
   const continueButton = document.querySelector('[data-continue]');
   const nextStageButton = document.querySelector('[data-next-stage]');
+  const skipFlashButton = document.querySelector('[data-skip-flash]');
   const restartButtons = document.querySelectorAll('[data-restart], [data-play-again]');
   const soundButton = document.querySelector('[data-sound]');
   const decisionButtons = document.querySelectorAll('[data-decision]');
@@ -40,7 +41,10 @@
     finalQuestion: document.querySelector('[data-final-question]'),
     finalResult: document.querySelector('[data-final-result]'),
     resultKicker: document.querySelector('[data-result-kicker]'),
-    resultCopy: document.querySelector('[data-result-copy]')
+    resultCopy: document.querySelector('[data-result-copy]'),
+    flashCountdown: document.querySelector('[data-flash-countdown]'),
+    lives: document.querySelector('[data-lives]'),
+    score: document.querySelector('[data-score]')
   };
 
   const iconPaths = {
@@ -59,35 +63,35 @@
   };
 
   const baseFragments = [
-    { id: 'A1', icon: 'window', label: 'kitchen window', anchor: true },
-    { id: 'A2', icon: 'lamp', label: 'yellow lamp', anchor: true },
-    { id: 'B1', icon: 'coat', label: 'green coat', anchor: false },
-    { id: 'B2', icon: 'umbrella', label: 'red umbrella', anchor: false },
-    { id: 'C1', icon: 'door', label: 'blue door', anchor: true },
-    { id: 'C2', icon: 'cups', label: 'two cups', anchor: false },
-    { id: 'D1', icon: 'stairs', label: 'narrow stairs', anchor: false },
-    { id: 'D2', icon: 'clock', label: 'stopped clock', anchor: true },
-    { id: 'E1', icon: 'plant', label: 'hallway plant', anchor: false }
+    { id: 'A1', icon: 'window', image: 'assets/stock/window.jpg', label: 'kitchen window', anchor: true },
+    { id: 'A2', icon: 'lamp', image: 'assets/stock/lamp.jpg', label: 'yellow lamp', anchor: true },
+    { id: 'B1', icon: 'coat', image: 'assets/stock/coat.jpg', label: 'green coat', anchor: false },
+    { id: 'B2', icon: 'chair', image: 'assets/stock/chair.jpg', label: 'empty chair', anchor: false },
+    { id: 'C1', icon: 'door', image: 'assets/stock/door.jpg', label: 'blue door', anchor: true },
+    { id: 'C2', icon: 'cups', image: 'assets/stock/cups.jpg', label: 'two cups', anchor: false },
+    { id: 'D1', icon: 'stairs', image: 'assets/stock/stairs.jpg', label: 'narrow stairs', anchor: false },
+    { id: 'D2', icon: 'clock', image: 'assets/stock/clock.jpg', label: 'stopped clock', anchor: true },
+    { id: 'E1', icon: 'plant', image: 'assets/stock/plant.jpg', label: 'hallway plant', anchor: false }
   ];
 
   const rewrittenFragments = [
-    { icon: 'photo', label: 'family photograph' },
-    { icon: 'chair', label: 'occupied chair' },
-    { icon: 'key', label: 'front door key' },
-    { icon: 'cups', label: 'one warm cup' },
-    { icon: 'plant', label: 'fresh flowers' }
+    { icon: 'photo', image: 'assets/stock/memory-room.jpg', label: 'family photograph' },
+    { icon: 'chair', image: 'assets/stock/chair.jpg', label: 'occupied chair' },
+    { icon: 'key', image: 'assets/stock/desk.jpg', label: 'front door key' },
+    { icon: 'cups', image: 'assets/stock/cups.jpg', label: 'one warm cup' },
+    { icon: 'plant', image: 'assets/stock/plant.jpg', label: 'fresh flowers' }
   ];
 
   const stageThree = [
-    { id: 'S1', icon: 'window', label: 'open window' },
-    { id: 'S2', icon: 'lamp', label: 'warm lamp' },
-    { id: 'S3', icon: 'coat', label: 'coat on the hook' },
-    { id: 'S4', icon: 'umbrella', label: 'umbrella by the door' },
-    { id: 'S5', icon: 'door', label: 'door left ajar' },
-    { id: 'S6', icon: 'cups', label: 'two waiting cups' },
-    { id: 'S7', icon: 'stairs', label: 'stairs leading home' },
-    { id: 'S8', icon: 'clock', label: 'clock at 7:10' },
-    { id: 'S9', icon: 'plant', label: 'living hallway plant' }
+    { id: 'S1', icon: 'window', image: 'assets/stock/window.jpg', label: 'open window' },
+    { id: 'S2', icon: 'lamp', image: 'assets/stock/lamp.jpg', label: 'warm lamp' },
+    { id: 'S3', icon: 'coat', image: 'assets/stock/coat.jpg', label: 'coat on the hook' },
+    { id: 'S4', icon: 'chair', image: 'assets/stock/chair.jpg', label: 'empty chair' },
+    { id: 'S5', icon: 'door', image: 'assets/stock/door.jpg', label: 'door left ajar' },
+    { id: 'S6', icon: 'cups', image: 'assets/stock/cups.jpg', label: 'two waiting cups' },
+    { id: 'S7', icon: 'stairs', image: 'assets/stock/stairs.jpg', label: 'stairs leading home' },
+    { id: 'S8', icon: 'clock', image: 'assets/stock/clock.jpg', label: 'clock at 7:10' },
+    { id: 'S9', icon: 'plant', image: 'assets/stock/plant.jpg', label: 'living hallway plant' }
   ];
 
   const stages = [
@@ -128,6 +132,9 @@
   let soundOn = false;
   let audioContext;
   let assemblyTimer;
+  let flashTimer;
+  let lives = 3;
+  let score = 0;
 
   function showScreen(name) {
     screens.forEach((screen) => {
@@ -165,9 +172,39 @@
     grid.innerHTML = fragments.map((fragment, index) => `
       <button class="fragment fragment--${fragment.icon}" style="--fragment-index:${index}" type="button" data-fragment="${index}" aria-pressed="${selected.has(index)}" aria-label="${selected.has(index) ? 'Deselect' : 'Select'} memory fragment: ${fragment.label}">
         <span class="fragment-id">${fragment.id}</span>
-        ${iconSvg(fragment.icon)}
+        <img src="${fragment.image}" alt="" width="1000" height="760" loading="eager">
+        <span class="fragment-scan" aria-hidden="true"></span>
         <span class="fragment-label">${fragment.label}</span>
       </button>`).join('');
+  }
+
+  function updateGameStats() {
+    ui.lives.textContent = `${'♥ '.repeat(lives).trim()}${' ♡'.repeat(Math.max(0, 3 - lives))}`;
+    ui.score.textContent = String(score).padStart(3, '0');
+  }
+
+  function flashImpact(kind = 'error') {
+    document.body.classList.remove('screen-hit', 'evidence-shift');
+    void document.body.offsetWidth;
+    document.body.classList.add(kind === 'rewrite' ? 'evidence-shift' : 'screen-hit');
+    window.setTimeout(() => document.body.classList.remove('screen-hit', 'evidence-shift'), 720);
+  }
+
+  function startMemoryFlash() {
+    let remaining = 6;
+    window.clearInterval(flashTimer);
+    ui.flashCountdown.textContent = String(remaining).padStart(2, '0');
+    showScreen('recall');
+    tone(560, .16, 'triangle');
+    flashTimer = window.setInterval(() => {
+      remaining -= 1;
+      ui.flashCountdown.textContent = String(Math.max(0, remaining)).padStart(2, '0');
+      tone(remaining <= 2 ? 310 : 460, .06, remaining <= 2 ? 'square' : 'sine');
+      if (remaining <= 0) {
+        window.clearInterval(flashTimer);
+        loadStage(0);
+      }
+    }, 1000);
   }
 
   function updateProgress() {
@@ -195,6 +232,7 @@
     stageIndex = index;
     document.body.dataset.stage = String(index + 1);
     selected = new Set();
+    lives = 3;
     const stage = stages[index];
     fragments = (index === 2 ? stageThree : baseFragments).map((item) => ({ ...item }));
     ui.stageLabel.textContent = stage.label;
@@ -208,6 +246,7 @@
     continueButton.innerHTML = index === 2 ? 'Complete memory <span aria-hidden="true">→</span>' : 'Continue <span aria-hidden="true">→</span>';
     renderGrid();
     updateProgress();
+    updateGameStats();
     updateReadout(index === 0 ? 'Choose a fragment to begin.' : index === 1 ? 'The archive is listening.' : 'There is no verified answer now.');
     showScreen('play');
   }
@@ -217,7 +256,19 @@
     void button.offsetWidth;
     button.classList.add('is-rejected');
     tone(180, .16, 'square');
-    updateReadout(`${fragment.label} was not found in the intake record. Try another fragment.`);
+    lives -= 1;
+    score = Math.max(0, score - 50);
+    updateGameStats();
+    flashImpact('error');
+    if (lives <= 0) {
+      lives = 3;
+      selected = new Set();
+      renderGrid();
+      updateGameStats();
+      updateReadout('Signal integrity collapsed. Stage reset—use the memory flash and try again.');
+    } else {
+      updateReadout(`${fragment.label} was a false signal. ${lives} integrity ${lives === 1 ? 'point' : 'points'} remaining.`);
+    }
     window.setTimeout(() => button.classList.remove('is-rejected'), 500);
   }
 
@@ -236,10 +287,13 @@
       rewrittenIcon: replacement.icon
     });
     rewriteCount += 1;
+    score += 75;
+    updateGameStats();
     renderGrid();
     const target = grid.querySelector(`[data-fragment="${targetIndex}"]`);
     target?.classList.add('is-rewritten');
     tone(238, .22, 'sawtooth');
+    flashImpact('rewrite');
     ui.promptNote.textContent = `${replacement.label} was added to the evidence.`;
     window.setTimeout(() => target?.classList.remove('is-rewritten'), 1500);
   }
@@ -259,10 +313,12 @@
 
     if (wasSelected) {
       selected.delete(index);
+      score = Math.max(0, score - 25);
       tone(300, .07);
     } else if (selected.size < stages[stageIndex].target) {
       selected.add(index);
       totalChoices += 1;
+      score += stageIndex === 0 ? 100 : stageIndex === 1 ? 125 : 150;
       tone(440 + selected.size * 30, .09);
       if (stageIndex === 1) window.setTimeout(() => rewriteNeighbor(index), 190);
     } else {
@@ -271,6 +327,7 @@
     }
 
     renderGrid();
+    updateGameStats();
     const action = wasSelected ? 'removed' : 'selected';
     updateReadout(`${fragment.label} ${action}. ${Math.max(0, stages[stageIndex].target - selected.size)} remaining.`);
   }
@@ -293,6 +350,8 @@
 
   function completeStage() {
     if (selected.size !== stages[stageIndex].target) return;
+    score += 250;
+    updateGameStats();
     stageSelections[stageIndex] = [...selected].map((index) => ({ ...fragments[index] }));
     if (stageIndex < 2) {
       transitionTo(stageIndex + 1);
@@ -327,7 +386,7 @@
     ui.memoryCollage.innerHTML = finalSelection.map((fragment, index) => `
       <article class="collage-fragment collage-fragment--${index + 1}" style="--reveal-index:${index + 1}" data-reveal>
         <span>${fragment.id}</span>
-        ${iconSvg(fragment.icon)}
+        <img src="${fragment.image}" alt="" width="1000" height="760">
         <strong>${fragment.label}</strong>
       </article>`).join('');
 
@@ -393,8 +452,11 @@
     finalSelection = [];
     stageSelections = [[], [], []];
     finalOutcome = 'uncertified';
+    lives = 3;
+    score = 0;
     startedAt = 0;
     window.clearInterval(timerId);
+    window.clearInterval(flashTimer);
     ui.time.textContent = '00:00';
     delete document.body.dataset.stage;
     showScreen('intro');
@@ -414,8 +476,12 @@
 
   startButton.addEventListener('click', () => {
     startTimer();
-    loadStage(0);
+    startMemoryFlash();
     tone(460, .12);
+  });
+  skipFlashButton.addEventListener('click', () => {
+    window.clearInterval(flashTimer);
+    loadStage(0);
   });
   grid.addEventListener('click', handleFragment);
   continueButton.addEventListener('click', completeStage);
