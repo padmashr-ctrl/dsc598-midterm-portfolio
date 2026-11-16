@@ -27,9 +27,14 @@
     transitionTitle: document.querySelector('[data-transition-title]'),
     transitionCopy: document.querySelector('[data-transition-copy]'),
     reconstruction: document.querySelector('[data-reconstruction]'),
+    memoryId: document.querySelector('[data-memory-id]'),
+    memoryCollage: document.querySelector('[data-memory-collage]'),
+    rewriteLedger: document.querySelector('[data-rewrite-ledger]'),
+    choiceTimeline: document.querySelector('[data-choice-timeline]'),
     totalChoices: document.querySelector('[data-total-choices]'),
     rewrites: document.querySelector('[data-rewrites]'),
     finalConfidence: document.querySelector('[data-final-confidence]'),
+    generatedDate: document.querySelector('[data-generated-date]'),
     endingSummary: document.querySelector('[data-ending-summary]'),
     stamp: document.querySelector('[data-stamp]'),
     finalQuestion: document.querySelector('[data-final-question]'),
@@ -113,12 +118,16 @@
   let fragments = [];
   let selected = new Set();
   let rewriteCount = 0;
+  let rewriteLog = [];
   let totalChoices = 0;
   let finalSelection = [];
+  let stageSelections = [[], [], []];
+  let finalOutcome = 'uncertified';
   let startedAt = 0;
   let timerId = null;
   let soundOn = false;
   let audioContext;
+  let assemblyTimer;
 
   function showScreen(name) {
     screens.forEach((screen) => {
@@ -217,7 +226,15 @@
     if (!available.length) return;
     const targetIndex = available[(sourceIndex + rewriteCount * 2) % available.length];
     const replacement = rewrittenFragments[rewriteCount % rewrittenFragments.length];
+    const original = { ...fragments[targetIndex] };
     fragments[targetIndex] = { ...fragments[targetIndex], ...replacement, id: `${fragments[targetIndex].id}′` };
+    rewriteLog.push({
+      id: original.id,
+      originalLabel: original.label,
+      originalIcon: original.icon,
+      rewrittenLabel: replacement.label,
+      rewrittenIcon: replacement.icon
+    });
     rewriteCount += 1;
     renderGrid();
     const target = grid.querySelector(`[data-fragment="${targetIndex}"]`);
@@ -276,6 +293,7 @@
 
   function completeStage() {
     if (selected.size !== stages[stageIndex].target) return;
+    stageSelections[stageIndex] = [...selected].map((index) => ({ ...fragments[index] }));
     if (stageIndex < 2) {
       transitionTo(stageIndex + 1);
       return;
@@ -293,8 +311,63 @@
     ui.finalQuestion.hidden = false;
     ui.finalResult.hidden = true;
     ui.stamp.textContent = 'UNCERTIFIED';
+    finalOutcome = 'uncertified';
+    buildCertificate();
     showScreen('ending');
+    startCertificateAssembly();
     tone(660, .35, 'triangle');
+  }
+
+  function buildCertificate() {
+    const choiceKey = finalSelection.map((item) => item.id.replace(/[^A-Z0-9]/gi, '')).join('').slice(0, 8) || 'OPEN';
+    const memoryId = `M27-${choiceKey}-${String(rewriteCount).padStart(2, '0')}`;
+    ui.memoryId.textContent = memoryId;
+    ui.generatedDate.textContent = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date());
+
+    ui.memoryCollage.innerHTML = finalSelection.map((fragment, index) => `
+      <article class="collage-fragment collage-fragment--${index + 1}" style="--reveal-index:${index + 1}" data-reveal>
+        <span>${fragment.id}</span>
+        ${iconSvg(fragment.icon)}
+        <strong>${fragment.label}</strong>
+      </article>`).join('');
+
+    const visibleRewrites = rewriteLog.slice(0, 4);
+    ui.rewriteLedger.innerHTML = visibleRewrites.length
+      ? visibleRewrites.map((entry, index) => `
+        <div class="rewrite-entry" style="--reveal-index:${index + 4}" data-reveal>
+          <span class="rewrite-number">${String(index + 1).padStart(2, '0')}</span>
+          <span class="trace-original">${entry.originalLabel}</span>
+          <span class="rewrite-arrow" aria-hidden="true">→</span>
+          <strong>${entry.rewrittenLabel}</strong>
+        </div>`).join('')
+      : '<p class="no-rewrites">No system rewrites were recorded.</p>';
+
+    const timelineCopy = [
+      { label: 'Recognize', text: stageSelections[0].map((item) => item.label).join(', ') },
+      { label: 'Trust', text: stageSelections[1].map((item) => item.label).join(', ') },
+      { label: 'Define safety', text: stageSelections[2].map((item) => item.label).join(', ') }
+    ];
+    ui.choiceTimeline.innerHTML = timelineCopy.map((step, index) => `
+      <li style="--reveal-index:${index + 2}" data-reveal>
+        <span>${String(index + 1).padStart(2, '0')}</span>
+        <div><strong>${step.label}</strong><p>${step.text || 'No recorded choice'}</p></div>
+      </li>`).join('');
+  }
+
+  function startCertificateAssembly() {
+    const certificate = document.querySelector('#memory-certificate');
+    window.clearTimeout(assemblyTimer);
+    certificate.classList.remove('assembly-complete');
+    certificate.classList.add('is-assembling');
+    document.querySelector('[data-skip-assembly]').hidden = false;
+    assemblyTimer = window.setTimeout(finishCertificateAssembly, 4200);
+  }
+
+  function finishCertificateAssembly() {
+    const certificate = document.querySelector('#memory-certificate');
+    certificate.classList.remove('is-assembling');
+    certificate.classList.add('assembly-complete');
+    document.querySelector('[data-skip-assembly]').hidden = true;
   }
 
   function decide(outcome) {
@@ -306,6 +379,7 @@
       ? 'You chose coherence over certainty. The archive will remember your version as fact.'
       : 'You refused to turn confidence into truth. The archive keeps the event open—and incomplete.';
     ui.stamp.textContent = certified ? 'CERTIFIED' : 'UNRESOLVED';
+    finalOutcome = certified ? 'certified' : 'unresolved';
     tone(certified ? 720 : 330, .4, certified ? 'sine' : 'triangle');
     ui.finalResult.querySelector('button')?.focus();
   }
@@ -314,8 +388,11 @@
     stageIndex = 0;
     selected = new Set();
     rewriteCount = 0;
+    rewriteLog = [];
     totalChoices = 0;
     finalSelection = [];
+    stageSelections = [[], [], []];
+    finalOutcome = 'uncertified';
     startedAt = 0;
     window.clearInterval(timerId);
     ui.time.textContent = '00:00';
@@ -352,4 +429,119 @@
     soundButton.innerHTML = `<span aria-hidden="true">${soundOn ? '●' : '◌'}</span> Sound ${soundOn ? 'on' : 'off'}`;
     if (soundOn) tone(440, .12);
   });
+
+  document.querySelector('[data-skip-assembly]').addEventListener('click', finishCertificateAssembly);
+
+  document.querySelectorAll('[data-trace-view]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const showTraces = button.dataset.traceView === 'traces';
+      document.querySelector('#memory-certificate').classList.toggle('show-traces', showTraces);
+      document.querySelectorAll('[data-trace-view]').forEach((item) => {
+        const active = item === button;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+    });
+  });
+
+  function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+    const words = text.replace(/[“”]/g, '').split(/\s+/);
+    const lines = [];
+    let line = '';
+    words.forEach((word) => {
+      const test = `${line} ${word}`.trim();
+      if (ctx.measureText(test).width > maxWidth && line) {
+        lines.push(line);
+        line = word;
+      } else line = test;
+    });
+    if (line) lines.push(line);
+    lines.slice(0, maxLines).forEach((item, index) => ctx.fillText(item, x, y + index * lineHeight));
+  }
+
+  function downloadCertificate() {
+    const downloadStatus = document.querySelector('[data-download-status]');
+    const canvas = document.createElement('canvas');
+    canvas.width = 1600;
+    canvas.height = 1100;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#f8f4ea';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#183c30';
+    ctx.fillRect(0, 0, canvas.width, 118);
+    ctx.fillStyle = '#fff';
+    ctx.font = '700 28px Helvetica Neue, Arial';
+    ctx.fillText('MEMORY CERTIFICATE', 76, 72);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#efb2c1';
+    ctx.fillText(ui.memoryId.textContent, 1524, 72);
+    ctx.textAlign = 'left';
+
+    ctx.fillStyle = '#356451';
+    ctx.font = '700 18px Helvetica Neue, Arial';
+    ctx.fillText('SYSTEM RECONSTRUCTION', 76, 178);
+    ctx.fillStyle = '#111';
+    ctx.font = '44px Georgia, serif';
+    wrapCanvasText(ctx, ui.reconstruction.textContent, 76, 240, 1448, 58, 3);
+
+    const cardColors = ['#f2dfe4', '#e1ebe5', '#f1e2d8'];
+    finalSelection.forEach((fragment, index) => {
+      const x = 76 + index * 495;
+      const y = 420 + (index % 2) * 18;
+      ctx.fillStyle = cardColors[index % cardColors.length];
+      ctx.fillRect(x, y, 440, 250);
+      ctx.fillStyle = '#6b2723';
+      ctx.font = '700 18px Helvetica Neue, Arial';
+      ctx.fillText(fragment.id, x + 28, y + 38);
+      ctx.fillStyle = '#183c30';
+      ctx.font = '700 72px Georgia, serif';
+      ctx.fillText(fragment.label.charAt(0).toUpperCase(), x + 28, y + 135);
+      ctx.fillStyle = '#34322f';
+      ctx.font = '700 23px Helvetica Neue, Arial';
+      wrapCanvasText(ctx, fragment.label, x + 28, y + 198, 380, 30, 2);
+    });
+
+    ctx.fillStyle = '#356451';
+    ctx.font = '700 18px Helvetica Neue, Arial';
+    ctx.fillText('ASSEMBLY TRACE', 76, 760);
+    rewriteLog.slice(0, 4).forEach((entry, index) => {
+      const y = 810 + index * 48;
+      ctx.fillStyle = '#8b857c';
+      ctx.font = '21px Helvetica Neue, Arial';
+      ctx.fillText(`${String(index + 1).padStart(2, '0')}  ${entry.originalLabel}`, 76, y);
+      ctx.fillStyle = '#b45a3c';
+      ctx.fillText('→', 470, y);
+      ctx.fillStyle = '#111';
+      ctx.font = '700 21px Helvetica Neue, Arial';
+      ctx.fillText(entry.rewrittenLabel, 520, y);
+    });
+
+    ctx.fillStyle = '#6b2723';
+    ctx.strokeStyle = '#6b2723';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(1210, 820, 314, 105);
+    ctx.font = '900 25px Helvetica Neue, Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(finalOutcome.toUpperCase(), 1367, 885);
+    ctx.textAlign = 'left';
+    ctx.fillStyle = '#6c6862';
+    ctx.font = '18px Helvetica Neue, Arial';
+    ctx.fillText(`Generated ${ui.generatedDate.textContent} · ${totalChoices} choices · ${rewriteCount} rewrites`, 76, 1050);
+
+    canvas.toBlob((blob) => {
+      if (!blob) {
+        downloadStatus.textContent = 'The image could not be created. Please try again.';
+        return;
+      }
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${ui.memoryId.textContent.toLowerCase()}-memory-certificate.png`;
+      link.click();
+      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+      downloadStatus.textContent = 'Your personalized certificate was downloaded.';
+    }, 'image/png');
+  }
+
+  document.querySelector('[data-download-certificate]').addEventListener('click', downloadCertificate);
 })();

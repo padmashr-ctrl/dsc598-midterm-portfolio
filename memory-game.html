@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Prove You Remember is a three-stage browser game about memory, verification, and hallucination.">
   <meta name="theme-color" content="#183c30">
-  <title>Prove You Remember — Playable Game Draft</title>
+  <title>Prove You Remember — Week 3 Refined Experience</title>
   <link rel="stylesheet" href="memory-game.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
 
   <header class="game-header">
     <a class="game-brand" href="index.html">Shreya Ramanan</a>
-    <p>DSC 598 · Hallucination · Week 2</p>
+    <p>DSC 598 · Hallucination · Week 3</p>
     <div class="header-actions">
       <button class="icon-button" type="button" data-sound aria-pressed="false" aria-label="Turn sound on">
         <span aria-hidden="true">◌</span> Sound off
@@ -30,7 +30,7 @@
         <p class="intro-line">Select every image that really happened.</p>
         <p class="intro-summary">You have nine fragments and one incomplete memory. Choose carefully: the archive learns from every answer you give.</p>
         <button class="primary-button" type="button" data-start>Begin recovery <span aria-hidden="true">→</span></button>
-        <p class="fine-print">No account. No saved data. Approximately 3–5 minutes.</p>
+        <p class="fine-print">No account. No saved data. Approximately 3–5 minutes. Your ending is built from your choices.</p>
       </div>
 
       <div class="intake-card" aria-hidden="true">
@@ -110,24 +110,48 @@
 
     <section class="game-screen ending-screen" data-screen="ending" aria-labelledby="ending-title" hidden>
       <div class="receipt-column">
-        <article class="memory-receipt">
-          <div class="receipt-head"><span>MEMORY CERTIFICATE</span><b>EVENT 27</b></div>
+        <article class="memory-receipt is-assembling" id="memory-certificate">
+          <div class="receipt-head"><span>MEMORY CERTIFICATE</span><b data-memory-id>EVENT 27</b></div>
           <p class="receipt-label">SYSTEM RECONSTRUCTION</p>
           <blockquote data-reconstruction>“You returned to a room with a warm lamp, an open window, and two cups waiting.”</blockquote>
+          <div class="memory-collage" data-memory-collage aria-label="Your selected memory fragments"></div>
+
+          <section class="rewrite-ledger" aria-labelledby="rewrite-title">
+            <div class="rewrite-head">
+              <div>
+                <span>ASSEMBLY TRACE</span>
+                <h3 id="rewrite-title">How the archive changed</h3>
+              </div>
+              <div class="trace-toggle" role="group" aria-label="Certificate evidence view">
+                <button type="button" class="is-active" data-trace-view="final" aria-pressed="true">Final</button>
+                <button type="button" data-trace-view="traces" aria-pressed="false">Show traces</button>
+              </div>
+            </div>
+            <div class="rewrite-list" data-rewrite-ledger></div>
+          </section>
+
           <div class="receipt-data">
             <p><span>Source fragments</span><b>09</b></p>
             <p><span>Player choices</span><b data-total-choices>11</b></p>
             <p><span>System rewrites</span><b data-rewrites>04</b></p>
             <p><span>Final confidence</span><b data-final-confidence>94%</b></p>
+            <p><span>Generated</span><b data-generated-date>—</b></p>
           </div>
           <div class="receipt-stamp" data-stamp>UNCERTIFIED</div>
         </article>
+        <div class="certificate-actions">
+          <button type="button" class="text-button" data-skip-assembly>Skip reveal</button>
+          <button type="button" class="download-button" data-download-certificate>Download record <span aria-hidden="true">↓</span></button>
+          <p data-download-status aria-live="polite"></p>
+        </div>
       </div>
 
       <div class="ending-copy">
         <p class="eyebrow">Recovery complete</p>
         <h2 id="ending-title">The memory is coherent.<br><em>That does not make it true.</em></h2>
         <p data-ending-summary>You recognized four details, watched the archive rewrite its evidence, and then taught it what safety should look like.</p>
+
+        <ol class="choice-timeline" data-choice-timeline aria-label="How your choices shaped the final memory"></ol>
 
         <div class="final-question" data-final-question>
           <span>FINAL DECISION</span>
@@ -148,8 +172,21 @@
     </section>
   </main>
 
+  <section class="revision-note" aria-labelledby="revision-title">
+    <div>
+      <p class="eyebrow">WEEK 3 · RESPONSE TO CRITIQUE</p>
+      <h2 id="revision-title">Feedback became part of the ending.</h2>
+      <p>The first draft ended with a generic receipt. This revision makes the result personal, shows the system’s intervention instead of hiding it, and lets the player keep a record of the choices that shaped the final memory.</p>
+    </div>
+    <div class="revision-grid">
+      <article><span>01</span><h3>Personalized evidence</h3><p>The final collage uses the exact fragments the player selected.</p></article>
+      <article><span>02</span><h3>Visible intervention</h3><p>A trace view pairs the original evidence with every system rewrite.</p></article>
+      <article><span>03</span><h3>Ethical reflection</h3><p>The final certification asks whether coherence should ever be treated as truth.</p></article>
+    </div>
+  </section>
+
   <footer class="game-footer">
-    <p><strong>Prove You Remember</strong> · Playable Week 2 draft</p>
+    <p><strong>Prove You Remember</strong> · Week 3 refined experience</p>
     <p>Designed by Shreya Ramanan for AI for Interdisciplinary Design.</p>
   </footer>
 
