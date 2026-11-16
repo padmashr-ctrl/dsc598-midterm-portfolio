@@ -44,7 +44,10 @@
     resultCopy: document.querySelector('[data-result-copy]'),
     flashCountdown: document.querySelector('[data-flash-countdown]'),
     lives: document.querySelector('[data-lives]'),
-    score: document.querySelector('[data-score]')
+    score: document.querySelector('[data-score]'),
+    bonusTime: document.querySelector('[data-bonus-time]'),
+    finalScore: document.querySelector('[data-final-score]'),
+    finalRank: document.querySelector('[data-final-rank]')
   };
 
   const iconPaths = {
@@ -133,8 +136,21 @@
   let audioContext;
   let assemblyTimer;
   let flashTimer;
+  let bonusTimer;
+  let bonusSeconds = 35;
   let lives = 3;
   let score = 0;
+  let ambientNodes = [];
+  let ambientMaster;
+
+  function shuffle(items) {
+    const output = items.map((item) => ({ ...item }));
+    for (let index = output.length - 1; index > 0; index -= 1) {
+      const target = Math.floor(Math.random() * (index + 1));
+      [output[index], output[target]] = [output[target], output[index]];
+    }
+    return output;
+  }
 
   function showScreen(name) {
     screens.forEach((screen) => {
@@ -164,6 +180,71 @@
     oscillator.stop(audioContext.currentTime + duration + .025);
   }
 
+  function startAmbient() {
+    if (!soundOn || ambientNodes.length) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    audioContext ||= new AudioContext();
+    if (audioContext.state === 'suspended') audioContext.resume();
+
+    ambientMaster = audioContext.createGain();
+    ambientMaster.gain.value = .018;
+    const filter = audioContext.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 420;
+    filter.Q.value = .7;
+    filter.connect(ambientMaster).connect(audioContext.destination);
+
+    [55, 82.5].forEach((frequency, index) => {
+      const oscillator = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      oscillator.type = index ? 'triangle' : 'sine';
+      oscillator.frequency.value = frequency;
+      gain.gain.value = index ? .16 : .26;
+      oscillator.connect(gain).connect(filter);
+      oscillator.start();
+      ambientNodes.push(oscillator);
+    });
+
+    const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 2, audioContext.sampleRate);
+    const channel = noiseBuffer.getChannelData(0);
+    for (let index = 0; index < channel.length; index += 1) channel[index] = (Math.random() * 2 - 1) * .12;
+    const noise = audioContext.createBufferSource();
+    const noiseFilter = audioContext.createBiquadFilter();
+    const noiseGain = audioContext.createGain();
+    noise.buffer = noiseBuffer;
+    noise.loop = true;
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.value = 540;
+    noiseFilter.Q.value = .5;
+    noiseGain.gain.value = .035;
+    noise.connect(noiseFilter).connect(noiseGain).connect(ambientMaster);
+    noise.start();
+    ambientNodes.push(noise);
+  }
+
+  function stopAmbient() {
+    ambientNodes.forEach((node) => {
+      try { node.stop(); } catch (error) { /* already stopped */ }
+      node.disconnect();
+    });
+    ambientNodes = [];
+    ambientMaster?.disconnect();
+    ambientMaster = null;
+  }
+
+  function tuneAmbient(stage = -1) {
+    if (!soundOn) return;
+    startAmbient();
+    if (!ambientMaster || !audioContext) return;
+    const levels = [.018, .022, .029, .014];
+    ambientMaster.gain.setTargetAtTime(levels[stage + 1] || .018, audioContext.currentTime, .5);
+    ambientNodes.filter((node) => node.frequency).forEach((oscillator, index) => {
+      const targets = stage === 1 ? [48, 76] : stage === 2 ? [43, 68] : [55, 82.5];
+      oscillator.frequency.setTargetAtTime(targets[index] || targets[0], audioContext.currentTime, .8);
+    });
+  }
+
   function iconSvg(name) {
     return `<svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">${iconPaths[name] || iconPaths.photo}</svg>`;
   }
@@ -183,6 +264,23 @@
     ui.score.textContent = String(score).padStart(3, '0');
   }
 
+  function startBonusTimer(stage) {
+    const limits = [35, 40, 30];
+    bonusSeconds = limits[stage] || 30;
+    window.clearInterval(bonusTimer);
+    ui.bonusTime.textContent = `${bonusSeconds}s`;
+    ui.bonusTime.classList.remove('is-expired');
+    bonusTimer = window.setInterval(() => {
+      bonusSeconds = Math.max(0, bonusSeconds - 1);
+      ui.bonusTime.textContent = bonusSeconds ? `${bonusSeconds}s` : 'EXPIRED';
+      ui.bonusTime.classList.toggle('is-expired', bonusSeconds === 0);
+      if (bonusSeconds === 0) {
+        window.clearInterval(bonusTimer);
+        tone(145, .18, 'square');
+      }
+    }, 1000);
+  }
+
   function flashImpact(kind = 'error') {
     document.body.classList.remove('screen-hit', 'evidence-shift');
     void document.body.offsetWidth;
@@ -195,6 +293,7 @@
     window.clearInterval(flashTimer);
     ui.flashCountdown.textContent = String(remaining).padStart(2, '0');
     showScreen('recall');
+    tuneAmbient(-1);
     tone(560, .16, 'triangle');
     flashTimer = window.setInterval(() => {
       remaining -= 1;
@@ -234,7 +333,7 @@
     selected = new Set();
     lives = 3;
     const stage = stages[index];
-    fragments = (index === 2 ? stageThree : baseFragments).map((item) => ({ ...item }));
+    fragments = shuffle(index === 2 ? stageThree : baseFragments);
     ui.stageLabel.textContent = stage.label;
     ui.stageTitle.textContent = stage.title;
     ui.stageCopy.textContent = stage.copy;
@@ -247,6 +346,8 @@
     renderGrid();
     updateProgress();
     updateGameStats();
+    startBonusTimer(index);
+    tuneAmbient(index);
     updateReadout(index === 0 ? 'Choose a fragment to begin.' : index === 1 ? 'The archive is listening.' : 'There is no verified answer now.');
     showScreen('play');
   }
@@ -350,7 +451,8 @@
 
   function completeStage() {
     if (selected.size !== stages[stageIndex].target) return;
-    score += 250;
+    window.clearInterval(bonusTimer);
+    score += 250 + bonusSeconds * 10;
     updateGameStats();
     stageSelections[stageIndex] = [...selected].map((index) => ({ ...fragments[index] }));
     if (stageIndex < 2) {
@@ -366,6 +468,8 @@
     ui.totalChoices.textContent = String(totalChoices);
     ui.rewrites.textContent = String(rewriteCount);
     ui.finalConfidence.textContent = `${Math.min(96, 82 + finalSelection.length * 4)}%`;
+    ui.finalScore.textContent = String(score).padStart(4, '0');
+    ui.finalRank.textContent = score >= 3000 ? 'S' : score >= 2500 ? 'A' : score >= 1900 ? 'B' : 'C';
     ui.endingSummary.textContent = `You recognized four details, watched ${rewriteCount} fragments change, and then taught the archive that safety looks like ${labels.join(', ')}.`;
     ui.finalQuestion.hidden = false;
     ui.finalResult.hidden = true;
@@ -457,9 +561,11 @@
     startedAt = 0;
     window.clearInterval(timerId);
     window.clearInterval(flashTimer);
+    window.clearInterval(bonusTimer);
     ui.time.textContent = '00:00';
     delete document.body.dataset.stage;
     showScreen('intro');
+    tuneAmbient(-1);
     startButton.focus();
   }
 
@@ -493,7 +599,11 @@
     soundButton.setAttribute('aria-pressed', String(soundOn));
     soundButton.setAttribute('aria-label', `Turn sound ${soundOn ? 'off' : 'on'}`);
     soundButton.innerHTML = `<span aria-hidden="true">${soundOn ? '●' : '◌'}</span> Sound ${soundOn ? 'on' : 'off'}`;
-    if (soundOn) tone(440, .12);
+    if (soundOn) {
+      startAmbient();
+      tuneAmbient(stageIndex);
+      tone(440, .12);
+    } else stopAmbient();
   });
 
   document.querySelector('[data-skip-assembly]').addEventListener('click', finishCertificateAssembly);
@@ -592,7 +702,7 @@
     ctx.textAlign = 'left';
     ctx.fillStyle = '#6c6862';
     ctx.font = '18px Helvetica Neue, Arial';
-    ctx.fillText(`Generated ${ui.generatedDate.textContent} · ${totalChoices} choices · ${rewriteCount} rewrites`, 76, 1050);
+    ctx.fillText(`Generated ${ui.generatedDate.textContent} · Score ${score} · Rank ${ui.finalRank.textContent} · ${rewriteCount} rewrites`, 76, 1050);
 
     canvas.toBlob((blob) => {
       if (!blob) {
