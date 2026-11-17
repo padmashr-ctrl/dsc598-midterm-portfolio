@@ -1,4 +1,4 @@
-/* Shreya Ramanan — portfolio, final edition (Dec 2026)
+/* Shreya Ramanan — portfolio, final edition (Nov 2026)
    One accent (thread red) on warm black. Boska for titles, a quiet grotesk for everything else. */
 @font-face{font-family:Boska;src:url("assets/fonts/boska-400.woff2") format("woff2");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:Boska;src:url("assets/fonts/boska-400-italic.woff2") format("woff2");font-weight:400;font-style:italic;font-display:swap}
@@ -387,3 +387,30 @@ button{font:inherit;color:inherit}
 .inst-title{max-width:min(26rem,calc(100% - 2 * var(--pad)))}
 .inst-title p{max-width:24rem}
 .signal-stage .inst-title,.signal-stage .sg-readout,.signal-stage .inst-bar{text-shadow:0 0 12px #03060b,0 0 3px #03060b}
+
+/* ---------- final project: jumps + what changed ---------- */
+.jumps{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1.4rem;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.jumps span{color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.jumps a{color:var(--ink);font-size:.9rem;border-bottom:1px solid var(--line-strong);transition:border-color .2s,color .2s}
+.jumps a:hover{color:var(--thread);border-color:var(--thread)}
+section[id],div[id]{scroll-margin-top:5.5rem}
+.changed{display:grid;grid-template-columns:minmax(180px,.5fr) minmax(0,1.5fr) auto;gap:1rem 2.5rem;align-items:start;margin-bottom:2rem;padding:1.5rem 1.6rem;border:1px solid var(--line-strong);border-left:3px solid var(--thread);background:var(--bg-2)}
+.changed h3{font-size:1.4rem;line-height:1.15}
+.changed ol{margin:0;padding-left:1.2rem;display:grid;gap:.55rem;color:var(--body);font-size:.95rem}
+.changed ol b{color:var(--ink);font-weight:500}
+.changed .text-link{align-self:end;white-space:nowrap;font-size:.85rem}
+@media (max-width:860px){.changed{grid-template-columns:1fr}}
+
+/* ---------- legibility: small metadata a touch larger and brighter ---------- */
+:root{--muted:#a39b8f}
+.label{font-size:.74rem}
+.facts dt,.index-table th,.feedback-table th,.sg-readout dt,.sg-agency label{font-size:.7rem}
+.tile-cap p,.fig figcaption,.small,.site-footer{font-size:.86rem}
+.tile-cap .yr,.version header span,.stage-map span,.method span,.spec span,.course .wk{font-size:.78rem}
+.facts dd{font-size:.95rem}
+.stage-map p,.version ul,.inst-status{font-size:.86rem}
+@media (max-width:620px){
+  .label{font-size:.76rem;letter-spacing:.14em}
+  .site-nav a{font-size:.7rem}
+  .facts dt{font-size:.72rem}
+}

@@ -254,7 +254,7 @@ body[data-stage="4"] .stage-brief{background:linear-gradient(155deg,#7b302b,var(
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-/* ===================== FINAL CUT (Dec 2026) ===================== */
+/* ===================== FINAL CUT (Nov 2026) ===================== */
 /* Onboarding */
 .how-to{margin:1.4rem 0 .4rem;padding:0;display:grid;gap:.55rem;list-style:none;max-width:580px}
 .how-to li{display:grid;grid-template-columns:2.2rem 1fr;column-gap:.6rem;color:var(--muted);font-size:.86rem;line-height:1.4}

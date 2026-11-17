@@ -45,20 +45,24 @@
       <dl class="facts" aria-label="Project facts">
         <div><dt>Medium</dt><dd>Browser game · HTML, CSS, JavaScript</dd></div>
         <div><dt>Experience</dt><dd>4 stages + memory flash · 4–6 minutes · sound optional</dd></div>
-        <div><dt>Development</dt><dd>Oct 25 – Dec 2026 · four published versions</dd></div>
+        <div><dt>Development</dt><dd>Oct 25–Nov 16, 2026 · four published versions</dd></div>
         <div><dt>My role</dt><dd>Concept, game &amp; interaction design, art direction, writing, testing</dd></div>
         <div><dt>AI assistance</dt><dd>Codex, Claude Code (implementation) — see <a class="text-link" href="#ai">ledger</a></dd></div>
       </dl>
+      <nav class="jumps" aria-label="On this page">
+        <span>On this page</span>
+        <a href="#concept">Concept</a><a href="#play">Play</a><a href="#make">Versions</a><a href="#feedback">Feedback</a><a href="#reflection">Reflection</a><a href="#ai">AI &amp; credits</a>
+      </nav>
     </div>
 
     <!-- 01 STATEMENT -->
-    <section class="section" aria-labelledby="s-statement" style="border-top:0">
+    <section class="section" id="concept" aria-labelledby="s-statement" style="border-top:0">
       <div class="wrap two-col">
         <div class="sec-num"><span class="label">01</span><h2 id="s-statement">Concept</h2></div>
         <div class="prose">
           <p class="lead">A memory test that slowly stops testing you. You are asked to confirm what happened at Event 27—but every confident answer is treated as training data, and the evidence around your choices begins to rewrite itself.</p>
           <p>The game borrows the visual language of verification—intake cards, confidence meters, signal scores, certificates—because that is how machine output increasingly reaches us. A generative system rarely says <em>I invented this</em>. It says <em>here is your memory, 94% confident</em>. In <em>Prove You Remember</em>, hallucination is not a glitch on the screen. It is a collaboration: the player's preferences become the system's evidence, and the system hands them back as fact.</p>
-          <p>The intended experience moves from competence to doubt. Stage one feels like a fair memory test. Stage two quietly changes the rules. Stage three asks you to audit the evidence, and most players discover they missed the quietest changes. The last stage abandons truth altogether and asks what would make the memory feel <em>safe</em>. Then comes the only question that matters: certify this memory, or keep it uncertain?</p>
+          <p>The intended experience moves from competence to doubt. Stage one feels like a fair memory test. Stage two quietly changes the rules. Stage three asks you to audit the evidence, and the quietest changes are designed to slip past. The last stage abandons truth altogether and asks what would make the memory feel <em>safe</em>. Then comes the only question that matters: certify this memory, or keep it uncertain?</p>
           <blockquote>The Analytical Engine “has no pretensions whatever to originate anything.”<cite>Ada Lovelace, Notes (1843) — a Week 1 reading</cite></blockquote>
           <p>Lovelace's line framed the whole project for me. A model originates nothing on its own, yet it can still persuade us that what it produced was ours. The game's archive does exactly that. It never claims to remember; it only ever completes. The idea also borrows from Alison Landsberg's notion of <em>prosthetic memory</em>—mediated memories that come to feel personally lived—and from Nicky Case's <em>We Become What We Behold</em>, where each image the player selects reshapes the crowd that sees it.</p>
         </div>
@@ -71,6 +75,15 @@
         <div class="section-head">
           <div><span class="label">02</span><h2 id="s-work">The work</h2></div>
           <p>Playable below. For the best experience, use full screen and turn the sound on. No account, no tracking.</p>
+        </div>
+        <div class="changed" aria-labelledby="changed-title">
+          <h3 id="changed-title">What changed from the earlier version</h3>
+          <ol>
+            <li><b>Icons became ambiguous photographs.</b> Memories you can actually misremember.</li>
+            <li><b>Rewrites now progress from loud to silent.</b> The first announces itself; later ones give no signal.</li>
+            <li><b>A new Audit stage and a persistent archive make doubt playable.</b> You find out what you missed, and replays disagree with you.</li>
+          </ol>
+          <a class="text-link" href="#make">See the versions →</a>
         </div>
         <div class="play-frame">
           <div class="bar"><span><i></i>Prove You Remember — final cut</span><a class="text-link" href="memory-game.html">Open full screen ↗</a></div>
@@ -116,7 +129,7 @@
           </article>
           <article class="version is-final reveal">
             <figure class="fig"><img src="assets/process/v4-audit.jpg" alt="Version 4: the new audit stage revealing caught and missed rewrites" width="1400" height="875" loading="lazy"></figure>
-            <header><b>V4</b><span>Dec</span></header>
+            <header><b>V4</b><span>Nov 16</span></header>
             <p>The doubt became a mechanic.</p>
             <ul><li>New Audit stage</li><li>Rewrites escalate loud → soft → silent</li><li>Recall by sight; cross-play archive</li></ul>
           </article>
@@ -174,7 +187,7 @@
     </section>
 
     <!-- 05 REFLECTION -->
-    <section class="section" aria-labelledby="s-reflect">
+    <section class="section" id="reflection" aria-labelledby="s-reflect">
       <div class="wrap two-col">
         <div class="sec-num"><span class="label">05</span><h2 id="s-reflect">Reflection</h2></div>
         <div class="prose">
@@ -230,7 +243,7 @@
     <div class="wrap">
       <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
       <nav aria-label="Footer"><a href="index.html">All works</a><a href="memory-game.html">Play the game</a><a href="prove-you-remember.html">Read the proposal</a><a href="about.html">About</a></nav>
-      <div>Final project for submission on December 2, 2026.</div>
+      <div>Final project · due December 2, 2026.</div>
     </div>
   </footer>
   <script src="portfolio.js"></script>
