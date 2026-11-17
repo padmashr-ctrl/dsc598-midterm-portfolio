@@ -1,91 +1,157 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Personal Studio Space: Shreya Ramanan's AI-assisted warm minimalist environment design.">
-  <meta name="theme-color" content="#fcfbf9">
-  <title>Personal Studio Space — Shreya Ramanan</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Personal Studio — 3D Environment — Shreya Ramanan</title>
+  <meta name="description" content="Personal Studio: a warm minimalist sanctuary for reading and creative work, specified with exact RGB values and lighting, developed from an AI reference into a Blender render.">
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
 </head>
-<body class="case-page studio-case">
-  <a class="skip-link" href="#case-content">Skip to project</a>
+<body>
+  <a class="skip-link" href="#content">Skip to project</a>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Shreya Ramanan, home">Shreya Ramanan</a>
-    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a class="active" href="index.html#projects">Projects</a><a href="index.html#about">About</a></nav>
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works" aria-current="page">Works</a>
+      <a class="nav-final" href="final-project.html">Final Project</a>
+      <a href="index.html#index">Index</a>
+      <a href="about.html">About</a>
+    </nav>
   </header>
 
-  <aside class="case-sidebar" aria-label="On this page">
-    <a class="back-link" href="index.html#projects">← Back to projects</a>
-    <p>On this page</p>
-    <nav><a href="#context">Context</a><a href="#system">Design system</a><a href="#process">Process</a><a href="#final">Final scene</a><a href="#reflection">Reflection</a></nav>
-  </aside>
-
-  <main class="case-main" id="case-content">
-    <figure class="case-cover studio-cover-panel"><img src="assets/studio-final.png" alt="Final personal studio with burgundy reading wall, warm oak shelving, and a white window desk" width="396" height="288"></figure>
-
-    <section class="case-hero" id="context">
-      <p class="kicker">AI ENVIRONMENT DESIGN · SPATIAL SYSTEM</p>
-      <h1>Personal Studio Space</h1>
-      <p class="case-lead">A warm minimalist modern sanctuary designed as both a creative workspace and a place for reflective reading.</p>
-      <div class="case-meta"><div><span>Project</span><strong>Personal studio environment</strong></div><div><span>Focus</span><strong>Consistency, atmosphere, zoning</strong></div><div><span>Zones</span><strong>Seating, display, work</strong></div><div><span>Course</span><strong>DSC 598 · Week 4</strong></div></div>
-    </section>
-
-    <section class="case-section split-section">
-      <div><p class="kicker">THE BRIEF</p><h2>Balance focused work with a genuine sense of sanctuary.</h2></div>
-      <div class="rich-copy"><p>The room supports four to six hours of creative work and two to three hours of reading each day. It should showcase a personal collection without feeling cluttered and maximize natural light without losing warmth.</p><p>Three distinct zones—seating, display, and work—remain visually connected through a controlled material and color system.</p></div>
-    </section>
-
-    <section class="case-section" id="system">
-      <p class="kicker">01 · DESIGN SYSTEM</p>
-      <h2>Exact values keep the room coherent.</h2>
-      <div class="palette-grid">
-        <div style="--swatch:rgb(139,35,69)"><span>Burgundy</span><small>139 · 35 · 69</small></div>
-        <div style="--swatch:rgb(220,210,195)"><span>Cream</span><small>220 · 210 · 195</small></div>
-        <div style="--swatch:rgb(180,150,100)"><span>Light wood</span><small>180 · 150 · 100</small></div>
-        <div style="--swatch:rgb(170,130,80)"><span>Warm oak</span><small>170 · 130 · 80</small></div>
-        <div style="--swatch:rgb(180,90,60)"><span>Terracotta</span><small>180 · 90 · 60</small></div>
-        <div style="--swatch:rgb(130,130,140)"><span>Chair gray</span><small>130 · 130 · 140</small></div>
-      </div>
-      <div class="zone-grid"><article><span>01</span><h3>Seating</h3><p>A single rust leather armchair and warm lamp against the burgundy focal wall.</p></article><article><span>02</span><h3>Display</h3><p>Floor-to-ceiling oak shelves with books, art, pottery, plants, and personal objects.</p></article><article><span>03</span><h3>Work</h3><p>A white minimalist desk and ergonomic gray mesh chair beside a large window.</p></article></div>
-    </section>
-
-    <section class="case-section" id="process">
-      <p class="kicker">02 · REFERENCES & PROMPTING</p>
-      <h2>Describe what must stay constant.</h2>
-      <div class="studio-gallery">
-        <figure><img src="assets/studio-view-1.png" alt="Full studio view with reading chair, desk, shelves, and natural light" width="202" height="152"><figcaption>Full-room organization</figcaption></figure>
-        <figure><img src="assets/studio-view-2.png" alt="Alternative studio perspective with shelving and reading chair" width="202" height="152"><figcaption>Alternative spatial balance</figcaption></figure>
-        <figure><img src="assets/studio-view-3.png" alt="Close view of white desk and ergonomic gray chair by the window" width="202" height="152"><figcaption>Window work zone</figcaption></figure>
-        <figure><img src="assets/studio-view-4.png" alt="Detailed oak shelving filled with curated books, art, pottery, and plants" width="202" height="152"><figcaption>Gallery shelving detail</figcaption></figure>
-        <figure><img src="assets/studio-view-5.png" alt="Terracotta single-seat chair and floor lamp against burgundy wall" width="202" height="152"><figcaption>Reading-zone detail</figcaption></figure>
-      </div>
-      <blockquote class="prompt-quote">“Design a warm minimalist modern personal studio space… include a single-seater leather armchair, floor-to-ceiling wooden shelves, a white minimalist desk by a large window, and bright warm sunlight with golden tones throughout.”</blockquote>
-
-      <div class="revision-list">
-        <article><span>01</span><div><h3>Specify the chair type</h3><p>Replacing “chair” with “single-seater armchair” stopped the model from introducing multi-seat sofas.</p></div></article>
-        <article><span>02</span><div><h3>Use numerical color values</h3><p>RGB values produced more consistent burgundy and cream surfaces than color names alone.</p></div></article>
-        <article><span>03</span><div><h3>Define the light emotionally</h3><p>“Warm golden sunlight from a south-facing window” replaced cool, neutral renders.</p></div></article>
-        <article><span>04</span><div><h3>Balance the shelves</h3><p>“Gallery-like curation” created abundance without making the collection feel cluttered.</p></div></article>
-        <article><span>05</span><div><h3>Name the feeling</h3><p>“Warm minimalist sanctuary” produced a more inviting room than the generic label “modern studio.”</p></div></article>
+  <main id="content">
+    <section class="work-hero" aria-labelledby="title">
+      <div class="work-hero-bg" style="background-image:url('assets/studio-hero.jpg')" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="work-title">
+          <span class="label"><b>03</b> · 3D environment · Week 4</span>
+          <h1 id="title">Personal Studio<span class="spaced">2026</span></h1>
+          <p class="sub">A warm minimalist sanctuary for reading and creative work, specified as data so it could be rebuilt in three dimensions.</p>
+          <p class="by">By Shreya Ramanan</p>
+          <div class="actions"><a class="btn btn-primary" href="#walkthrough">Watch the walkthrough ↓</a></div>
+        </div>
+        <figure class="hero-figure"><img src="assets/studio-final.png" alt="Final studio render: burgundy reading wall with a terracotta armchair and brass lamp, oak shelving, and a white desk by a sunlit window" width="396" height="288"></figure>
       </div>
     </section>
 
-    <section class="case-section" id="final">
-      <p class="kicker">03 · FINAL SCENE</p>
-      <h2>Three functions, one believable room.</h2>
-      <figure class="wide-figure final-studio"><img src="assets/studio-final.png" alt="Final complete personal studio scene integrating seating, display, and work zones" width="396" height="288"><figcaption>The burgundy wall anchors the reading zone; the shelving holds the center; sunlight pulls attention toward the desk.</figcaption></figure>
-      <div class="walkthrough-layout"><div><p class="kicker">SPATIAL WALKTHROUGH</p><h3>Move from the whole room to its details.</h3><p>This short, silent sequence is assembled from the actual final views in the Week 4 presentation.</p></div><video controls playsinline preload="metadata" poster="assets/studio-final.png" aria-label="Silent walkthrough of the personal studio"><source src="assets/studio-walkthrough.mp4" type="video/mp4">Your browser does not support the video element.</video></div>
+    <div class="wrap">
+      <dl class="facts" aria-label="Project facts">
+        <div><dt>Medium</dt><dd>3D environment · stills + camera walkthrough</dd></div>
+        <div><dt>Zones</dt><dd>Seating · display · work</dd></div>
+        <div><dt>Tools</dt><dd>AI image generation (reference) → Blender (final render)</dd></div>
+        <div><dt>My role</dt><dd>Brief, spatial program, colour system, prompting, 3D</dd></div>
+        <div><dt>Context</dt><dd>DSC 598 · Prompting for Design: a future space</dd></div>
+      </dl>
+    </div>
+
+    <section class="section" aria-labelledby="s1" style="border-top:0">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">01</span><h2 id="s1">The brief</h2></div>
+        <div class="prose">
+          <p class="lead">A room that holds two very different kinds of time: four to six hours of focused creative work, and two to three hours of slow, reflective reading.</p>
+          <p>The studio had to showcase a personal collection without clutter, maximise natural light without losing warmth, and still feel like a sanctuary rather than an office. Three zones—seating, display and work—stay distinct but visually connected through one controlled system of colour, material and light.</p>
+        </div>
+      </div>
     </section>
 
-    <section class="case-section reflection" id="reflection">
-      <p class="kicker">REFLECTION</p>
-      <h2>Specificity eliminates ambiguity.</h2>
-      <div class="reflection-grid"><div><h3>What worked</h3><p>RGB values, precise furniture names, and consistent lighting language held the palette and program together across multiple perspectives.</p></div><div><h3>What I learned</h3><p>Emotional descriptors shaped the aesthetic more effectively than broad style names. “Sanctuary” proved more useful than “modern.”</p></div><div><h3>Future use</h3><p>Define both what should remain constant and what may change, then generate multiple views to verify continuity.</p></div></div>
+    <section class="section" aria-labelledby="s2">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">02</span><h2 id="s2">Specified as data</h2><p class="small" style="margin-top:1rem">Colour names drifted between renders. Exact values did not.</p></div>
+        <div>
+          <div class="swatches" role="list" aria-label="Colour system">
+            <div role="listitem" style="--sw:rgb(139,35,69)">Burgundy<small>139 · 35 · 69</small></div>
+            <div role="listitem" style="--sw:rgb(220,210,195);color:#2a241d;text-shadow:none">Cream<small>220 · 210 · 195</small></div>
+            <div role="listitem" style="--sw:rgb(180,150,100)">Light wood<small>180 · 150 · 100</small></div>
+            <div role="listitem" style="--sw:rgb(170,130,80)">Warm oak<small>170 · 130 · 80</small></div>
+            <div role="listitem" style="--sw:rgb(180,90,60)">Terracotta<small>180 · 90 · 60</small></div>
+            <div role="listitem" style="--sw:rgb(130,130,140)">Chair grey<small>130 · 130 · 140</small></div>
+          </div>
+          <div class="spec" style="margin-top:1.5rem">
+            <div><span>Light</span><b>2700 K</b><p>Warm golden sunlight from a south-facing window as the primary source.</p></div>
+            <div><span>Zone 01</span><b>Seating</b><p>Single-seater rust leather armchair and brass floor lamp against the burgundy wall.</p></div>
+            <div><span>Zone 02</span><b>Display</b><p>Floor-to-ceiling oak shelving, curated like a gallery: books, art, pottery, plants.</p></div>
+            <div><span>Zone 03</span><b>Work</b><p>White minimalist desk and ergonomic mesh chair beside the large window.</p></div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <nav class="case-next" aria-label="Next project"><span>Return to</span><a href="index.html#projects">All midterm projects →</a></nav>
+    <section class="section" aria-labelledby="s3">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">03</span><h2 id="s3">The make of</h2></div>
+          <p>Five prompt revisions, each fixing one specific failure.</p>
+        </div>
+        <div class="fig-grid cols-5">
+          <figure class="fig reveal"><img src="assets/studio-view-1.png" alt="Full studio view" width="202" height="152" loading="lazy"><figcaption><b>Whole room.</b> Three zones in one frame.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/studio-view-2.png" alt="Alternative studio perspective" width="202" height="152" loading="lazy"><figcaption><b>Balance.</b> Shelving and chair from another angle.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/studio-view-3.png" alt="Desk and chair by the window" width="202" height="152" loading="lazy"><figcaption><b>Work zone.</b> Desk in the window light.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/studio-view-4.png" alt="Oak shelving detail" width="202" height="152" loading="lazy"><figcaption><b>Display.</b> Gallery-like curation.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/studio-view-5.png" alt="Terracotta chair and lamp at the burgundy wall" width="202" height="152" loading="lazy"><figcaption><b>Reading zone.</b> The burgundy anchor.</figcaption></figure>
+        </div>
+        <table class="feedback-table" style="margin-top:3rem">
+          <thead><tr><th>Revision</th><th>Problem</th><th>Prompt change</th></tr></thead>
+          <tbody>
+            <tr><td>01 · Chair type</td><td>“Chair” produced multi-seat sofas.</td><td class="chg">“Single-seater armchair.”</td></tr>
+            <tr><td>02 · Colour</td><td>Colour names varied slightly between renders.</td><td class="chg">Exact RGB values in every prompt (139, 35, 69 burgundy; 220, 210, 195 cream).</td></tr>
+            <tr><td>03 · Light</td><td>Renders came back cool and neutral.</td><td class="chg">“Warm golden sunlight from a south-facing window,” 2700 K.</td></tr>
+            <tr><td>04 · Shelves</td><td>Collections looked cluttered.</td><td class="chg">“Gallery-like curation.”</td></tr>
+            <tr><td>05 · Feeling</td><td>“Modern studio” felt generic.</td><td class="chg">“Warm minimalist sanctuary.”</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="walkthrough" aria-labelledby="s4">
+      <div class="wrap">
+        <div class="section-head"><div><span class="label">04</span><h2 id="s4">Walkthrough</h2></div><p>A short, silent camera sequence assembled from the final views.</p></div>
+        <figure class="fig">
+          <video controls playsinline preload="metadata" poster="assets/studio-hero.jpg" width="1920" height="1080"><source src="assets/studio-walkthrough.mp4" type="video/mp4">Your browser does not support embedded video. <a href="assets/studio-walkthrough.mp4">Download the walkthrough</a>.</video>
+          <figcaption>12 seconds · no audio. The burgundy wall anchors the reading zone, the shelving holds the centre, and sunlight pulls attention toward the desk.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s5">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">05</span><h2 id="s5">Questions from critique</h2><p class="small" style="margin-top:1rem">Two questions classmates asked that the first version of this page never answered.</p></div>
+        <div class="qa">
+          <article>
+            <h3>What makes it a sanctuary rather than just a functional workspace?<small>Classmate question</small></h3>
+            <p>The split is spatial and timed. The work zone takes the window and the brightest light for the long, focused hours. The reading zone turns away from it, toward the burgundy wall, a single chair and a lamp: one person, one book, nothing to manage. The shelving sits between them as a threshold, so moving from one to the other means passing the things I care about.</p>
+          </article>
+          <article>
+            <h3>What makes it a space of the future rather than one we could build today?<small>Classmate question</small></h3>
+            <p>Very little of the furniture is futuristic, and that was deliberate. What is new is the method: the room exists first as a precise specification—RGB values, a colour temperature, named furniture, three zones—that any generator or 3D tool can rebuild consistently. The future it points to is a designer who writes rooms as data and checks every render against them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s6">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">06</span><h2 id="s6">Reflection</h2></div>
+        <div class="prose">
+          <p><em>What worked.</em> RGB values, precise furniture names and consistent lighting language held the palette and program together across every perspective.</p>
+          <p><em>What I learned.</em> Emotional descriptors shaped the aesthetic more than style names did. “Sanctuary” was more useful than “modern.” Specificity eliminates ambiguity.</p>
+          <p><em>Limitations.</em> The AI reference views are low resolution, and the walkthrough is assembled from stills rather than a continuous camera path through the Blender scene. A next version would render the walkthrough directly in Blender.</p>
+          <p><em>AI use.</em> An AI image generator produced the reference views from my prompts. I wrote the brief, the zoning and the colour system, revised the prompts, and built the final render in Blender.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next-work" href="final-project.html"><span class="label">Back to the final project · 01</span><strong>Prove You Remember</strong></a>
   </main>
-  <script src="site.js"></script>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
+      <nav aria-label="Footer"><a href="index.html">All works</a><a href="final-project.html">Final project</a><a href="stitched-heart.html">Mess It Up</a><a href="about.html">About</a></nav>
+      <div>Images and walkthrough from my Week 4 presentation.</div>
+    </div>
+  </footer>
+  <script src="portfolio.js"></script>
 </body>
 </html>

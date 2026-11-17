@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prove You Remember — Final Project — Shreya Ramanan</title>
+  <meta name="description" content="Final project: Prove You Remember, a browser game about memory, verification and hallucination. Play the final cut, then read the process, feedback, revisions and AI acknowledgment.">
+  <meta name="theme-color" content="#0e0d0c">
+  <meta property="og:image" content="assets/process/v4-audit.jpg">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#play">Skip to the game</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works">Works</a>
+      <a class="nav-final" href="final-project.html" aria-current="page">Final Project</a>
+      <a href="index.html#index">Index</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="work-hero" aria-labelledby="title">
+      <div class="work-hero-bg" style="background-image:url('assets/process/v4-stage1.jpg')" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="work-title">
+          <span class="label"><b>Final project</b> · Hallucination · Final cut</span>
+          <h1 id="title">Prove You Remember<span class="spaced">2026</span></h1>
+          <p class="sub">A browser game about memory, verification, and the confidence of machines.</p>
+          <p class="by">By Shreya Ramanan</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="memory-game.html">Play full screen →</a>
+            <a class="btn" href="#play">Play here ↓</a>
+            <a class="btn" href="#make">Process</a>
+          </div>
+        </div>
+        <figure class="hero-figure"><img src="assets/process/v4-ending.jpg" alt="The final memory certificate: a collage of the player's chosen fragments, an assembly trace of the system's rewrites, and the player's choices" width="1400" height="875"></figure>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <dl class="facts" aria-label="Project facts">
+        <div><dt>Medium</dt><dd>Browser game · HTML, CSS, JavaScript</dd></div>
+        <div><dt>Experience</dt><dd>4 stages + memory flash · 4–6 minutes · sound optional</dd></div>
+        <div><dt>Development</dt><dd>Oct 25 – Dec 2026 · four published versions</dd></div>
+        <div><dt>My role</dt><dd>Concept, game &amp; interaction design, art direction, writing, testing</dd></div>
+        <div><dt>AI assistance</dt><dd>Codex, Claude Code (implementation) — see <a class="text-link" href="#ai">ledger</a></dd></div>
+      </dl>
+    </div>
+
+    <!-- 01 STATEMENT -->
+    <section class="section" aria-labelledby="s-statement" style="border-top:0">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">01</span><h2 id="s-statement">Concept</h2></div>
+        <div class="prose">
+          <p class="lead">A memory test that slowly stops testing you. You are asked to confirm what happened at Event 27—but every confident answer is treated as training data, and the evidence around your choices begins to rewrite itself.</p>
+          <p>The game borrows the visual language of verification—intake cards, confidence meters, signal scores, certificates—because that is how machine output increasingly reaches us. A generative system rarely says <em>I invented this</em>. It says <em>here is your memory, 94% confident</em>. In <em>Prove You Remember</em>, hallucination is not a glitch on the screen. It is a collaboration: the player's preferences become the system's evidence, and the system hands them back as fact.</p>
+          <p>The intended experience moves from competence to doubt. Stage one feels like a fair memory test. Stage two quietly changes the rules. Stage three asks you to audit the evidence, and most players discover they missed the quietest changes. The last stage abandons truth altogether and asks what would make the memory feel <em>safe</em>. Then comes the only question that matters: certify this memory, or keep it uncertain?</p>
+          <blockquote>The Analytical Engine “has no pretensions whatever to originate anything.”<cite>Ada Lovelace, Notes (1843) — a Week 1 reading</cite></blockquote>
+          <p>Lovelace's line framed the whole project for me. A model originates nothing on its own, yet it can still persuade us that what it produced was ours. The game's archive does exactly that. It never claims to remember; it only ever completes. The idea also borrows from Alison Landsberg's notion of <em>prosthetic memory</em>—mediated memories that come to feel personally lived—and from Nicky Case's <em>We Become What We Behold</em>, where each image the player selects reshapes the crowd that sees it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 THE WORK -->
+    <section class="section" id="play" aria-labelledby="s-work">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">02</span><h2 id="s-work">The work</h2></div>
+          <p>Playable below. For the best experience, use full screen and turn the sound on. No account, no tracking.</p>
+        </div>
+        <div class="play-frame">
+          <div class="bar"><span><i></i>Prove You Remember — final cut</span><a class="text-link" href="memory-game.html">Open full screen ↗</a></div>
+          <iframe src="memory-game.html" title="Prove You Remember — playable game" loading="lazy"></iframe>
+        </div>
+        <ol class="stage-map" aria-label="Structure of the game">
+          <li><span>00</span><b>Flash</b><p>Four photographs, six seconds, no labels.</p></li>
+          <li><span>01</span><b>Recognize</b><p>Find the anchors by sight. Wrong picks cost integrity.</p></li>
+          <li><span>02</span><b>Drift</b><p>Each choice rewrites a neighbour—loud, then soft, then silent.</p></li>
+          <li class="is-new"><span>03</span><b>Audit</b><p>Flag what changed. Every trace is revealed: caught, missed, or falsely accused.</p></li>
+          <li><span>04</span><b>Decide</b><p>No correct answer. Choose what makes the memory feel safe.</p></li>
+          <li class="is-new"><span>∞</span><b>Archive</b><p>Certify or not. Past versions persist and disagree with you.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 03 THE MAKE OF -->
+    <section class="section" id="make" aria-labelledby="s-make">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">03</span><h2 id="s-make">The make of</h2></div>
+          <p>Four public versions, each captured from the site's own history at the same moment of play.</p>
+        </div>
+
+        <div class="versions">
+          <article class="version reveal">
+            <figure class="fig"><a href="prove-you-remember.html"><img src="assets/process/v1-proposal.jpg" alt="Version 1: proposal page with a playable concept sketch" width="1400" height="875" loading="lazy"></a></figure>
+            <header><b>V1 · Proposal</b><span>Oct 26</span></header>
+            <p>Research and a one-minute concept sketch of all three stages.</p>
+            <ul><li>Navy/violet interface, icon fragments</li><li>Inspired by <em>We Become What We Behold</em></li><li>Branching plan and verification ledger</li></ul>
+          </article>
+          <article class="version reveal">
+            <figure class="fig"><img src="assets/process/v2-stage2.jpg" alt="Version 2: drift stage with line-icon fragments on pastel cards" width="1400" height="875" loading="lazy"></figure>
+            <header><b>V2 · First draft</b><span>Nov 3</span></header>
+            <p>The first complete, playable path: Recognize, Drift, Decide, and two endings.</p>
+            <ul><li>Line icons stood in for memories</li><li>Plain receipt ending</li><li>Every rewrite equally loud</li></ul>
+          </article>
+          <article class="version reveal">
+            <figure class="fig"><img src="assets/process/v3-stage2.jpg" alt="Version 3: drift stage rebuilt with photographs" width="1400" height="875" loading="lazy"></figure>
+            <header><b>V3 · Refined</b><span>Nov 16</span></header>
+            <p>Memories became photographs; the ending became a personal certificate.</p>
+            <ul><li>Six-second memory flash</li><li>Collage certificate, assembly animation, trace view</li><li>Integrity, score, speed bonus, reactive audio</li></ul>
+          </article>
+          <article class="version is-final reveal">
+            <figure class="fig"><img src="assets/process/v4-audit.jpg" alt="Version 4: the new audit stage revealing caught and missed rewrites" width="1400" height="875" loading="lazy"></figure>
+            <header><b>V4</b><span>Dec</span></header>
+            <p>The doubt became a mechanic.</p>
+            <ul><li>New Audit stage</li><li>Rewrites escalate loud → soft → silent</li><li>Recall by sight; cross-play archive</li></ul>
+          </article>
+        </div>
+
+        <div class="two-col" style="margin-top:clamp(3rem,7vw,6rem)">
+          <div><span class="label">Before / after</span><h3 style="font-size:1.8rem">The drift stage, draft vs. final</h3><p class="small" style="margin-top:1rem">Drag the handle or use the arrow keys. Icons could not be misremembered; photographs can. That single change made the rewrites feel like memory instead of a puzzle.</p></div>
+          <div class="compare" data-compare>
+            <img src="assets/process/v2-stage2.jpg" alt="Week 2 drift stage with icon fragments" width="1400" height="875" loading="lazy">
+            <div class="after"><img src="assets/process/v4-stage2.jpg" alt="Final drift stage with photographic fragments" width="1400" height="875" loading="lazy"></div>
+            <span class="handle" aria-hidden="true"></span>
+            <span class="tag l">V2 · Nov 3</span><span class="tag r">Final</span>
+            <input type="range" min="0" max="100" value="50" aria-label="Reveal the final version of the drift stage">
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:clamp(3rem,7vw,6rem)">
+          <div><span class="label">Before / after</span><h3 style="font-size:1.8rem">The ending, receipt vs. certificate</h3><p class="small" style="margin-top:1rem">The instructor asked for an ending that felt earned. The draft's receipt listed numbers; the final certificate assembles your chosen photographs, shows each rewrite and whether you caught it, and can be downloaded.</p></div>
+          <div class="compare" data-compare>
+            <img src="assets/process/v2-ending.jpg" alt="Week 2 ending: a plain receipt with four statistics" width="1400" height="875" loading="lazy">
+            <div class="after"><img src="assets/process/v4-ending.jpg" alt="Final ending: a collage certificate with an assembly trace" width="1400" height="875" loading="lazy"></div>
+            <span class="handle" aria-hidden="true"></span>
+            <span class="tag l">V2</span><span class="tag r">Final</span>
+            <input type="range" min="0" max="100" value="50" aria-label="Reveal the final ending">
+          </div>
+        </div>
+
+        <div class="fig-grid cols-3" style="margin-top:clamp(3rem,7vw,6rem)">
+          <figure class="fig reveal"><img src="assets/process/v4-intro.jpg" alt="Final intro screen with a three-step how-to-play list" width="1400" height="875" loading="lazy"><figcaption><b>Opening.</b> A three-step how-to list sits under the start button, so first-time players know the rules before the flash.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/process/v4-stage1.jpg" alt="Stage 1 grid of unlabelled photographs" width="1400" height="875" loading="lazy"><figcaption><b>Recognize by sight.</b> Labels stay hidden until a fragment is correctly chosen, so the stage tests memory, not reading.</figcaption></figure>
+          <figure class="fig reveal"><img src="assets/process/v3-ending.jpg" alt="Version 3 decide stage with burgundy interface" width="1400" height="875" loading="lazy"><figcaption><b>Decide.</b> The colour shifts from green to burgundy as the question moves from <em>what happened</em> to <em>what should it mean</em>.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 FEEDBACK -->
+    <section class="section" id="feedback" aria-labelledby="s-feedback">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">04</span><h2 id="s-feedback">Feedback → revision</h2><p class="small" style="margin-top:1rem">Every change in the final cut traces back to something a person said or something I watched happen.</p></div>
+        <div>
+          <table class="feedback-table">
+            <thead><tr><th>Source</th><th>What they noticed</th><th>What changed</th><th>Ver.</th></tr></thead>
+            <tbody>
+              <tr><td>Instructor<small>Week 2 draft</small></td><td><q>Make the final memory certificate more visually engaging and memorable</q> — a collage, an assembly animation, traces of the rewrites.</td><td class="chg">Collage of the player's own photographs, a timed assembly, a Final / Show-traces toggle, and a downloadable record.</td><td class="ver">V3</td></tr>
+              <tr><td>Classmate<small>Week 2 draft</small></td><td>Found herself guessing in Stage 1; suggested a brief glimpse of the original memory first.</td><td class="chg">A six-second memory flash. In the final cut it shows the anchors <em>without names</em>, so recall is visual.</td><td class="ver">V3 → V4</td></tr>
+              <tr><td>Classmate<small>Week 2 draft</small></td><td>Wanted a clearer visual or sound change when the evidence shifts, while keeping it mysterious.</td><td class="chg">The first rewrite now triggers a full-screen “evidence rewritten” flash and a tone.</td><td class="ver">V3</td></tr>
+              <tr><td>Classmate<small>Week 2 draft</small></td><td>Suggested making some changes <em>more subtle</em> so players question whether they really saw something different.</td><td class="chg">Rewrites escalate: loud, then a soft flicker, then silent swaps with no signal at all.</td><td class="ver">V4</td></tr>
+              <tr><td>Both notes together</td><td>Clearer <em>and</em> subtler pull in opposite directions.</td><td class="chg">The new Audit stage turns that tension into play: you find out how much you actually noticed.</td><td class="ver">V4</td></tr>
+              <tr><td>Classmate<small>Proposal</small></td><td>Curious how confusing the final stage would become after many choices.</td><td class="chg">The archive keeps every certified version in your browser and compares them on replay.</td><td class="ver">V4</td></tr>
+              <tr><td>Walkthrough test<small>V3 build</small></td><td>Stage 1 could be solved by reading labels; on a 13″ laptop the grid and anchor strip ran off-screen.</td><td class="chg">Labels hidden until correct; recall layout rebuilt around the anchors; tiles resized to fit one screen.</td><td class="ver">V4</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 REFLECTION -->
+    <section class="section" aria-labelledby="s-reflect">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">05</span><h2 id="s-reflect">Reflection</h2></div>
+        <div class="prose">
+          <h3>Experiments</h3>
+          <p>Each version tried a different way of showing a rewrite. Version 2 used a short blur on the changed card. Classmates read it differently: one noticed every change, another asked for a clearer signal. Version 3 added a full-screen “evidence rewritten” interruption with a tone, which no one could miss. That exposed the real problem. A system that always announces its edits is not hallucinating; it is correcting. The escalation from loud to silent came from taking both reviews seriously at once.</p>
+          <h3>Revisions</h3>
+          <p>The biggest shift was material. Version 2 used line icons, and icons are impossible to misremember: a cup is a cup. Photographs carry atmosphere, light and ambiguity, so “two cups” becoming “one warm cup” over the same image reads as a memory drifting rather than a tile flipping. The second shift was structural. The Audit stage gives the player a moment of accountability before the emotional final question, so the ending lands on something they experienced, not something they were told.</p>
+          <h3>Outcomes and limitations</h3>
+          <p>The game now has a complete arc—competence, doubt, accountability, choice—and a result that differs for every player. It also has honest limits. The “AI” inside it is a performance: the rewrites follow scripted rules, not a live model, which keeps the experience fair and repeatable but means the system cannot surprise me the way a real model would. The archive lives only in one browser. Scoring thresholds were tuned by feel rather than by a large playtest. A next version would generate the rewritten images from the player's own choices and test with a wider group of players.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 AI + CREDITS -->
+    <section class="section" id="ai" aria-labelledby="s-ai">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">06</span><h2 id="s-ai">AI use &amp; credits</h2></div>
+          <p>What the tools did, and what I decided. Both columns are part of the work.</p>
+        </div>
+        <div class="ledger">
+          <div>
+            <h3>What AI did</h3>
+            <ul>
+              <li><b>Codex (OpenAI)</b>Implemented the Week 1 proposal page and Versions 2–3 of the game in HTML, CSS and JavaScript from my written specifications and revision notes.</li>
+              <li><b>Claude Code (Anthropic)</b>Implemented the final cut (audit logic, escalating rewrites, archive), generated the version screenshots from the site's git history, and built this portfolio's layout to my art direction.</li>
+              <li><b>Sound</b>All audio is synthesised in code with the Web Audio API. No recorded sound, music or AI-generated audio is used.</li>
+            </ul>
+          </div>
+          <div class="mine">
+            <h3>What I decided</h3>
+            <ul>
+              <li><b>Concept &amp; framing</b>Hallucination as a collaboration between a confident system and a willing witness; the verification interface; the title and Event 27.</li>
+              <li><b>Structure</b>Recognize → Drift → Decide from the proposal; adding Audit and the archive in response to feedback; the certify-or-uncertain ending.</li>
+              <li><b>Feedback priorities</b>Which notes to act on, how to reconcile the conflicting ones, and what to leave out.</li>
+              <li><b>Art direction &amp; writing</b>The photographs, the green-to-burgundy shift, the typography, and every line of game copy.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="credits" style="margin-top:2.5rem">
+          <p><b style="color:var(--ink)">Photographs.</b> Free photographs used under the Unsplash License by <a href="https://unsplash.com/@christopherstites">Christopher Stites</a>, <a href="https://unsplash.com/@kazma233">LingYu Zeng</a>, <a href="https://unsplash.com/@ahmetyuksek">Ahmet Yüksek</a>, <a href="https://unsplash.com/@lycan">Velizar Ivanov</a>, <a href="https://unsplash.com/@szie">Florian Siedl</a>, <a href="https://unsplash.com/@zane404">Zane Lee</a>, <a href="https://unsplash.com/@lensfables">Lens Fables</a>, <a href="https://unsplash.com/@huuthong">Huu Thong</a>, <a href="https://unsplash.com/@lensinkmitchel">Mitchel Lensink</a>, <a href="https://unsplash.com/@real_jansen">real_ jansen</a> and <a href="https://unsplash.com/@anniespratt">Annie Spratt</a>.</p>
+          <p><b style="color:var(--ink)">Typeface.</b> Boska by the Indian Type Foundry, distributed free through Fontshare.</p>
+          <p><b style="color:var(--ink)">Influences.</b> Nicky Case, <em>We Become What We Behold</em> (2016). Ada Lovelace, “Notes” on the Analytical Engine (1843). Alison Landsberg, <em>Prosthetic Memory</em> (2004).</p>
+          <p><b style="color:var(--ink)">Thanks.</b> To Professor Weidi Zhang and to the classmates who played the drafts and wrote back.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next-work" href="stitched-heart.html"><span class="label">Next work · 02</span><strong>Mess It Up</strong></a>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
+      <nav aria-label="Footer"><a href="index.html">All works</a><a href="memory-game.html">Play the game</a><a href="prove-you-remember.html">Read the proposal</a><a href="about.html">About</a></nav>
+      <div>Final project for submission on December 2, 2026.</div>
+    </div>
+  </footer>
+  <script src="portfolio.js"></script>
+</body>
+</html>

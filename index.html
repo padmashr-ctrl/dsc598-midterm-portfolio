@@ -1,134 +1,133 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Shreya Ramanan's DSC 598 portfolio: AI-assisted visual, spatial, and interactive game design.">
-  <meta name="theme-color" content="#fcfbf9">
-  <title>Shreya Ramanan — AI for Interdisciplinary Design</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Shreya Ramanan — Works</title>
+  <meta name="description" content="Shreya Ramanan — works from AI for Interdisciplinary Design: a browser game about memory and hallucination, an embroidered album cover, and a 3D studio environment.">
+  <meta name="theme-color" content="#0e0d0c">
+  <meta property="og:title" content="Shreya Ramanan — Works">
+  <meta property="og:description" content="Three works about what we try to keep: a memory, a feeling, a room.">
+  <meta property="og:image" content="assets/process/v4-audit.jpg">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
 </head>
-<body class="home-page">
-  <a class="skip-link" href="#main">Skip to content</a>
+<body>
+  <a class="skip-link" href="#works">Skip to works</a>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Shreya Ramanan, home">Shreya Ramanan</a>
-    <nav aria-label="Primary navigation">
-      <a class="active" href="index.html">Home</a>
-      <a href="#hallucination">Hallucination</a>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works" aria-current="page">Works</a>
+      <a class="nav-final" href="final-project.html">Final Project</a>
+      <a href="index.html#index">Index</a>
+      <a href="about.html">About</a>
     </nav>
   </header>
 
-  <main id="main">
-    <section class="home-hero dot-field">
-      <div class="playground-card">
-        <div class="playground-label">
-          <p><strong>Draw a thread</strong><br>Click or drag to create a path.</p>
-          <button class="quiet-button" id="clear-canvas" type="button">Reset</button>
-        </div>
-        <canvas id="stitch-canvas" tabindex="0" role="group" aria-label="Thread drawing area. Click or tap to add a stitch, drag to draw a thread, or press Enter or Space to add a stitch."></canvas>
-        <p class="sr-only" id="canvas-status" aria-live="polite"></p>
-      </div>
-
-      <div class="hero-copy">
-        <p class="kicker">DSC 598 · AI FOR INTERDISCIPLINARY DESIGN · FALL 2026</p>
-        <h1>Making ideas<br>visible through AI.</h1>
-        <p class="hero-deck">Two projects exploring how precise prompts, visual systems, and focused iteration can shape an image and a space.</p>
-        <div class="hero-actions">
-          <a class="pill pill-dark" href="#projects">View projects →</a>
-          <a class="pill" href="#about">About this work</a>
+  <main>
+    <section class="home-hero" aria-labelledby="hero-title">
+      <canvas id="thread-canvas" tabindex="0" aria-label="Linen drawing area. Click or drag to pull a thread; press Enter or Space to add a stitch."></canvas>
+      <p class="sr-only" id="canvas-status" aria-live="polite"></p>
+      <div class="wrap">
+        <span class="label">Portfolio · AI for Interdisciplinary Design · Fall 2026</span>
+        <h1 id="hero-title">Three works about what we try to <em>keep</em>.</h1>
+        <div class="hero-foot">
+          <p>A memory that rewrites itself, a stitched heart beginning to unravel, and a room built to hold a life. Each was made with AI and decided by hand.</p>
+          <div class="hero-tools">
+            <span class="hint">Click or drag to pull a thread</span>
+            <button class="btn btn-quiet" id="clear-canvas" type="button">Clear</button>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="selected-work current-work" id="hallucination" aria-labelledby="hallucination-title">
-      <div class="section-intro">
-        <div>
-          <p class="kicker">HALLUCINATION · THREE-WEEK WEB GAME</p>
-          <h2 id="hallucination-title">A memory test that rewrites what you remember.</h2>
+    <section class="section" id="works" aria-labelledby="works-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="works-title">Works</h2>
+          <p>Three projects from the semester, refined for the final. Hover a work for its title; open it for the process behind it.</p>
         </div>
-        <p class="section-note">Week 3: a refined playable experience with a personalized memory certificate, visible rewrite traces, and a downloadable final record.</p>
-      </div>
 
-      <div class="project-list">
-        <a class="work-card game-card" href="memory-game.html">
-          <div class="work-image game-frame">
-            <img src="assets/prove-you-remember-cover.svg" alt="Prove You Remember memory verification interface with a grid of abstract fragments" width="1200" height="760">
-          </div>
-          <div class="work-copy">
-            <p class="kicker">PLAYABLE WEB GAME · WEEK 3</p>
-            <h3>Prove You Remember</h3>
-            <p>A memory test becomes unstable: each confident choice rewrites the evidence, then returns as a certificate that reveals exactly how the record was assembled.</p>
-            <span>Play the refined experience →</span>
-          </div>
-        </a>
-      </div>
-    </section>
+        <div class="works-grid">
+          <a class="work-tile is-feature reveal" href="final-project.html">
+            <div class="tile-media"><img src="assets/process/v4-audit.jpg" alt="Prove You Remember, final cut: the audit stage, where rewritten memory fragments are revealed as caught or missed" width="1400" height="875" fetchpriority="high"></div>
+            <div class="tile-over" aria-hidden="true"><strong>Prove You Remember</strong><span>A browser game about memory, verification and hallucination</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">01</span><h3>Prove You Remember <span class="badge">Final project</span></h3><span class="yr">2026</span><p>Playable browser game · four stages · final cut</p></div>
+          </a>
 
-    <section class="selected-work" id="projects" aria-labelledby="projects-title">
-      <div class="section-intro">
-        <div>
-          <p class="kicker">MIDTERM PROJECTS</p>
-          <h2 id="projects-title">Two studies in control, consistency, and atmosphere.</h2>
+          <a class="work-tile reveal" href="stitched-heart.html">
+            <div class="tile-media"><img src="assets/album-final.jpg" alt="Mess It Up concept cover: a small cross-stitched red heart on oatmeal linen with one loose thread" width="600" height="600" loading="lazy"></div>
+            <div class="tile-over" aria-hidden="true"><strong>Mess It Up</strong><span>A concept cover, one heart, one loose thread</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">02</span><h3>Mess It Up</h3><span class="yr">2026</span><p>AI image-making · art direction · typography</p></div>
+          </a>
+
+          <a class="work-tile reveal" href="personal-studio.html">
+            <div class="tile-media"><img src="assets/studio-hero.jpg" alt="Personal studio: burgundy reading wall, terracotta armchair, oak shelving and a white desk by a sunlit window" width="1920" height="1080" loading="lazy"></div>
+            <div class="tile-over" aria-hidden="true"><strong>Personal Studio</strong><span>A warm minimalist sanctuary, specified as data</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">03</span><h3>Personal Studio</h3><span class="yr">2026</span><p>AI reference · Blender render · spatial system</p></div>
+          </a>
+
+          <a class="work-tile is-small reveal" href="prove-you-remember.html">
+            <div class="tile-media"><img src="assets/process/v1-proposal.jpg" alt="The Week 1 game proposal page with a playable concept sketch" width="1400" height="875" loading="lazy"></div>
+            <div class="tile-over" aria-hidden="true"><strong>The proposal</strong><span>Where the game began</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">01a</span><h3>Game proposal</h3><span class="yr">Oct</span><p>Research, concept sketch, branching plan</p></div>
+          </a>
+          <a class="work-tile is-small reveal" href="memory-game.html">
+            <div class="tile-media"><img src="assets/process/v4-ending.jpg" alt="The memory certificate at the end of the game" width="1400" height="875" loading="lazy"></div>
+            <div class="tile-over" aria-hidden="true"><strong>Play it</strong><span>Four stages, about five minutes</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">01b</span><h3>Play the final cut</h3><span class="yr">↗</span><p>Opens the game directly</p></div>
+          </a>
+          <a class="work-tile is-small reveal" href="about.html#course">
+            <div class="tile-media"><img src="assets/album-composition.png" alt="Composition diagram used to measure the album cover" width="1200" height="1200" loading="lazy"></div>
+            <div class="tile-over" aria-hidden="true"><strong>Studies</strong><span>Ten weeks, one method</span><small>2026</small></div>
+            <div class="tile-cap"><span class="num">00</span><h3>Course studies</h3><span class="yr">→</span><p>What each week taught, and where it shows</p></div>
+          </a>
         </div>
-        <p class="section-note">The work shown here comes directly from my Week 4 and Week 6 process presentations.</p>
-      </div>
-
-      <div class="project-list">
-        <a class="work-card album-card" href="stitched-heart.html">
-          <div class="work-image album-frame">
-            <img src="assets/album-final.jpg" alt="Final Mess It Up concept cover with a small red cross-stitched heart and loose thread on linen" width="600" height="600">
-          </div>
-          <div class="work-copy">
-            <p class="kicker">AI IMAGE-MAKING · ART DIRECTION</p>
-            <h3>Designing an Album Cover with AI</h3>
-            <p>A measurable visual system turns the quiet anxiety of Gracie Abrams' “Mess It Up” into one embroidered heart and a loose thread.</p>
-            <span>View case study →</span>
-          </div>
-        </a>
-
-        <a class="work-card studio-card" href="personal-studio.html">
-          <div class="work-image studio-frame">
-            <img src="assets/studio-final.png" alt="Warm minimalist studio with burgundy wall, terracotta chair, oak shelving, white desk, and sunlit window" width="396" height="288">
-          </div>
-          <div class="work-copy">
-            <p class="kicker">AI ENVIRONMENT DESIGN · SPATIAL SYSTEM</p>
-            <h3>Personal Studio Space</h3>
-            <p>A warm minimalist sanctuary organized into reading, display, and work zones through exact color, furniture, and lighting prompts.</p>
-            <span>View case study →</span>
-          </div>
-        </a>
       </div>
     </section>
 
-    <section class="method-section" aria-labelledby="method-title">
-      <p class="kicker">WHAT I EXPLORED</p>
-      <h2 id="method-title">A repeatable way to design with AI.</h2>
-      <div class="method-grid">
-        <article><span>01</span><h3>Define</h3><p>Translate a mood or spatial goal into observable visual decisions.</p></article>
-        <article><span>02</span><h3>Measure</h3><p>Use placement, scale, color values, and constraints to check what changed.</p></article>
-        <article><span>03</span><h3>Refine</h3><p>Change one variable at a time, preserve what works, and verify the result.</p></article>
+    <section class="section" id="index" aria-labelledby="index-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="index-title">Index</h2>
+          <p>Every piece of work from the course, in one place. Linked rows open a project page.</p>
+        </div>
+        <table class="index-table">
+          <thead><tr><th>No.</th><th>Work</th><th class="hide-sm">Medium</th><th class="hide-sm">Tools</th><th>When</th><th class="hide-sm">Status</th></tr></thead>
+          <tbody>
+            <tr data-href="final-project.html"><td>01</td><td><a href="final-project.html">Prove You Remember — final cut</a></td><td class="hide-sm">Browser game</td><td class="hide-sm">HTML/CSS/JS · Codex · Claude Code</td><td>Oct–Dec</td><td class="hide-sm status">Final project</td></tr>
+            <tr data-href="prove-you-remember.html"><td>01a</td><td><a href="prove-you-remember.html">Prove You Remember — proposal</a></td><td class="hide-sm">Research + concept sketch</td><td class="hide-sm">Codex</td><td>Wk 8</td><td class="hide-sm status">Published</td></tr>
+            <tr data-href="stitched-heart.html"><td>02</td><td><a href="stitched-heart.html">Mess It Up</a></td><td class="hide-sm">Album cover concept</td><td class="hide-sm">Canva AI · Canva · Python</td><td>Wk 6</td><td class="hide-sm status">Refined</td></tr>
+            <tr data-href="personal-studio.html"><td>03</td><td><a href="personal-studio.html">Personal Studio</a></td><td class="hide-sm">3D environment</td><td class="hide-sm">AI image generation · Blender</td><td>Wk 4</td><td class="hide-sm status">Refined</td></tr>
+            <tr data-href="index.html"><td>04</td><td><a href="index.html">This portfolio</a></td><td class="hide-sm">Website + interaction</td><td class="hide-sm">HTML/CSS/JS · Codex · Claude Code</td><td>Wk 7 → final</td><td class="hide-sm status">Redesigned</td></tr>
+            <tr data-href="about.html#course"><td>S1</td><td><a href="about.html#course">Rules, code and emergence</a></td><td class="hide-sm">Discovery study (PDF)</td><td class="hide-sm">Game of Life simulator</td><td>Wk 1</td><td class="hide-sm status">Course study</td></tr>
+            <tr data-href="about.html#course"><td>S2</td><td><a href="about.html#course">Where does creative agency reside?</a></td><td class="hide-sm">Reflection (PDF)</td><td class="hide-sm">—</td><td>Wk 2</td><td class="hide-sm status">Course study</td></tr>
+            <tr data-href="about.html#course"><td>S3</td><td><a href="about.html#course">A designer, a model, a moment</a></td><td class="hide-sm">Two case studies (PDF)</td><td class="hide-sm">—</td><td>Wk 3</td><td class="hide-sm status">Course study</td></tr>
+            <tr data-href="about.html#course"><td>S4</td><td><a href="about.html#course">Build your own custom skill</a></td><td class="hide-sm">AI workflow</td><td class="hide-sm">Custom AI skill</td><td>Wk 5</td><td class="hide-sm status">Course study</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <section class="about-band" id="about" aria-labelledby="about-title">
-      <p class="kicker">ABOUT THIS PORTFOLIO</p>
-      <div class="about-layout">
-        <h2 id="about-title">I used AI as a design material—not a shortcut around design decisions.</h2>
-        <div>
-          <p>Each project began with a specific intention, developed through documented prompt iterations, and ended with a final result tested for consistency and clarity.</p>
-          <p>Created by Shreya Ramanan for DSC 598: AI for Interdisciplinary Design.</p>
+    <section class="section" aria-labelledby="statement-title">
+      <div class="wrap two-col">
+        <div><span class="label">Statement</span></div>
+        <div class="prose">
+          <h2 id="statement-title" class="lead">I treat AI as a material that needs a brief, a measurement, and an audit—never as a shortcut around a decision.</h2>
+          <p>Across the semester the same lesson kept returning: a model does exactly what a vague instruction allows, so the design work is in making intentions specific enough to check. The album cover only worked once its mood became measurements. The studio held together once its colours became numbers. The game goes one step further and makes the checking itself the experience—asking players to notice what a confident system quietly changed.</p>
+          <p><a class="text-link" href="about.html">About the method and the course →</a></p>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div><strong>Shreya Ramanan</strong><p>AI-assisted visual, spatial, and interaction design.</p></div>
-    <div><span>PAGE</span><a href="index.html">Home</a><a href="#hallucination">Hallucination</a><a href="#projects">Projects</a><a href="#about">About</a></div>
-    <button class="back-top" type="button" data-back-top>Back to top ↑</button>
+    <div class="wrap">
+      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
+      <nav aria-label="Footer"><a href="final-project.html">Final project</a><a href="stitched-heart.html">Mess It Up</a><a href="personal-studio.html">Personal Studio</a><a href="about.html">About &amp; colophon</a></nav>
+      <div>Typeset in Boska and Helvetica Neue. Plain HTML, CSS and JavaScript on GitHub Pages, written with AI coding assistants under my direction. AI use is credited on every project page.</div>
+    </div>
   </footer>
-  <script src="site.js"></script>
+  <script src="portfolio.js"></script>
 </body>
 </html>

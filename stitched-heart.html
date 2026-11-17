@@ -1,101 +1,161 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Designing an album cover with AI: Shreya Ramanan's Mess It Up concept cover process.">
-  <meta name="theme-color" content="#fcfbf9">
-  <title>Designing an Album Cover with AI — Shreya Ramanan</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Mess It Up — Album Cover — Shreya Ramanan</title>
+  <meta name="description" content="Mess It Up: a concept album cover built from one cross-stitched heart and a loose thread, developed through measured AI prompts, a material reference and one focused edit.">
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
 </head>
-<body class="case-page album-case">
-  <a class="skip-link" href="#case-content">Skip to project</a>
+<body>
+  <a class="skip-link" href="#content">Skip to project</a>
   <header class="site-header">
-    <a class="brand" href="index.html" aria-label="Shreya Ramanan, home">Shreya Ramanan</a>
-    <nav aria-label="Primary navigation"><a href="index.html">Home</a><a class="active" href="index.html#projects">Projects</a><a href="index.html#about">About</a></nav>
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works" aria-current="page">Works</a>
+      <a class="nav-final" href="final-project.html">Final Project</a>
+      <a href="index.html#index">Index</a>
+      <a href="about.html">About</a>
+    </nav>
   </header>
 
-  <aside class="case-sidebar" aria-label="On this page">
-    <a class="back-link" href="index.html#projects">← Back to projects</a>
-    <p>On this page</p>
-    <nav>
-      <a href="#context">Context</a><a href="#system">Visual system</a><a href="#process">Process</a><a href="#final">Final cover</a><a href="#reflection">Reflection</a>
-    </nav>
-  </aside>
-
-  <main class="case-main" id="case-content">
-    <figure class="case-cover album-cover-panel">
-      <img src="assets/album-final.jpg" alt="Final Mess It Up concept cover with small embroidered heart, loose red thread, and editable typography" width="600" height="600">
-    </figure>
-
-    <section class="case-hero" id="context">
-      <p class="kicker">AI IMAGE-MAKING · ART DIRECTION</p>
-      <h1>Designing an Album Cover with AI</h1>
-      <p class="case-lead">A visual process built from measurable composition, reference roles, focused correction, and editable typography.</p>
-      <div class="case-meta">
-        <div><span>Project</span><strong>“Mess It Up” concept cover</strong></div>
-        <div><span>Focus</span><strong>Prompting, measurement, refinement</strong></div>
-        <div><span>Tools</span><strong>Canva AI, Canva, Python</strong></div>
-        <div><span>Course</span><strong>DSC 598 · Week 6</strong></div>
-      </div>
-      <p class="disclaimer">Student concept cover—not official Gracie Abrams artwork.</p>
-    </section>
-
-    <section class="case-section split-section">
-      <div><p class="kicker">THE CONCEPT</p><h2>One small heart, one loose thread.</h2></div>
-      <div class="rich-copy"><p>I read the song as the fear of ruining something good. The tension comes from self-sabotage rather than an actual breakup: tender, anxious, intimate, and still hopeful.</p><p>A cross-stitched heart suggests something made slowly and carefully. One pulled strand could unravel the whole object, turning the emotional idea into a single visible action.</p></div>
-    </section>
-
-    <section class="case-section" id="system">
-      <p class="kicker">01 · DEFINE</p>
-      <h2>Build a visual system before generating.</h2>
-      <div class="system-list">
-        <article><span>01</span><h3>Imagery</h3><p>One small cross-stitched heart and one loose thread. No other objects.</p></article>
-        <article><span>02</span><h3>Color</h3><p>Warm oatmeal linen, faded red silk, and deep red-brown typography.</p></article>
-        <article><span>03</span><h3>Composition</h3><p>The heart sits low and left while a large quiet area remains above.</p></article>
-        <article><span>04</span><h3>Typography</h3><p>Small artist, large lowercase title, and a quiet information line at the bottom.</p></article>
-      </div>
-      <div class="measure-grid">
-        <figure class="framed"><img src="assets/album-composition.png" alt="Composition diagram showing margins, heart placement, size, clear upper area, and thread path" width="1200" height="1200"><figcaption>Composition sketch used as a measurable generation target.</figcaption></figure>
-        <div class="metrics-card"><p class="kicker">THREE PRIORITIES</p><dl><div><dt>Placement</dt><dd>Center 34% across / 62% down</dd></div><div><dt>Scale</dt><dd>Heart width about 24%</dd></div><div><dt>Reserved space</dt><dd>Top 40% clear; thread exits near 70%</dd></div></dl></div>
+  <main id="content">
+    <section class="work-hero" aria-labelledby="title">
+      <div class="work-hero-bg" style="background-image:url('assets/album-final.jpg')" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="work-title">
+          <span class="label"><b>02</b> · Album cover concept · Week 6</span>
+          <h1 id="title">Mess It Up<span class="spaced">2026</span></h1>
+          <p class="sub">One small cross-stitched heart, one loose thread, and the fear of ruining something good.</p>
+          <p class="by">By Shreya Ramanan · a student concept for Gracie Abrams' “Mess It Up” — not official artwork</p>
+        </div>
+        <figure class="hero-figure" style="max-width:520px;justify-self:end"><img src="assets/album-final.jpg" alt="Final Mess It Up concept cover: a small red cross-stitched heart low on oatmeal linen with a single loose thread, lowercase title above" width="600" height="600"></figure>
       </div>
     </section>
 
-    <section class="case-section" id="process">
-      <p class="kicker">02–04 · GENERATE, COMPARE, CORRECT</p>
-      <h2>From an uncheckable mood to one specific visual idea.</h2>
-      <div class="iteration-grid">
-        <article><img src="assets/album-v1.jpg" alt="First AI iteration showing a woman lying awake in a dim bedroom" width="600" height="600"><div><span>V1 · Feeling-only prompt</span><h3>The model chose a generic sad-song image.</h3><p>No object, placement, scale, or material was defined. The cinematic bedroom missed the quiet handmade direction.</p></div></article>
-        <article><img src="assets/album-v2-measured.jpg" alt="Second album-cover iteration measured against target placement and scale" width="600" height="600"><div><span>V2 · Five description categories</span><h3>Composition improved; material did not.</h3><p>The heart, linen, loose thread, and empty upper area appeared, but the heart looked like a padded patch and the thread like thick yarn.</p></div></article>
-        <article><img src="assets/album-v3-measured.jpg" alt="Third iteration showing cross-stitch heart measured against composition targets" width="600" height="600"><div><span>V3 · Sketch + material reference</span><h3>The reference solved the stitch language.</h3><p>A sampler supplied one role only: faded silk cross-stitch and fine linen. The clean sketch continued to control composition.</p></div></article>
-      </div>
+    <div class="wrap">
+      <dl class="facts" aria-label="Project facts">
+        <div><dt>Medium</dt><dd>Album cover · 1400 × 1400 px</dd></div>
+        <div><dt>Process</dt><dd>4 generations · 1 material reference · 1 focused edit</dd></div>
+        <div><dt>Tools</dt><dd>Canva AI (generation), Canva (type), Python (measurement)</dd></div>
+        <div><dt>My role</dt><dd>Concept, art direction, prompting, measurement, typography</dd></div>
+        <div><dt>Context</dt><dd>DSC 598 · Designing an Album Cover with AI</dd></div>
+      </dl>
+    </div>
 
-      <div class="reference-row">
-        <figure class="reference-image"><img src="assets/album-reference.jpg" alt="Historic embroidery sampler used only as a material reference" width="175" height="200"><figcaption>Material reference: Julia Ann Fitch, <em>Sampler</em>, 1807. Public domain, The Met.</figcaption></figure>
-        <div><p class="kicker">REFERENCE ROLE</p><h3>Borrow the stitch—not the picture.</h3><p>Use the small X-shaped stitches, faded silk floss, aged red, and fine linen. Exclude its letters, verses, circles, figures, border, frame, and overall layout.</p></div>
+    <section class="section" aria-labelledby="s1" style="border-top:0">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">01</span><h2 id="s1">Concept</h2></div>
+        <div class="prose">
+          <p class="lead">The song is about being inside something good and being afraid you will be the one to ruin it. It is quiet and anxious rather than dramatic, so the cover had to be too.</p>
+          <p>A hand-stitched heart is something made slowly and carefully. A single loose thread suggests that one small pull could unravel all of it. The tension comes from self-sabotage rather than a breakup: tender, intimate, still hopeful. I kept the palette to oatmeal linen and one muted red and left most of the square empty, so the cover feels as restrained as the song.</p>
+          <p>The same thread became the interaction on this site's homepage, where visitors pull their own threads across the linen.</p>
+        </div>
       </div>
-
-      <figure class="wide-figure"><img src="assets/album-focused-edit.jpg" alt="Before and after comparison of the heart point following one focused edit" width="900" height="420"><figcaption>V3 before and V4 after a focused edit at the heart point. The edit introduced an imperfect, unraveling edge.</figcaption></figure>
     </section>
 
-    <section class="case-section" id="final">
-      <p class="kicker">05 · FINISH & CHECK</p>
-      <h2>Editable type completes the cover.</h2>
-      <div class="final-layout">
-        <figure class="framed"><img src="assets/album-final.jpg" alt="Final Mess It Up album-cover concept" width="600" height="600"><figcaption>Final cover with all typography kept editable in Canva.</figcaption></figure>
-        <div class="type-spec"><div><span>1 · Title</span><strong>mess it up</strong><p>168 px, lowercase, #6B2723</p></div><div><span>2 · Artist</span><strong>GRACIE ABRAMS</strong><p>38 px, capitals, #6B2723</p></div><div><span>3 · Info</span><strong>single · 2021</strong><p>26 px, bottom left</p></div><p>The 112 px margin equals 8% of the 1400 px canvas. At 64 px, the heart and title remain readable while supporting information recedes.</p></div>
+    <section class="section" aria-labelledby="s2">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">02</span><h2 id="s2">A system before a prompt</h2></div>
+        <div>
+          <div class="spec">
+            <div><span>01 · Imagery</span><b>One heart, one thread</b><p>No other objects. Nothing to compete with the stitch.</p></div>
+            <div><span>02 · Colour</span><b>Linen and faded silk</b><p>Warm oatmeal ground, muted red floss, red-brown type (#6B2723).</p></div>
+            <div><span>03 · Composition</span><b>Low and left</b><p>Heart centred at 34% across, 62% down; about 24% wide.</p></div>
+            <div><span>04 · Space</span><b>Top 40% clear</b><p>The thread exits near 70%, pulling the eye off the edge.</p></div>
+          </div>
+          <div class="fig-grid cols-2" style="margin-top:1.5rem">
+            <figure class="fig framed"><img src="assets/album-composition.png" alt="Composition diagram with margins, heart placement, scale and the thread's exit path" width="1200" height="1200" loading="lazy"><figcaption>The composition sketch, used as a measurable generation target.</figcaption></figure>
+            <figure class="fig framed"><img src="assets/album-thumbnail-test.jpg" alt="The final cover tested at 300, 150 and 64 pixels" width="560" height="330" loading="lazy"><figcaption>Thumbnail test at 300, 150 and 64 px. The heart and title survive at streaming-app size.</figcaption></figure>
+          </div>
+        </div>
       </div>
-      <figure class="wide-figure thumbnail-proof"><img src="assets/album-thumbnail-test.jpg" alt="Final cover shown at 300, 150, and 64 pixels" width="560" height="330"><figcaption>Thumbnail test at 300 px, 150 px, and 64 px.</figcaption></figure>
     </section>
 
-    <section class="case-section reflection" id="reflection">
-      <p class="kicker">REFLECTION</p>
-      <h2>Measurement made the design easier to see—and easier to improve.</h2>
-      <div class="reflection-grid"><div><h3>What worked</h3><p>Turning mood into measurable features made the largest difference. The sketch controlled the layout, while one carefully assigned reference solved the material problem.</p></div><div><h3>What changed</h3><p>The project moved from a generic person to one object. The final edit added meaning by showing the heart beginning to unravel.</p></div><div><h3>Next time</h3><p>Choose the typeface earlier, test a serif in context, and run each prompt twice to separate real improvement from a lucky generation.</p></div></div>
+    <section class="section" aria-labelledby="s3">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">03</span><h2 id="s3">The make of</h2></div>
+          <p>From an uncheckable mood to one specific, measurable image.</p>
+        </div>
+        <div class="versions">
+          <article class="version reveal"><figure class="fig"><img src="assets/album-v1.jpg" alt="V1: a woman lying awake in a dim bedroom" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V1</b><span>Feeling only</span></header><p>With no object, placement or material defined, the model reached for a generic sad-song image.</p></article>
+          <article class="version reveal"><figure class="fig"><img src="assets/album-v2-measured.jpg" alt="V2: heart, linen and thread appear, measured against the targets" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V2</b><span>Five categories</span></header><p>Composition improved; material did not. The heart read as a padded patch and the thread as yarn.</p></article>
+          <article class="version reveal"><figure class="fig"><img src="assets/album-v3-measured.jpg" alt="V3: cross-stitched heart on fine linen, measured" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V3</b><span>Sketch + reference</span></header><p>A historic sampler supplied one role only: the stitch. The sketch kept control of the layout.</p></article>
+          <article class="version is-final reveal"><figure class="fig"><img src="assets/album-final.jpg" alt="V4: final cover with the heart's point unpicked and type set" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V4</b><span>One edit + type</span></header><p>A focused edit unpicked the heart's point, and editable type finished the cover.</p></article>
+        </div>
+
+        <div class="two-col" style="margin-top:clamp(3rem,7vw,6rem)">
+          <div><span class="label">Before / after</span><h3 style="font-size:1.8rem">Mood prompt vs. measured system</h3><p class="small" style="margin-top:1rem">The same song, the same model. The only difference is how specific I was about what should be on the square, where, and made of what.</p></div>
+          <div class="compare" data-compare style="max-width:640px">
+            <img src="assets/album-v1.jpg" alt="V1 generated from a feeling-only prompt" width="600" height="600" loading="lazy">
+            <div class="after"><img src="assets/album-final.jpg" alt="Final cover" width="600" height="600" loading="lazy"></div>
+            <span class="handle" aria-hidden="true"></span>
+            <span class="tag l">V1</span><span class="tag r">Final</span>
+            <input type="range" min="0" max="100" value="50" aria-label="Reveal the final album cover">
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top:clamp(3rem,7vw,6rem)">
+          <div><span class="label">Reference role</span><h3 style="font-size:1.8rem">Borrow the stitch, not the picture.</h3><p class="small" style="margin-top:1rem">From the sampler I took only the small X-shaped stitches, faded silk floss, aged red and fine linen. I excluded its letters, verses, figures, border and layout.</p></div>
+          <div class="fig-grid cols-2">
+            <figure class="fig framed"><img src="assets/album-reference.jpg" alt="Julia Ann Fitch's 1807 embroidery sampler" width="175" height="200" loading="lazy" style="max-width:240px;margin:auto"><figcaption>Julia Ann Fitch, <em>Sampler</em>, 1807. Public domain, The Metropolitan Museum of Art.</figcaption></figure>
+            <figure class="fig framed"><img src="assets/album-focused-edit.jpg" alt="Before and after of the heart's point following one focused edit" width="900" height="420" loading="lazy"><figcaption>One focused edit at the heart's point introduced the unravelling edge—the change I am proudest of.</figcaption></figure>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <nav class="case-next" aria-label="Next project"><span>Next case study</span><a href="personal-studio.html">Personal Studio Space →</a></nav>
+    <section class="section" aria-labelledby="s4">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">04</span><h2 id="s4">Typography</h2></div>
+        <div>
+          <div class="spec">
+            <div><span>Title</span><b>mess it up</b><p>168 px, lowercase, #6B2723</p></div>
+            <div><span>Artist</span><b>GRACIE ABRAMS</b><p>38 px, capitals</p></div>
+            <div><span>Info</span><b>single · 2021</b><p>26 px, bottom left</p></div>
+            <div><span>Margin</span><b>112 px</b><p>8% of the 1400 px canvas</p></div>
+          </div>
+          <p class="small" style="margin-top:1rem">All type was kept editable in Canva rather than generated, so the letterforms stay exact and the hierarchy can be adjusted after generation.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s5">
+      <div class="wrap">
+        <div class="section-head"><div><span class="label">05</span><h2 id="s5">How it was read</h2></div><p>Paraphrased from classmates' responses in the course critique.</p></div>
+        <div class="pull">
+          <blockquote>The stitching first reads as homey comfort—then you notice it unravelling, and that unfinished discomfort is the song.<cite>Classmate response</cite></blockquote>
+          <blockquote>Unpicking the bottom of the heart made the idea of slowly coming apart feel real rather than illustrated.<cite>Classmate response</cite></blockquote>
+          <blockquote>Even with very few elements, the fabric itself carries the emotion: warm, handmade, personal.<cite>Classmate response</cite></blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s6">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">06</span><h2 id="s6">Reflection</h2></div>
+        <div class="prose">
+          <p><em>What worked.</em> Turning a mood into measurable features made the biggest difference. The sketch controlled the layout, and one carefully assigned reference solved the material problem that prompting alone could not.</p>
+          <p><em>What changed.</em> The project moved from a generic person to a single object, and the final edit added meaning by letting the heart begin to unravel.</p>
+          <p><em>Limitations and next time.</em> I would choose the typeface earlier and test a serif in context, and run each prompt twice to separate real improvement from a lucky generation.</p>
+          <p><em>AI use.</em> Canva AI generated the four image versions from my prompts, sketch and reference. I wrote the prompts, set the measurements, chose the reference and its single role, decided the focused edit, and set all typography by hand in Canva. Python was used only to overlay measurement guides.</p>
+        </div>
+      </div>
+    </section>
+
+    <a class="next-work" href="personal-studio.html"><span class="label">Next work · 03</span><strong>Personal Studio</strong></a>
   </main>
-  <script src="site.js"></script>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
+      <nav aria-label="Footer"><a href="index.html">All works</a><a href="final-project.html">Final project</a><a href="personal-studio.html">Personal Studio</a><a href="about.html">About</a></nav>
+      <div>Student concept cover; not affiliated with Gracie Abrams or her label.</div>
+    </div>
+  </footer>
+  <script src="portfolio.js"></script>
 </body>
 </html>
