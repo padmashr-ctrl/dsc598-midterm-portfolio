@@ -47,16 +47,30 @@
     })));
   }
 
+  // Place the artwork in the space the text leaves free, so type never sits on top of stitches.
+  function freeArea() {
+    const c = canvas.getBoundingClientRect();
+    const title = stage.querySelector('.inst-title')?.getBoundingClientRect();
+    const bar = stage.querySelector('.inst-bar')?.getBoundingClientRect();
+    const header = document.querySelector('.site-header')?.getBoundingClientRect();
+    const gap = Math.max(24, W * 0.025);
+    const area = { left: W * 0.05, right: W * 0.05, top: (header ? header.bottom - c.top : 70) + gap, bottom: bar ? c.bottom - bar.top + gap : H * 0.16 };
+    if (title) {
+      const sideWidth = W - (title.right - c.left) - gap * 2;
+      const belowHeight = H - (title.bottom - c.top) - area.bottom - gap;
+      // beside the title when there is room for a decent image, otherwise below it
+      if (sideWidth > W * 0.38 && sideWidth > belowHeight * 0.9) area.left = title.right - c.left + gap * 1.5;
+      else area.top = title.bottom - c.top + gap;
+    }
+    return area;
+  }
+
   function fitRect(img) {
-    const wide = W > 1000;
-    const left = wide ? W * 0.36 : W * 0.05;
-    const right = wide ? W * 0.04 : W * 0.05;
-    const top = wide ? H * 0.1 : H * 0.27;
-    const bottom = wide ? H * 0.16 : H * 0.36;
-    const aw = W - left - right; const ah = H - top - bottom;
+    const a = freeArea();
+    const aw = Math.max(80, W - a.left - a.right); const ah = Math.max(80, H - a.top - a.bottom);
     const scale = Math.min(aw / img.width, ah / img.height);
     const w = img.width * scale; const h = img.height * scale;
-    return { x: left + (aw - w) / 2, y: top + (ah - h) / 2, w, h };
+    return { x: a.left + (aw - w) / 2, y: a.top + (ah - h) / 2, w, h };
   }
 
   function sample(img, index) {
@@ -327,7 +341,7 @@
   let resizeTimer;
   window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(build, 200); });
 
-  loadImages().then((loaded) => {
+  Promise.all([loadImages(), document.fonts ? document.fonts.ready : Promise.resolve()]).then(([loaded]) => {
     loaded.forEach((img) => images.push(img));
     build();
     // open with a small loose thread so the mechanic is visible immediately

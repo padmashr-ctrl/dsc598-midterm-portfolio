@@ -382,3 +382,8 @@ button{font:inherit;color:inherit}
   .sg-minis{grid-template-columns:1fr}
   .sg-agency{min-width:0}
 }
+/* keep installation type compact and always above the artwork */
+.inst-title,.inst-bar{z-index:2}
+.inst-title{max-width:min(26rem,calc(100% - 2 * var(--pad)))}
+.inst-title p{max-width:24rem}
+.signal-stage .inst-title,.signal-stage .sg-readout,.signal-stage .inst-bar{text-shadow:0 0 12px #03060b,0 0 3px #03060b}
