@@ -356,3 +356,29 @@ button{font:inherit;color:inherit}
   .inst-controls .btn{min-height:40px;padding:.5rem .9rem;font-size:.66rem}
   .inst-mix li{font-size:.62rem}
 }
+
+/* ---------- Signal Garden ---------- */
+.signal-stage{background:#03060b}
+.signal-stage canvas{image-rendering:auto}
+.signal-stage .inst-title{pointer-events:none}
+.signal-stage .inst-title h1 em{color:#9eeadf;font-style:italic}
+.signal-stage .label b{color:#9eeadf}
+.sg-readout{position:absolute;top:6.4rem;right:var(--pad);width:min(300px,40vw);margin:0;pointer-events:none}
+.sg-readout div{display:flex;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.sg-readout dt{color:var(--muted);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase}
+.sg-readout dd{margin:0;color:#9eeadf;font-family:var(--mono);font-size:.72rem}
+.sg-agency{display:grid;gap:.45rem;min-width:240px}
+.sg-agency label{display:flex;justify-content:space-between;color:var(--muted);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase}
+.sg-agency output{color:#9eeadf;font-family:var(--mono)}
+.sg-agency input{width:100%;accent-color:#5fd3c4}
+.sg-minis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1rem,2vw,1.5rem)}
+.sg-minis figure{margin:0}
+.sg-minis canvas{width:100%;aspect-ratio:4/3;display:block;background:#03060b;border:1px solid var(--line)}
+.sg-minis figcaption{margin-top:.8rem;color:var(--muted);font-size:.84rem}
+.sg-minis figcaption span{display:block;color:#9eeadf;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase}
+.sg-minis figcaption b{display:block;margin:.25rem 0;color:var(--ink);font-family:var(--serif);font-size:1.5rem;font-weight:400}
+@media (max-width:860px){
+  .sg-readout{display:none}
+  .sg-minis{grid-template-columns:1fr}
+  .sg-agency{min-width:0}
+}

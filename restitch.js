@@ -59,21 +59,35 @@
     return { x: left + (aw - w) / 2, y: top + (ah - h) / 2, w, h };
   }
 
-  function sample(img) {
+  function sample(img, index) {
     const out = new Uint32Array(N);
     if (!img) return out;
     const r = fitRect(img);
     const off = document.createElement('canvas');
     off.width = cols; off.height = rows;
     const o = off.getContext('2d', { willReadFrequently: true });
-    o.drawImage(img, r.x / spacing, r.y / spacing, r.w / spacing, r.h / spacing);
+    const dx = r.x / spacing; const dy = r.y / spacing; const dw = r.w / spacing; const dh = r.h / spacing;
+    o.drawImage(img, dx, dy, dw, dh);
+    if (index === 0) {
+      // the album: thicken dark lettering ("mess it up") so it reads boldly in stitches
+      o.globalCompositeOperation = 'darken';
+      const t = 0.3;
+      [[t, 0], [0, t]].forEach(([ox, oy]) => o.drawImage(img, dx + ox, dy + oy, dw, dh));
+      o.globalCompositeOperation = 'source-over';
+    }
     const d = o.getImageData(0, 0, cols, rows).data;
     for (let i = 0; i < N; i += 1) {
       const a = d[i * 4 + 3];
       if (a < 200) continue;
       // lift dark tones a little so the stitches read on black
+      let rr = d[i * 4]; let gg = d[i * 4 + 1]; let bb = d[i * 4 + 2];
+      if (index === 0) {
+        // deepen the burgundy type and red heart against the linen
+        const lum = 0.3 * rr + 0.59 * gg + 0.11 * bb;
+        if (lum < 150) { const k = 0.62; rr *= k; gg *= k * 0.8; bb *= k * 0.8; rr = Math.max(rr, 70); }
+      }
       const lift = (v) => Math.min(255, Math.round(v * 1.05 + 10));
-      out[i] = pack(lift(d[i * 4]), lift(d[i * 4 + 1]), lift(d[i * 4 + 2]));
+      out[i] = pack(lift(rr), lift(gg), lift(bb));
     }
     return out;
   }
@@ -92,7 +106,7 @@
     for (let y = 0, i = 0; y < rows; y += 1) {
       for (let x = 0; x < cols; x += 1, i += 1) { hx[i] = px[i] = ox + x * spacing; hy[i] = py[i] = oy + y * spacing; }
     }
-    palettes = images.map(sample);
+    palettes = images.map((img, index) => sample(img, index));
     for (let i = 0; i < N; i += 1) visible[i] = palettes[0] && palettes[0][i] ? 1 : 0;
     // a thick X that fills most of its cell
     const half = Math.max(2, Math.floor(spacing / 2) - 1);
@@ -120,7 +134,7 @@
     setAgent(`p${e.pointerId}`, e.clientX - r.left, e.clientY - r.top, e.buttons > 0, 'pointer');
   });
   canvas.addEventListener('pointerdown', (e) => {
-    canvas.setPointerCapture(e.pointerId);
+    try { canvas.setPointerCapture(e.pointerId); } catch (error) { /* synthetic or lost pointer */ }
     const r = canvas.getBoundingClientRect();
     setAgent(`p${e.pointerId}`, e.clientX - r.left, e.clientY - r.top, true, 'pointer');
   });
