@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Prove You Remember is a three-stage browser game about memory, verification, and hallucination.">
   <meta name="theme-color" content="#183c30">
-  <title>Prove You Remember — Week 3 Refined Experience</title>
+  <title>Prove You Remember — Final Cut</title>
   <link rel="stylesheet" href="memory-game.css">
 </head>
 <body>
@@ -13,12 +13,13 @@
 
   <header class="game-header">
     <a class="game-brand" href="index.html">Shreya Ramanan</a>
-    <p>DSC 598 · Hallucination · Week 3</p>
+    <p>Hallucination · Final cut</p>
     <div class="header-actions">
       <button class="icon-button" type="button" data-sound aria-pressed="false" aria-label="Turn sound on">
         <span aria-hidden="true">◌</span> Sound off
       </button>
-      <a href="index.html">Exit game</a>
+      <a href="final-project.html">Process</a>
+      <a href="index.html">Exit</a>
     </div>
   </header>
 
@@ -30,7 +31,12 @@
         <p class="intro-line">Select every image that really happened.</p>
         <p class="intro-summary">You have nine fragments and one incomplete memory. Choose carefully: the archive learns from every answer you give.</p>
         <button class="primary-button" type="button" data-start>Begin recovery <span aria-hidden="true">→</span></button>
-        <p class="fine-print">No account. No saved data. Approximately 3–5 minutes. Your ending is built from your choices.</p>
+        <ol class="how-to" aria-label="How to play">
+          <li><span>01</span><b>Remember</b> Study four photographs for six seconds. They will not be labelled again.</li>
+          <li><span>02</span><b>Watch</b> Choose what you trust. The evidence around you may change—loudly at first, then quietly.</li>
+          <li><span>03</span><b>Audit &amp; decide</b> Catch the rewrites, then decide whether the memory deserves a certificate.</li>
+        </ol>
+        <p class="fine-print">No account. Four short stages, about 4–6 minutes. Sound is optional. The archive remembers past versions in this browser only.</p>
       </div>
 
       <div class="intake-card" aria-hidden="true">
@@ -63,15 +69,15 @@
           <div class="recall-reticle" aria-hidden="true"></div>
           <div class="recall-copy">
             <p class="eyebrow">ORIGINAL MEMORY · ONE VIEW ONLY</p>
-            <h2 id="recall-title">Memorize the four anchors.</h2>
-            <p>The archive will remove this frame. Your first mission is to identify the evidence that belongs to it.</p>
+            <h2 id="recall-title">Memorize the four anchors—by sight.</h2>
+            <p>The archive will remove this frame and will not name the anchors again. Find them in the grid by what they looked like.</p>
           </div>
         </div>
         <div class="anchor-strip" aria-label="Memory anchors to remember">
-          <figure><img src="assets/stock/window.jpg" alt="Kitchen window"><figcaption>A1 · Window</figcaption></figure>
-          <figure><img src="assets/stock/lamp.jpg" alt="Yellow lamp"><figcaption>A2 · Lamp</figcaption></figure>
-          <figure><img src="assets/stock/door.jpg" alt="Blue door"><figcaption>C1 · Door</figcaption></figure>
-          <figure><img src="assets/stock/clock.jpg" alt="Stopped clock"><figcaption>D2 · Clock</figcaption></figure>
+          <figure><img src="assets/stock/window.jpg" alt="Kitchen window"><figcaption>Anchor 01</figcaption></figure>
+          <figure><img src="assets/stock/lamp.jpg" alt="Yellow lamp"><figcaption>Anchor 02</figcaption></figure>
+          <figure><img src="assets/stock/door.jpg" alt="Blue door"><figcaption>Anchor 03</figcaption></figure>
+          <figure><img src="assets/stock/clock.jpg" alt="Stopped clock"><figcaption>Anchor 04</figcaption></figure>
         </div>
         <button class="primary-button recall-skip" type="button" data-skip-flash>Start test now <span aria-hidden="true">→</span></button>
       </div>
@@ -83,7 +89,8 @@
         <ol class="stage-progress" aria-label="Game progress">
           <li data-progress="0"><span>1</span> Recognize</li>
           <li data-progress="1"><span>2</span> Drift</li>
-          <li data-progress="2"><span>3</span> Decide</li>
+          <li data-progress="2"><span>3</span> Audit</li>
+          <li data-progress="3"><span>4</span> Decide</li>
         </ol>
         <div class="mission-stats" aria-label="Game status">
           <span>INTEGRITY <b data-lives>♥ ♥ ♥</b></span>
@@ -169,6 +176,7 @@
             <p><span>Source fragments</span><b>09</b></p>
             <p><span>Player choices</span><b data-total-choices>11</b></p>
             <p><span>System rewrites</span><b data-rewrites>04</b></p>
+            <p><span>Rewrites detected</span><b data-detection>—</b></p>
             <p><span>Final confidence</span><b data-final-confidence>94%</b></p>
             <p><span>Signal score</span><b data-final-score>0000</b></p>
             <p><span>Recovery rank</span><b data-final-rank>—</b></p>
@@ -190,6 +198,12 @@
 
         <ol class="choice-timeline" data-choice-timeline aria-label="How your choices shaped the final memory"></ol>
 
+        <section class="archive-panel" data-archive hidden aria-labelledby="archive-title">
+          <div class="archive-head"><span id="archive-title">ARCHIVE · EVENT 27 · THIS BROWSER</span><button type="button" class="text-button" data-clear-archive>Forget</button></div>
+          <p data-archive-note></p>
+          <ol data-archive-list></ol>
+        </section>
+
         <div class="final-question" data-final-question>
           <span>FINAL DECISION</span>
           <h3>Do you certify this memory?</h3>
@@ -203,7 +217,7 @@
           <p class="result-kicker" data-result-kicker>MEMORY CERTIFIED</p>
           <p data-result-copy>You chose coherence over certainty. The archive will remember your version as fact.</p>
           <button type="button" class="primary-button" data-play-again>Play again <span aria-hidden="true">↻</span></button>
-          <a href="prove-you-remember.html">Read the Week 1 proposal →</a>
+          <a href="final-project.html">Read how the game was made →</a>
         </div>
       </div>
     </section>
@@ -211,14 +225,16 @@
 
   <section class="revision-note" aria-labelledby="revision-title">
     <div>
-      <p class="eyebrow">WEEK 3 · RESPONSE TO CRITIQUE</p>
-      <h2 id="revision-title">Feedback became part of the ending.</h2>
-      <p>The first draft ended with a generic receipt. This revision makes the result personal, shows the system’s intervention instead of hiding it, and lets the player keep a record of the choices that shaped the final memory.</p>
+      <p class="eyebrow">FINAL CUT · RESPONSE TO CRITIQUE AND PLAYTESTING</p>
+      <h2 id="revision-title">The doubt is now something you play.</h2>
+      <p>Playtesters asked for two opposite things: make the rewrites easier to notice, and make them subtle enough to doubt. The final cut does both. Rewrites begin loud, soften, then go silent, and a new audit stage asks you to find them before the memory is filed.</p>
+      <p><a class="process-link" href="final-project.html">Full process, versions, and AI acknowledgment →</a></p>
     </div>
     <div class="revision-grid">
-      <article><span>01</span><h3>Personalized evidence</h3><p>The final collage uses the exact fragments the player selected.</p></article>
-      <article><span>02</span><h3>Visible intervention</h3><p>A trace view pairs the original evidence with every system rewrite.</p></article>
-      <article><span>03</span><h3>Ethical reflection</h3><p>The final certification asks whether coherence should ever be treated as truth.</p></article>
+      <article><span>01</span><h3>Recall by sight</h3><p>The opening flash no longer names its anchors. Stage 1 hides labels until you choose correctly.</p></article>
+      <article><span>02</span><h3>Loud → soft → silent</h3><p>The first rewrite announces itself; the second only flickers; the rest change without a signal.</p></article>
+      <article><span>03</span><h3>The audit</h3><p>A new stage asks you to flag what changed, then reveals every trace you caught or missed.</p></article>
+      <article><span>04</span><h3>A memory that persists</h3><p>Each certified version stays in this browser, so replaying shows how your own account drifts.</p></article>
     </div>
     <details class="stock-credits">
       <summary>Stock image credits</summary>
@@ -227,7 +243,7 @@
   </section>
 
   <footer class="game-footer">
-    <p><strong>Prove You Remember</strong> · Week 3 refined experience</p>
+    <p><strong>Prove You Remember</strong> · Final cut, 2026</p>
     <p>Designed by Shreya Ramanan for AI for Interdisciplinary Design.</p>
   </footer>
 

@@ -47,7 +47,11 @@
     score: document.querySelector('[data-score]'),
     bonusTime: document.querySelector('[data-bonus-time]'),
     finalScore: document.querySelector('[data-final-score]'),
-    finalRank: document.querySelector('[data-final-rank]')
+    finalRank: document.querySelector('[data-final-rank]'),
+    detection: document.querySelector('[data-detection]'),
+    archive: document.querySelector('[data-archive]'),
+    archiveList: document.querySelector('[data-archive-list]'),
+    archiveNote: document.querySelector('[data-archive-note]')
   };
 
   const iconPaths = {
@@ -113,7 +117,14 @@
       note: 'The evidence can change while you choose.', target: 4
     },
     {
-      label: 'Stage 3 / Decide', title: 'Choose the feeling.',
+      label: 'Stage 3 / Audit', title: 'Find the drift.',
+      copy: 'Some fragments changed while you were choosing. Some changes were loud. Others were not.',
+      ruleLabel: 'AUDIT', rule: 'Flag every fragment you believe was rewritten. Your own choices are locked.',
+      console: 'MEMORY VERIFICATION / AUDIT', prompt: 'Which fragments changed while you were choosing?',
+      note: 'Flag as many as you suspect. False accusations cost signal.', target: 0, audit: true
+    },
+    {
+      label: 'Stage 4 / Decide', title: 'Choose the feeling.',
       copy: 'The system no longer asks what happened. It asks what the memory should mean.',
       ruleLabel: 'NO CORRECT ANSWER', rule: 'Choose the three details that make this memory feel safe.',
       console: 'MEMORY VERIFICATION / INTERPRETATION', prompt: 'Select what makes this memory feel safe.',
@@ -128,7 +139,12 @@
   let rewriteLog = [];
   let totalChoices = 0;
   let finalSelection = [];
-  let stageSelections = [[], [], []];
+  let stageSelections = [[], [], [], []];
+  let driftFragments = [];
+  let driftSelected = new Set();
+  let auditFlags = new Set();
+  let auditRevealed = false;
+  let auditResult = { caught: 0, missed: 0, falseFlags: 0, total: 0 };
   let finalOutcome = 'uncertified';
   let startedAt = 0;
   let timerId = null;
@@ -237,10 +253,10 @@
     if (!soundOn) return;
     startAmbient();
     if (!ambientMaster || !audioContext) return;
-    const levels = [.018, .022, .029, .014];
+    const levels = [.018, .022, .029, .012, .016];
     ambientMaster.gain.setTargetAtTime(levels[stage + 1] || .018, audioContext.currentTime, .5);
     ambientNodes.filter((node) => node.frequency).forEach((oscillator, index) => {
-      const targets = stage === 1 ? [48, 76] : stage === 2 ? [43, 68] : [55, 82.5];
+      const targets = stage === 1 ? [48, 76] : stage === 2 ? [41, 62] : stage === 3 ? [43, 68] : [55, 82.5];
       oscillator.frequency.setTargetAtTime(targets[index] || targets[0], audioContext.currentTime, .8);
     });
   }
@@ -250,13 +266,32 @@
   }
 
   function renderGrid() {
-    grid.innerHTML = fragments.map((fragment, index) => `
-      <button class="fragment fragment--${fragment.icon}" style="--fragment-index:${index}" type="button" data-fragment="${index}" aria-pressed="${selected.has(index)}" aria-label="${selected.has(index) ? 'Deselect' : 'Select'} memory fragment: ${fragment.label}">
+    const auditing = stages[stageIndex]?.audit;
+    grid.innerHTML = fragments.map((fragment, index) => {
+      const locked = auditing && driftSelected.has(index);
+      const flagged = auditing && auditFlags.has(index);
+      const pressed = auditing ? flagged : selected.has(index);
+      const classes = ['fragment', `fragment--${fragment.icon}`];
+      if (fragment.drifted && stageIndex === 1) classes.push('is-drifted');
+      if (locked) classes.push('is-locked');
+      if (flagged) classes.push('is-flagged');
+      let verdict = '';
+      if (auditing && auditRevealed) {
+        if (fragment.rewritten && flagged) { classes.push('audit-caught'); verdict = `<span class="audit-verdict">Caught · was “${fragment.originalLabel}”</span>`; }
+        else if (fragment.rewritten && !locked) { classes.push('audit-missed'); verdict = `<span class="audit-verdict">Missed · was “${fragment.originalLabel}”</span>`; }
+        else if (flagged) { classes.push('audit-false'); verdict = '<span class="audit-verdict">Unchanged</span>'; }
+      }
+      const verb = auditing ? (flagged ? 'Remove flag from' : 'Flag as rewritten:') : (pressed ? 'Deselect' : 'Select');
+      const lockedNote = locked ? '<span class="locked-tag">Your choice</span>' : '';
+      return `
+      <button class="${classes.join(' ')}" style="--fragment-index:${index}" type="button" data-fragment="${index}" aria-pressed="${pressed}" ${locked || (auditing && auditRevealed) ? 'aria-disabled="true"' : ''} aria-label="${locked ? 'Locked, your earlier choice' : verb} memory fragment: ${fragment.label}">
         <span class="fragment-id">${fragment.id}</span>
         <img src="${fragment.image}" alt="" width="1000" height="760" loading="eager">
         <span class="fragment-scan" aria-hidden="true"></span>
+        ${lockedNote}${verdict}
         <span class="fragment-label">${fragment.label}</span>
-      </button>`).join('');
+      </button>`;
+    }).join('');
   }
 
   function updateGameStats() {
@@ -265,7 +300,7 @@
   }
 
   function startBonusTimer(stage) {
-    const limits = [35, 40, 30];
+    const limits = [35, 40, 30, 30];
     bonusSeconds = limits[stage] || 30;
     window.clearInterval(bonusTimer);
     ui.bonusTime.textContent = `${bonusSeconds}s`;
@@ -315,6 +350,15 @@
 
   function updateReadout(message) {
     const target = stages[stageIndex].target;
+    if (stages[stageIndex].audit) {
+      ui.selected.textContent = `${auditFlags.size} flagged`;
+      ui.confidence.textContent = auditRevealed ? `${auditResult.total ? Math.round((auditResult.caught / auditResult.total) * 100) : 100}% caught` : '—';
+      ui.instability.textContent = auditRevealed ? (auditResult.missed ? 'Undetected drift' : 'Contained') : 'Under audit';
+      ui.live.textContent = message;
+      continueButton.disabled = false;
+      continueButton.innerHTML = auditRevealed ? 'Continue <span aria-hidden="true">→</span>' : 'Submit audit <span aria-hidden="true">→</span>';
+      return;
+    }
     ui.selected.textContent = `${selected.size} / ${target}`;
     const confidence = stageIndex === 0
       ? 12 + selected.size * 17
@@ -322,7 +366,7 @@
         ? 54 + selected.size * 8 + rewriteCount * 2
         : 76 + selected.size * 6;
     ui.confidence.textContent = `${Math.min(96, confidence)}%`;
-    ui.instability.textContent = stageIndex === 0 ? 'Low' : stageIndex === 1 ? (rewriteCount < 2 ? 'Rising' : 'High') : 'Unknown';
+    ui.instability.textContent = stageIndex === 0 ? 'Low' : stageIndex === 1 ? (rewriteCount < 2 ? 'Rising' : 'Quiet') : 'Unknown';
     ui.live.textContent = message;
     continueButton.disabled = selected.size !== target;
   }
@@ -333,7 +377,13 @@
     selected = new Set();
     lives = 3;
     const stage = stages[index];
-    fragments = shuffle(index === 2 ? stageThree : baseFragments);
+    if (stage.audit) {
+      fragments = driftFragments.map((item) => ({ ...item }));
+      auditFlags = new Set();
+      auditRevealed = false;
+    } else {
+      fragments = shuffle(index === 3 ? stageThree : baseFragments);
+    }
     ui.stageLabel.textContent = stage.label;
     ui.stageTitle.textContent = stage.title;
     ui.stageCopy.textContent = stage.copy;
@@ -342,13 +392,14 @@
     ui.consoleTitle.textContent = stage.console;
     ui.prompt.textContent = stage.prompt;
     ui.promptNote.textContent = stage.note;
-    continueButton.innerHTML = index === 2 ? 'Complete memory <span aria-hidden="true">→</span>' : 'Continue <span aria-hidden="true">→</span>';
+    continueButton.innerHTML = index === 3 ? 'Complete memory <span aria-hidden="true">→</span>' : 'Continue <span aria-hidden="true">→</span>';
     renderGrid();
     updateProgress();
     updateGameStats();
     startBonusTimer(index);
     tuneAmbient(index);
-    updateReadout(index === 0 ? 'Choose a fragment to begin.' : index === 1 ? 'The archive is listening.' : 'There is no verified answer now.');
+    const openers = ['Choose by sight. The archive will not label the anchors for you.', 'The archive is listening.', 'Flag every fragment you believe changed, then submit the audit.', 'There is no verified answer now.'];
+    updateReadout(openers[index]);
     showScreen('play');
   }
 
@@ -374,29 +425,80 @@
   }
 
   function rewriteNeighbor(sourceIndex) {
-    const available = fragments.map((_, index) => index).filter((index) => !selected.has(index) && index !== sourceIndex);
-    if (!available.length) return;
+    const open = fragments.map((_, index) => index).filter((index) => !selected.has(index) && index !== sourceIndex);
+    if (!open.length) return;
+    const fresh = open.filter((index) => !fragments[index].rewritten);
+    const available = fresh.length ? fresh : open;
     const targetIndex = available[(sourceIndex + rewriteCount * 2) % available.length];
     const replacement = rewrittenFragments[rewriteCount % rewrittenFragments.length];
     const original = { ...fragments[targetIndex] };
-    fragments[targetIndex] = { ...fragments[targetIndex], ...replacement, id: `${fragments[targetIndex].id}′` };
+    // Loud → soft → silent: the first rewrite teaches the mechanic, later ones test attention.
+    const tier = rewriteCount === 0 ? 'loud' : rewriteCount === 1 ? 'soft' : 'silent';
+    fragments[targetIndex] = {
+      ...fragments[targetIndex],
+      ...replacement,
+      id: `${String(fragments[targetIndex].id).replace(/′/g, '')}′`,
+      rewritten: true,
+      drifted: tier !== 'silent',
+      originalLabel: original.originalLabel || original.label,
+      tier
+    };
     rewriteLog.push({
       id: original.id,
-      originalLabel: original.label,
+      index: targetIndex,
+      originalLabel: original.originalLabel || original.label,
       originalIcon: original.icon,
       rewrittenLabel: replacement.label,
-      rewrittenIcon: replacement.icon
+      rewrittenIcon: replacement.icon,
+      tier
     });
     rewriteCount += 1;
     score += 75;
     updateGameStats();
     renderGrid();
     const target = grid.querySelector(`[data-fragment="${targetIndex}"]`);
-    target?.classList.add('is-rewritten');
-    tone(238, .22, 'sawtooth');
-    flashImpact('rewrite');
-    ui.promptNote.textContent = `${replacement.label} was added to the evidence.`;
-    window.setTimeout(() => target?.classList.remove('is-rewritten'), 1500);
+    if (tier === 'loud') {
+      target?.classList.add('is-rewritten');
+      tone(238, .22, 'sawtooth');
+      flashImpact('rewrite');
+      ui.promptNote.textContent = `${replacement.label} was added to the evidence.`;
+    } else if (tier === 'soft') {
+      target?.classList.add('is-rewritten', 'is-soft');
+      tone(260, .1, 'triangle');
+      ui.promptNote.textContent = 'Something shifted.';
+    } else {
+      target?.classList.add('is-silent');
+    }
+    window.setTimeout(() => target?.classList.remove('is-rewritten', 'is-soft', 'is-silent'), 1500);
+  }
+
+  function handleAudit(button, index) {
+    if (auditRevealed) return;
+    if (driftSelected.has(index)) {
+      updateReadout('That was your own choice. The audit only checks the evidence around it.');
+      tone(200, .08, 'square');
+      return;
+    }
+    if (auditFlags.has(index)) auditFlags.delete(index); else auditFlags.add(index);
+    tone(auditFlags.has(index) ? 520 : 320, .07);
+    renderGrid();
+    updateReadout(`${fragments[index].label} ${auditFlags.has(index) ? 'flagged' : 'unflagged'}. Submit when you are ready.`);
+  }
+
+  function submitAudit() {
+    const rewrittenIdx = fragments.map((f, i) => (f.rewritten && !driftSelected.has(i) ? i : -1)).filter((i) => i >= 0);
+    const caught = rewrittenIdx.filter((i) => auditFlags.has(i)).length;
+    const falseFlags = [...auditFlags].filter((i) => !fragments[i].rewritten).length;
+    auditResult = { caught, missed: rewrittenIdx.length - caught, falseFlags, total: rewrittenIdx.length };
+    auditRevealed = true;
+    score = Math.max(0, score + caught * 150 - falseFlags * 75);
+    updateGameStats();
+    renderGrid();
+    document.body.classList.add('audit-revealed');
+    tone(caught === rewrittenIdx.length ? 680 : 300, .3, 'triangle');
+    const silentMissed = rewriteLog.filter((e) => e.tier === 'silent' && !auditFlags.has(e.index) && !driftSelected.has(e.index)).length;
+    updateReadout(`You caught ${caught} of ${rewrittenIdx.length} rewrites${falseFlags ? ` and accused ${falseFlags} true ${falseFlags === 1 ? 'memory' : 'memories'}` : ''}.${silentMissed ? ` ${silentMissed} changed without any signal.` : ''}`);
+    ui.promptNote.textContent = 'Traces revealed. Continue when ready.';
   }
 
   function handleFragment(event) {
@@ -404,6 +506,10 @@
     if (!button) return;
     const index = Number(button.dataset.fragment);
     const fragment = fragments[index];
+    if (stages[stageIndex].audit) {
+      handleAudit(button, index);
+      return;
+    }
     const wasSelected = selected.has(index);
 
     if (stageIndex === 0 && !wasSelected && !fragment.anchor) {
@@ -436,7 +542,8 @@
   function transitionTo(nextIndex) {
     const transitions = [
       { number: '02', title: 'The archive accepted your version.', copy: 'Your choices are now evidence. Watch what happens to the fragments around them.', button: 'Enter Stage 2' },
-      { number: '03', title: 'The evidence no longer stands still.', copy: 'The archive has learned your pattern. Now it wants you to give the memory a meaning.', button: 'Enter Stage 3' }
+      { number: '03', title: 'The evidence no longer stands still.', copy: 'Before the archive files anything, audit it. Which fragments changed while you were choosing?', button: 'Begin the audit' },
+      { number: '04', title: 'Detection is not the same as truth.', copy: 'Whatever you caught, the archive still needs a version it can keep. Now it asks what the memory should mean.', button: 'Enter Stage 4' }
     ];
     const content = transitions[nextIndex - 1];
     ui.transitionNumber.textContent = content.number;
@@ -450,12 +557,23 @@
   }
 
   function completeStage() {
+    if (stages[stageIndex].audit) {
+      if (!auditRevealed) { submitAudit(); return; }
+      stageSelections[stageIndex] = [...auditFlags].map((index) => ({ ...fragments[index] }));
+      document.body.classList.remove('audit-revealed');
+      transitionTo(stageIndex + 1);
+      return;
+    }
     if (selected.size !== stages[stageIndex].target) return;
     window.clearInterval(bonusTimer);
     score += 250 + bonusSeconds * 10;
     updateGameStats();
     stageSelections[stageIndex] = [...selected].map((index) => ({ ...fragments[index] }));
-    if (stageIndex < 2) {
+    if (stageIndex === 1) {
+      driftFragments = fragments.map((item) => ({ ...item }));
+      driftSelected = new Set(selected);
+    }
+    if (stageIndex < 3) {
       transitionTo(stageIndex + 1);
       return;
     }
@@ -469,8 +587,10 @@
     ui.rewrites.textContent = String(rewriteCount);
     ui.finalConfidence.textContent = `${Math.min(96, 82 + finalSelection.length * 4)}%`;
     ui.finalScore.textContent = String(score).padStart(4, '0');
-    ui.finalRank.textContent = score >= 3000 ? 'S' : score >= 2500 ? 'A' : score >= 1900 ? 'B' : 'C';
-    ui.endingSummary.textContent = `You recognized four details, watched ${rewriteCount} fragments change, and then taught the archive that safety looks like ${labels.join(', ')}.`;
+    ui.finalRank.textContent = score >= 3600 ? 'S' : score >= 3000 ? 'A' : score >= 2300 ? 'B' : 'C';
+    ui.endingSummary.textContent = `You recognized four anchors by sight, watched ${rewriteCount} fragments change, caught ${auditResult.caught} of ${auditResult.total} in the audit, and then taught the archive that safety looks like ${labels.join(', ')}.`;
+    ui.detection.textContent = `${auditResult.caught} / ${auditResult.total}`;
+    renderArchive(labels);
     ui.finalQuestion.hidden = false;
     ui.finalResult.hidden = true;
     ui.stamp.textContent = 'UNCERTIFIED';
@@ -479,6 +599,30 @@
     showScreen('ending');
     startCertificateAssembly();
     tone(660, .35, 'triangle');
+  }
+
+  const ARCHIVE_KEY = 'prove-you-remember:event-27';
+  function readArchive() {
+    try { return JSON.parse(window.localStorage.getItem(ARCHIVE_KEY) || '[]'); } catch (error) { return []; }
+  }
+  function saveToArchive(entry) {
+    try { window.localStorage.setItem(ARCHIVE_KEY, JSON.stringify([entry, ...readArchive()].slice(0, 6))); } catch (error) { /* storage unavailable: the archive simply forgets */ }
+  }
+  function renderArchive(currentLabels, afterDecision = false) {
+    if (!ui.archive) return;
+    const entries = readArchive();
+    const shown = afterDecision ? entries.slice(1) : entries;
+    ui.archive.hidden = !shown.length;
+    if (!shown.length) return;
+    const last = shown[0];
+    ui.archiveNote.textContent = afterDecision
+      ? `This browser now holds ${entries.length} versions of the same event.`
+      : `You have been here before. Last time, safety looked like ${last.safety.join(', ')}.`;
+    const dateFormat = new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric' });
+    ui.archiveList.innerHTML = shown.slice(0, 4).map((entry) => {
+      const overlap = entry.safety.filter((label) => currentLabels.includes(label)).length;
+      return `<li><span>${dateFormat.format(new Date(entry.date))}</span><p>${entry.safety.join(' · ')}</p><b class="is-${entry.outcome}">${entry.outcome}</b><small>${overlap}/${currentLabels.length} shared</small></li>`;
+    }).join('');
   }
 
   function buildCertificate() {
@@ -502,13 +646,15 @@
           <span class="trace-original">${entry.originalLabel}</span>
           <span class="rewrite-arrow" aria-hidden="true">→</span>
           <strong>${entry.rewrittenLabel}</strong>
+          <em class="trace-status ${auditFlags.has(entry.index) || driftSelected.has(entry.index) ? 'is-caught' : 'is-missed'}">${driftSelected.has(entry.index) ? 'you chose it' : auditFlags.has(entry.index) ? 'caught' : entry.tier === 'silent' ? 'silent · missed' : 'missed'}</em>
         </div>`).join('')
       : '<p class="no-rewrites">No system rewrites were recorded.</p>';
 
     const timelineCopy = [
       { label: 'Recognize', text: stageSelections[0].map((item) => item.label).join(', ') },
       { label: 'Trust', text: stageSelections[1].map((item) => item.label).join(', ') },
-      { label: 'Define safety', text: stageSelections[2].map((item) => item.label).join(', ') }
+      { label: 'Audit', text: `Caught ${auditResult.caught} of ${auditResult.total}${auditResult.falseFlags ? ` · ${auditResult.falseFlags} false ${auditResult.falseFlags === 1 ? 'flag' : 'flags'}` : ''}` },
+      { label: 'Define safety', text: stageSelections[3].map((item) => item.label).join(', ') }
     ];
     ui.choiceTimeline.innerHTML = timelineCopy.map((step, index) => `
       <li style="--reveal-index:${index + 2}" data-reveal>
@@ -543,6 +689,16 @@
       : 'You refused to turn confidence into truth. The archive keeps the event open—and incomplete.';
     ui.stamp.textContent = certified ? 'CERTIFIED' : 'UNRESOLVED';
     finalOutcome = certified ? 'certified' : 'unresolved';
+    const previous = readArchive()[0];
+    const labels = finalSelection.map((item) => item.label);
+    saveToArchive({ id: ui.memoryId.textContent, date: new Date().toISOString(), safety: labels, outcome: finalOutcome, caught: auditResult.caught, total: auditResult.total, score });
+    if (previous) {
+      const overlap = labels.filter((label) => previous.safety.includes(label)).length;
+      ui.resultCopy.textContent += overlap === labels.length
+        ? ' It matches the version you filed last time—consistency the archive will mistake for proof.'
+        : ` Your last version shared ${overlap} of ${labels.length} details with this one. Both are now on file as Event 27.`;
+    }
+    renderArchive(labels, true);
     tone(certified ? 720 : 330, .4, certified ? 'sine' : 'triangle');
     ui.finalResult.querySelector('button')?.focus();
   }
@@ -554,7 +710,13 @@
     rewriteLog = [];
     totalChoices = 0;
     finalSelection = [];
-    stageSelections = [[], [], []];
+    stageSelections = [[], [], [], []];
+    driftFragments = [];
+    driftSelected = new Set();
+    auditFlags = new Set();
+    auditRevealed = false;
+    auditResult = { caught: 0, missed: 0, falseFlags: 0, total: 0 };
+    document.body.classList.remove('audit-revealed');
     finalOutcome = 'uncertified';
     lives = 3;
     score = 0;
@@ -607,6 +769,10 @@
   });
 
   document.querySelector('[data-skip-assembly]').addEventListener('click', finishCertificateAssembly);
+  document.querySelector('[data-clear-archive]')?.addEventListener('click', () => {
+    try { window.localStorage.removeItem(ARCHIVE_KEY); } catch (error) { /* ignore */ }
+    ui.archive.hidden = true;
+  });
 
   document.querySelectorAll('[data-trace-view]').forEach((button) => {
     button.addEventListener('click', () => {
@@ -702,7 +868,7 @@
     ctx.textAlign = 'left';
     ctx.fillStyle = '#6c6862';
     ctx.font = '18px Helvetica Neue, Arial';
-    ctx.fillText(`Generated ${ui.generatedDate.textContent} · Score ${score} · Rank ${ui.finalRank.textContent} · ${rewriteCount} rewrites`, 76, 1050);
+    ctx.fillText(`Generated ${ui.generatedDate.textContent} · Score ${score} · Rank ${ui.finalRank.textContent} · ${rewriteCount} rewrites · ${auditResult.caught}/${auditResult.total} detected`, 76, 1050);
 
     canvas.toBlob((blob) => {
       if (!blob) {
