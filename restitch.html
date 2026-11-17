@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Restitch — Interactive AI Installation — Shreya Ramanan</title>
+  <meta name="description" content="Restitch: an interactive installation in which three AI-made images are rebuilt as cross-stitches. Pull threads with your hand, tracked on-device by a machine-learning model; every pulled stitch is re-sewn from a different memory.">
+  <meta name="theme-color" content="#0e0d0c">
+  <meta property="og:image" content="assets/restitch-cover.jpg">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css">
+</head>
+<body>
+  <a class="skip-link" href="#about-work">Skip to the description</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works" aria-current="page">Works</a>
+      <a class="nav-final" href="final-project.html">Final Project</a>
+      <a href="index.html#index">Index</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="installation" data-restitch aria-labelledby="title">
+      <canvas tabindex="0" aria-label="Restitch installation: an image made of cross-stitches. Press and drag to pull threads, or press Space to pull one. Pulled stitches return from a different image."></canvas>
+      <video playsinline muted aria-hidden="true"></video>
+      <div class="inst-title">
+        <span class="label"><b>04</b> · Interactive AI installation</span>
+        <h1 id="title">Restitch<span class="spaced">2026</span></h1>
+        <p>Pull a thread. It will be sewn back—from a different memory.</p>
+      </div>
+      <div class="inst-bar">
+        <div class="inst-controls">
+          <button class="btn btn-primary" type="button" data-camera>Use your hand (camera)</button>
+          <button class="btn btn-quiet" type="button" data-reset>Restore</button>
+          <a class="btn btn-quiet" href="#about-work">About the work ↓</a>
+        </div>
+        <p class="inst-status" data-status>Press and drag to pull threads. Or turn on the camera and pinch the air. The camera image never leaves your device.</p>
+        <ol class="inst-mix" data-mix aria-label="Current composition of the image"></ol>
+      </div>
+      <p class="sr-only" aria-live="polite" data-live></p>
+    </section>
+
+    <div class="wrap" id="about-work">
+      <dl class="facts" aria-label="Work facts">
+        <div><dt>Medium</dt><dd>Real-time interactive installation · browser, webcam optional</dd></div>
+        <div><dt>Material</dt><dd>~16,000 cross-stitches sampled from three AI-made images</dd></div>
+        <div><dt>Machine learning</dt><dd>MediaPipe Hand Landmarker, running on-device</dd></div>
+        <div><dt>My role</dt><dd>Concept, interaction design, art direction, source images</dd></div>
+        <div><dt>Context</dt><dd>Final project, DSC 598 · a new work grown from Weeks 4, 6 and 8–10</dd></div>
+      </dl>
+    </div>
+
+    <section class="section" style="border-top:0" aria-labelledby="s1">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">01</span><h2 id="s1">Concept</h2></div>
+        <div class="prose">
+          <p class="lead">Every image I made this semester with AI is, in some sense, a reconstruction—assembled by a model from everything it has seen. <em>Restitch</em> makes that visible and hands the needle to the viewer.</p>
+          <p>The work begins as my album cover, rebuilt from thousands of tiny cross-stitches on dark linen. Reach toward the screen and pinch, and the stitches come loose, trailing red thread back to where they belong. Let go and they are sewn back in—but not as they were. Each returning stitch comes from the <em>next</em> memory in the archive: the studio I specified as data, then the room from <em>Prove You Remember</em>, then the heart again.</p>
+          <p>Nothing is deleted and nothing is invented; every stitch is a pixel from an image I made. Yet after a few minutes of touching, the picture becomes a patchwork that never existed: a heart with a bookshelf in it, a room with a loose red thread. It is a hallucination produced entirely by attention—by where people chose to put their hands.</p>
+          <p>The piece continues the questions behind the game. There, a system rewrote memory through the player's choices. Here, the body does it directly. The interface is the oldest one I know for careful making—a needle and thread—placed in front of the newest: a neural network watching your fingers.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s2">
+      <div class="wrap">
+        <div class="section-head"><div><span class="label">02</span><h2 id="s2">How it works</h2></div><p>Three rules, applied to every stitch, sixty times a second.</p></div>
+        <div class="method">
+          <article><span>01 · Sample</span><h3>Image → stitches</h3><p>Each source image is fitted to the screen and sampled on a grid. Every grid cell becomes one X-shaped stitch carrying the colour of its pixel, for all three images at once.</p></article>
+          <article><span>02 · Sense</span><h3>Hand → force</h3><p>The camera feed goes to a hand-landmark model in the browser. An open hand brushes stitches aside; a thumb-to-index pinch pulls them loose. A pointer or touch does the same.</p></article>
+          <article><span>03 · Return</span><h3>Loose → home</h3><p>Loose stitches drift, then a spring draws them back along their thread. Arriving home, each stitch advances to the next image in the archive.</p></article>
+          <article class="is-new"><span>04 · Idle</span><h3>The ghost hand</h3><p>When no one is present, an invisible hand keeps wandering and occasionally pulls a thread, so the work keeps rewriting itself in an empty room.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s3">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">03</span><h2 id="s3">Design decisions</h2></div>
+        <div class="qa">
+          <article><h3>Why cross-stitch?<small>Material</small></h3><p>The stitch was already my visual language from the album cover. It is also a grid—a hand-made pixel—so it lets an AI image be rendered in a craft vocabulary without hiding what it is.</p></article>
+          <article><h3>Why does the stitch come back as a different image?<small>Behaviour</small></h3><p>A plain undo would make the touch meaningless. Having each stitch return from the next memory makes every gesture leave a trace, and it echoes how generative systems “repair” a gap with something plausible rather than something true.</p></article>
+          <article><h3>Why a hand, not just a mouse?<small>Interaction</small></h3><p>Pinching the air to pull a thread is close to the real gesture of sewing, and it puts the body back into a process that is usually just clicks. The mouse fallback keeps the work open to everyone, including people who do not want a camera on.</p></article>
+          <article><h3>Why keep the model on the device?<small>Ethics</small></h3><p>A piece about who gets to rewrite an image should not quietly send your image elsewhere. The hand model runs inside the browser; no frames are recorded or uploaded, and the camera is only requested when you press the button.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s4">
+      <div class="wrap two-col">
+        <div class="sec-num"><span class="label">04</span><h2 id="s4">Reflection</h2></div>
+        <div class="prose">
+          <p><em>What worked.</em> Treating all three images as layers of the same grid made the “wrong” restitching possible with almost no extra machinery, and the red return-threads make the invisible logic readable without any instructions.</p>
+          <p><em>Limitations.</em> Hand tracking needs decent light and a camera, and pinch detection is a simple distance threshold, so it can misfire with fast movement. Stitch density is lowered on small screens to keep the animation smooth. The work uses existing images rather than generating new ones live; a next version could ask a generative model to stitch in a fourth, never-made memory from what visitors pulled.</p>
+          <p><em>Testing.</em> I should still watch three or four people use it without instructions and note how long they take to discover the pinch.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="s5">
+      <div class="wrap">
+        <div class="section-head"><div><span class="label">05</span><h2 id="s5">AI use &amp; credits</h2></div><p>What the tools did, and what I decided.</p></div>
+        <div class="ledger">
+          <div>
+            <h3>What AI did</h3>
+            <ul>
+              <li><b>MediaPipe Hand Landmarker (Google)</b>A pre-trained machine-learning model that finds 21 points on each hand in the camera image, in real time, in the browser. Apache 2.0 licence.</li>
+              <li><b>Claude Code (Anthropic)</b>Wrote the simulation, rendering and hand-tracking code from my concept and behaviour notes.</li>
+              <li><b>Source images</b>The album cover was generated with Canva AI and the studio from an AI reference rendered in Blender, both in earlier projects. The room photograph is from Unsplash.</li>
+            </ul>
+          </div>
+          <div class="mine">
+            <h3>What I decided</h3>
+            <ul>
+              <li><b>Concept</b>The archive that repairs with the wrong memory; the needle as the interface.</li>
+              <li><b>Material &amp; colour</b>Cross-stitch on dark linen; one red for every thread.</li>
+              <li><b>Behaviour</b>Brush vs. pinch, the slow return, the order of the three memories, the idle ghost hand.</li>
+              <li><b>Ethics</b>On-device tracking, camera only on request, a full pointer alternative.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <a class="next-work" href="final-project.html"><span class="label">Back to the final project · 01</span><strong>Prove You Remember</strong></a>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
+      <nav aria-label="Footer"><a href="index.html">All works</a><a href="final-project.html">Final project</a><a href="stitched-heart.html">Mess It Up</a><a href="about.html">About</a></nav>
+      <div>The camera image is processed only on your device and never stored.</div>
+    </div>
+  </footer>
+  <script src="portfolio.js"></script>
+  <script src="restitch.js"></script>
+</body>
+</html>
