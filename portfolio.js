@@ -32,6 +32,117 @@
     row.addEventListener('click', (event) => { if (!event.target.closest('a')) window.location.href = row.dataset.href; });
   });
 
+  /* The home hero responds to the visitor before they draw. */
+  const homeHero = document.querySelector('.home-hero');
+  homeHero?.addEventListener('pointermove', (event) => {
+    const box = homeHero.getBoundingClientRect();
+    homeHero.style.setProperty('--pointer-x', `${((event.clientX - box.left) / box.width) * 100}%`);
+    homeHero.style.setProperty('--pointer-y', `${((event.clientY - box.top) / box.height) * 100}%`);
+    homeHero.classList.add('has-pointer');
+  });
+  homeHero?.addEventListener('pointerleave', () => homeHero.classList.remove('has-pointer'));
+
+  /* Material field — a tactile map of the methods behind the work. */
+  const materialField = document.querySelector('#material-field');
+  const materialStatus = document.querySelector('#material-status');
+  const clearMaterials = document.querySelector('#clear-materials');
+  const materialSet = [
+    { title: 'Memory systems', tool: 'Browser interaction', group: 'Memory', color: '#edd4ce' },
+    { title: 'Art direction', tool: 'Image + typography', group: 'Image', color: '#f0d8bd' },
+    { title: 'Spatial design', tool: 'Blender', group: 'Space', color: '#d5dfd3' },
+    { title: 'Prototyping', tool: 'HTML · CSS · JS', group: 'Code', color: '#d9ddeb' },
+    { title: 'Hand tracking', tool: 'MediaPipe', group: 'Code', color: '#d2e3df' },
+    { title: 'Generative systems', tool: 'Canvas', group: 'Code', color: '#ded4e7' },
+    { title: 'AI direction', tool: 'Prompt · test · revise', group: 'Image', color: '#efd8c8' },
+    { title: 'Critical audit', tool: 'Trace every decision', group: 'Memory', color: '#e6cbc6' }
+  ];
+  const materialPositions = [
+    [24, 24], [57, 20], [78, 38], [38, 47], [18, 68], [65, 70], [84, 78], [43, 82]
+  ];
+  const materialRotations = [-5, 3, -2, 5, 2, -4, 4, -1];
+  const materialOffsets = [[0, 0], [-11, -8], [12, 9], [-8, 13], [10, -12], [-14, 6], [15, -4], [2, 14]];
+  let materialIndex = 0;
+
+  function updateMaterialStatus(message) {
+    if (materialStatus) materialStatus.textContent = message || `${materialIndex} of ${materialSet.length} materials placed`;
+    if (clearMaterials) clearMaterials.disabled = materialIndex === 0;
+    materialField?.classList.toggle('has-cards', materialIndex > 0);
+  }
+
+  function addMaterial(clientX, clientY, fromKeyboard = false) {
+    if (!materialField) return;
+    if (materialIndex >= materialSet.length) {
+      updateMaterialStatus('Toolkit complete — clear the field to begin again');
+      materialField.animate([{ transform: 'scale(1)' }, { transform: 'scale(.992)' }, { transform: 'scale(1)' }], { duration: 360 });
+      return;
+    }
+    const item = materialSet[materialIndex];
+    const fallback = materialPositions[materialIndex];
+    const bounds = materialField.getBoundingClientRect();
+    const xPadding = Math.min(30, Math.max(16, (108 / bounds.width) * 100));
+    const yPadding = Math.min(20, Math.max(12, (64 / bounds.height) * 100));
+    const offset = materialOffsets[materialIndex];
+    const rawX = fromKeyboard ? fallback[0] : ((clientX - bounds.left) / bounds.width) * 100 + offset[0];
+    const rawY = fromKeyboard ? fallback[1] : ((clientY - bounds.top) / bounds.height) * 100 + offset[1];
+    const x = Math.max(xPadding, Math.min(100 - xPadding, rawX));
+    const y = Math.max(yPadding, Math.min(100 - yPadding, rawY));
+    const card = document.createElement('span');
+    card.className = 'material-card';
+    card.style.setProperty('--x', `${x}%`);
+    card.style.setProperty('--y', `${y}%`);
+    card.style.setProperty('--rot', `${materialRotations[materialIndex]}deg`);
+    card.style.setProperty('--card-bg', item.color);
+    card.style.zIndex = String(materialIndex + 2);
+    card.innerHTML = `<b>${item.title}</b><em>${String(materialIndex + 1).padStart(2, '0')}</em><small>${item.group} · ${item.tool}</small>`;
+    materialField.append(card);
+    materialIndex += 1;
+    updateMaterialStatus();
+  }
+
+  materialField?.addEventListener('click', (event) => addMaterial(event.clientX, event.clientY));
+  materialField?.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    addMaterial(0, 0, true);
+  });
+  clearMaterials?.addEventListener('click', () => {
+    materialField?.querySelectorAll('.material-card').forEach((card) => card.remove());
+    materialIndex = 0;
+    updateMaterialStatus('Field cleared — click to rebuild the toolkit');
+  });
+  updateMaterialStatus();
+
+  /* Project cards lean toward the pointer; a custom prompt follows on precise pointers. */
+  const projectCursor = document.querySelector('#project-cursor');
+  const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (projectCursor && canHover) {
+    const hideProjectCursor = () => projectCursor.classList.remove('is-visible');
+    document.querySelectorAll('.work-tile').forEach((tile) => {
+      tile.addEventListener('pointerenter', (event) => {
+        projectCursor.style.left = `${event.clientX}px`;
+        projectCursor.style.top = `${event.clientY}px`;
+        projectCursor.classList.add('is-visible');
+      });
+      tile.addEventListener('pointermove', (event) => {
+        projectCursor.style.left = `${event.clientX}px`;
+        projectCursor.style.top = `${event.clientY}px`;
+        if (tile.classList.contains('is-small')) return;
+        const box = tile.getBoundingClientRect();
+        const px = (event.clientX - box.left) / box.width - .5;
+        const py = (event.clientY - box.top) / box.height - .5;
+        tile.style.setProperty('--tilt-x', `${py * -3.2}deg`);
+        tile.style.setProperty('--tilt-y', `${px * 3.2}deg`);
+      });
+      tile.addEventListener('pointerleave', () => {
+        hideProjectCursor();
+        tile.style.setProperty('--tilt-x', '0deg');
+        tile.style.setProperty('--tilt-y', '0deg');
+      });
+    });
+    window.addEventListener('scroll', hideProjectCursor, { passive: true });
+    window.addEventListener('blur', hideProjectCursor);
+  }
+
   /* Thread drawing — the album cover's loose thread, handed to the visitor */
   const canvas = document.querySelector('#thread-canvas');
   if (!canvas) return;

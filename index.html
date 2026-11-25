@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shreya Ramanan — Works</title>
-  <meta name="description" content="Shreya Ramanan — works from AI for Interdisciplinary Design: a browser game about memory and hallucination, an embroidered album cover, and a 3D studio environment.">
+  <meta name="description" content="Shreya Ramanan — an interactive portfolio of browser games, image-making, spatial design, hand tracking and generative systems.">
   <meta name="theme-color" content="#0e0d0c">
   <meta property="og:title" content="Shreya Ramanan — Works">
   <meta property="og:description" content="Three works about what we try to keep: a memory, a feeling, a room.">
   <meta property="og:image" content="assets/process/v4-audit.jpg">
   <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="portfolio.css">
+  <link rel="stylesheet" href="portfolio.css?v=interactive-20261125">
 </head>
 <body>
   <a class="skip-link" href="#works">Skip to works</a>
@@ -33,9 +33,50 @@
         <h1 id="hero-title">Works about what we try to <em>keep</em>.</h1>
         <div class="hero-foot">
           <p>A memory that rewrites itself, a stitched heart beginning to unravel, a room built to hold a life—and an installation where your hand pulls them into one another. Made with AI, decided by hand.</p>
+          <div class="hero-actions" aria-label="Portfolio shortcuts">
+            <a class="btn btn-primary" href="#works">Explore the work <span aria-hidden="true">↓</span></a>
+            <a class="btn" href="memory-game.html">Play the final game <span aria-hidden="true">↗</span></a>
+          </div>
           <div class="hero-tools">
             <span class="hint">Click or drag to pull a thread</span>
             <button class="btn btn-quiet" id="clear-canvas" type="button">Clear</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section materials-section" id="materials" aria-labelledby="materials-title">
+      <div class="wrap">
+        <div class="section-head materials-head">
+          <div>
+            <span class="label">Interactive material library · click or tap</span>
+            <h2 id="materials-title">Build the toolkit.</h2>
+          </div>
+          <p>Each project began with a different material. Add them to the field to see the mix behind this portfolio.</p>
+        </div>
+
+        <div class="materials-layout">
+          <div class="materials-copy">
+            <p class="lead">My practice moves between memory, image, space and code.</p>
+            <p>Click anywhere in the field. Every mark reveals one part of the process—from art direction and Blender to hand tracking and generative systems.</p>
+            <div class="material-key" aria-label="Material categories">
+              <span><i class="key-dot key-memory"></i> Memory</span>
+              <span><i class="key-dot key-image"></i> Image</span>
+              <span><i class="key-dot key-space"></i> Space</span>
+              <span><i class="key-dot key-code"></i> Code</span>
+            </div>
+          </div>
+
+          <div class="material-field-wrap">
+            <div class="material-field" id="material-field" role="button" tabindex="0" aria-label="Interactive material field. Click, tap, or press Enter to add a material card.">
+              <span class="field-orbit orbit-one" aria-hidden="true"></span>
+              <span class="field-orbit orbit-two" aria-hidden="true"></span>
+              <p class="field-empty" id="field-empty"><b>Start here</b><span>Click or tap to add a material</span></p>
+            </div>
+            <div class="field-controls">
+              <p id="material-status" aria-live="polite">0 of 8 materials placed</p>
+              <button class="btn btn-quiet" id="clear-materials" type="button" disabled>Clear field</button>
+            </div>
           </div>
         </div>
       </div>
@@ -142,6 +183,7 @@
       <div>Typeset in Boska and Helvetica Neue. Plain HTML, CSS and JavaScript on GitHub Pages, written with AI coding assistants under my direction. AI use is credited on every project page.</div>
     </div>
   </footer>
-  <script src="portfolio.js"></script>
+  <div class="project-cursor" id="project-cursor" aria-hidden="true">Open project <span>↗</span></div>
+  <script src="portfolio.js?v=interactive-20261125"></script>
 </body>
 </html>
