@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playground — Shreya Ramanan</title>
+  <meta name="description" content="A playground of live browser experiments by Shreya Ramanan, including Arizona Right Now, Signal Garden, Restitch and the Mess It Up cover lab.">
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="portfolio.css?v=portfolio-20261128">
+</head>
+<body>
+  <a class="skip-link" href="#arizona">Skip to the live experiment</a>
+  <header class="site-header">
+    <a class="brand" href="index.html">Shreya Ramanan</a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#works">Work</a>
+      <a href="playground.html" aria-current="page">Playground</a>
+      <a href="blog.html">Blog</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="playground-hero" aria-labelledby="playground-title">
+      <div class="wrap">
+        <span class="label">Visual playground · live browser studies</span>
+        <h1 id="playground-title">Small experiments that are better when you <em>touch</em> them.</h1>
+        <p>This page replaces the old toolkit exercise. It collects interactions that respond, drift or change state while you are here.</p>
+      </div>
+    </section>
+
+    <section class="arizona-section" id="arizona" aria-labelledby="arizona-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">Live illustration · Tempe, Arizona</span><h2 id="arizona-title">Arizona, right now.</h2></div>
+          <p>The clock follows Arizona time. Weather loads live when available; the preview controls let you change the sky yourself.</p>
+        </div>
+        <div class="arizona-card" data-arizona>
+          <canvas data-arizona-canvas aria-label="Illustrated Tempe desert skyline that changes with time and weather"></canvas>
+          <div class="az-readout"><span data-az-time>--:--:--</span><small data-az-weather>loading Tempe weather…</small></div>
+          <div class="az-location"><b>Tempe, Arizona</b><span>33.4255° N · 111.9400° W · MST</span></div>
+          <div class="az-controls">
+            <div role="group" aria-label="Preview time"><span>Time</span><button type="button" data-az-time-mode="live" class="is-active">Live</button><button type="button" data-az-time-mode="dawn">Dawn</button><button type="button" data-az-time-mode="day">Day</button><button type="button" data-az-time-mode="dusk">Dusk</button><button type="button" data-az-time-mode="night">Night</button></div>
+            <div role="group" aria-label="Preview weather"><span>Weather</span><button type="button" data-az-weather-mode="live" class="is-active">Live</button><button type="button" data-az-weather-mode="clear">Clear</button><button type="button" data-az-weather-mode="cloudy">Cloudy</button><button type="button" data-az-weather-mode="dust">Dust</button><button type="button" data-az-weather-mode="monsoon">Monsoon</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="experiments-title">
+      <div class="wrap">
+        <div class="section-head"><div><span class="label">More things to try</span><h2 id="experiments-title">Interactive archive.</h2></div><p>Each opens as a complete project with its process and credits.</p></div>
+        <div class="experiment-grid">
+          <a href="signal-garden.html"><img src="assets/signal-garden-cover.jpg" alt="Signal Garden generative field" width="900" height="700" loading="lazy"><span>01 · Draw and release</span><h3>Signal Garden</h3><p>A line becomes an orbit, branch, drift or pulse.</p></a>
+          <a href="restitch.html"><img src="assets/restitch-cover.jpg" alt="Restitch cross-stitch installation" width="900" height="700" loading="lazy"><span>02 · Pull and repair</span><h3>Restitch</h3><p>Your hand edits an archive one stitch at a time.</p></a>
+          <a href="stitched-heart.html#cover-lab"><img src="assets/album-final-hd.png" alt="Mess It Up cover lab artwork" width="1400" height="1400" loading="lazy"><span>03 · Choose or upload</span><h3>Cover Lab</h3><p>Place a photograph beneath the stitched-heart system.</p></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="wrap"><div><strong>Shreya Ramanan</strong>Browser experiments in plain HTML, CSS and JavaScript.</div><nav aria-label="Footer"><a href="index.html#works">Work</a><a href="blog.html">Blog</a><a href="about.html">About</a></nav><div>The Arizona scene requests only public weather data. No personal information is collected.</div></div></footer>
+  <script src="portfolio.js?v=portfolio-20261128"></script>
+  <script src="arizona.js?v=portfolio-20261128"></script>
+</body>
+</html>

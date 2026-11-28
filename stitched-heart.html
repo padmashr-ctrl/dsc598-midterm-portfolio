@@ -7,24 +7,23 @@
   <meta name="description" content="Mess It Up: a concept album cover built from one cross-stitched heart and a loose thread, developed through measured AI prompts, a material reference and one focused edit.">
   <meta name="theme-color" content="#0e0d0c">
   <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="portfolio.css?v=journal-20261125">
+  <link rel="stylesheet" href="portfolio.css?v=portfolio-20261128">
 </head>
 <body>
   <a class="skip-link" href="#content">Skip to project</a>
   <header class="site-header">
     <a class="brand" href="index.html">Shreya Ramanan</a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="index.html#works" aria-current="page">Works</a>
-      <a class="nav-final" href="final-project.html">Final Project</a>
-      <a href="index.html#index">Index</a>
-      <a href="journal.html">Journal</a>
+      <a href="index.html#works" aria-current="page">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="blog.html">Blog</a>
       <a href="about.html">About</a>
     </nav>
   </header>
 
   <main id="content">
     <section class="work-hero" aria-labelledby="title">
-      <div class="work-hero-bg" style="background-image:url('assets/album-final.jpg')" aria-hidden="true"></div>
+      <div class="work-hero-bg" style="background-image:url('assets/album-final-hd.png')" aria-hidden="true"></div>
       <div class="wrap">
         <div class="work-title">
           <span class="label"><b>02</b> · Album cover concept · Week 6</span>
@@ -32,7 +31,7 @@
           <p class="sub">One small cross-stitched heart, one loose thread, and the fear of ruining something good.</p>
           <p class="by">By Shreya Ramanan · a student concept for Gracie Abrams' “Mess It Up” — not official artwork</p>
         </div>
-        <figure class="hero-figure" style="max-width:520px;justify-self:end"><img src="assets/album-final.jpg" alt="Final Mess It Up concept cover: a small red cross-stitched heart low on oatmeal linen with a single loose thread, lowercase title above" width="600" height="600"></figure>
+        <figure class="hero-figure" style="max-width:620px;justify-self:end"><img src="assets/album-final-hd.png" alt="Final Mess It Up concept cover: a small red cross-stitched heart low on oatmeal linen with a single loose thread, lowercase title above" width="1400" height="1400"></figure>
       </div>
     </section>
 
@@ -45,6 +44,43 @@
         <div><dt>Context</dt><dd>DSC 598 · Designing an Album Cover with AI</dd></div>
       </dl>
     </div>
+
+    <section class="section cover-lab-section" id="cover-lab" aria-labelledby="cover-lab-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><span class="label">Interactive cover lab · your image stays on your device</span><h2 id="cover-lab-title">Make it yours.</h2></div>
+          <p>Toggle between the finished cover and a white-background remix. Choose a supplied photograph or add your own.</p>
+        </div>
+        <div class="cover-lab" data-cover-lab>
+          <div class="cover-preview" data-cover-preview data-view="final">
+            <img class="cover-final-image" src="assets/album-final-hd.png" alt="Finished Mess It Up cover" width="1400" height="1400">
+            <div class="cover-remix" aria-hidden="true">
+              <img data-cover-photo src="assets/shreya-portrait.jpg" alt="">
+              <div class="cover-wash"></div>
+              <span class="cover-artist">YOUR NAME</span>
+              <strong>mess it up</strong>
+              <span class="cover-heart" aria-hidden="true">× ×× ×<br>×××××<br> ××× <br>  ×</span>
+              <span class="cover-thread-line" aria-hidden="true"></span>
+              <small>single · 2026</small>
+            </div>
+          </div>
+          <div class="cover-lab-controls">
+            <div class="cover-toggle" role="group" aria-label="Cover view">
+              <button type="button" data-cover-view="final" class="is-active">Final cover</button>
+              <button type="button" data-cover-view="remix">Your version</button>
+            </div>
+            <div class="cover-presets" role="group" aria-label="Choose a supplied photograph">
+              <button type="button" data-cover-src="assets/shreya-portrait.jpg" class="is-active"><img src="assets/shreya-portrait.jpg" alt="Portrait at an art wall" width="120" height="120"><span>Portrait</span></button>
+              <button type="button" data-cover-src="assets/studio-hero.jpg"><img src="assets/studio-hero.jpg" alt="Warm 3D studio" width="120" height="120"><span>Studio</span></button>
+              <button type="button" data-cover-src="assets/stock/memory-room.jpg"><img src="assets/stock/memory-room.jpg" alt="Memory room" width="120" height="120"><span>Memory</span></button>
+            </div>
+            <label class="cover-upload btn btn-primary" for="cover-upload">Add your photo</label>
+            <input id="cover-upload" data-cover-upload type="file" accept="image/png,image/jpeg,image/webp" hidden>
+            <p class="small">The file is shown only in this browser. It is not uploaded, saved or sent anywhere.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="section" aria-labelledby="s1" style="border-top:0">
       <div class="wrap two-col">
@@ -85,14 +121,14 @@
           <article class="version reveal"><figure class="fig"><img src="assets/album-v1.jpg" alt="V1: a woman lying awake in a dim bedroom" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V1</b><span>Feeling only</span></header><p>With no object, placement or material defined, the model reached for a generic sad-song image.</p></article>
           <article class="version reveal"><figure class="fig"><img src="assets/album-v2-measured.jpg" alt="V2: heart, linen and thread appear, measured against the targets" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V2</b><span>Five categories</span></header><p>Composition improved; material did not. The heart read as a padded patch and the thread as yarn.</p></article>
           <article class="version reveal"><figure class="fig"><img src="assets/album-v3-measured.jpg" alt="V3: cross-stitched heart on fine linen, measured" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V3</b><span>Sketch + reference</span></header><p>A historic sampler supplied one role only: the stitch. The sketch kept control of the layout.</p></article>
-          <article class="version is-final reveal"><figure class="fig"><img src="assets/album-final.jpg" alt="V4: final cover with the heart's point unpicked and type set" width="600" height="600" loading="lazy" style="aspect-ratio:1"></figure><header><b>V4</b><span>One edit + type</span></header><p>A focused edit unpicked the heart's point, and editable type finished the cover.</p></article>
+          <article class="version is-final reveal"><figure class="fig"><img src="assets/album-final-hd.png" alt="V4: final cover with the heart's point unpicked and type set" width="1400" height="1400" loading="lazy" style="aspect-ratio:1"></figure><header><b>V4</b><span>One edit + type</span></header><p>A focused edit unpicked the heart's point, and editable type finished the cover.</p></article>
         </div>
 
         <div class="two-col" style="margin-top:clamp(3rem,7vw,6rem)">
           <div><span class="label">Before / after</span><h3 style="font-size:1.8rem">Mood prompt vs. measured system</h3><p class="small" style="margin-top:1rem">The same song, the same model. The only difference is how specific I was about what should be on the square, where, and made of what.</p></div>
           <div class="compare" data-compare style="max-width:640px">
             <img src="assets/album-v1.jpg" alt="V1 generated from a feeling-only prompt" width="600" height="600" loading="lazy">
-            <div class="after"><img src="assets/album-final.jpg" alt="Final cover" width="600" height="600" loading="lazy"></div>
+            <div class="after"><img src="assets/album-final-hd.png" alt="Final cover" width="1400" height="1400" loading="lazy"></div>
             <span class="handle" aria-hidden="true"></span>
             <span class="tag l">V1</span><span class="tag r">Final</span>
             <input type="range" min="0" max="100" value="50" aria-label="Reveal the final album cover">
@@ -157,6 +193,7 @@
       <div>Student concept cover; not affiliated with Gracie Abrams or her label.</div>
     </div>
   </footer>
-  <script src="portfolio.js"></script>
+  <script src="portfolio.js?v=portfolio-20261128"></script>
+  <script src="album-lab.js?v=portfolio-20261128"></script>
 </body>
 </html>

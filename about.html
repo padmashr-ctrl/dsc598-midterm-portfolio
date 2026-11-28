@@ -4,85 +4,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — Shreya Ramanan</title>
-  <meta name="description" content="About Shreya Ramanan's AI for Interdisciplinary Design portfolio: a method for designing with AI, a week-by-week course index, and a colophon.">
+  <meta name="description" content="About Shreya Ramanan, an interdisciplinary designer working across image, space, interaction and responsible AI.">
   <meta name="theme-color" content="#0e0d0c">
+  <meta property="og:image" content="assets/shreya-portrait.jpg">
   <link rel="preload" href="assets/fonts/boska-400.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="portfolio.css?v=journal-20261125">
+  <link rel="stylesheet" href="portfolio.css?v=portfolio-20261128">
 </head>
 <body>
-  <a class="skip-link" href="#content">Skip to content</a>
+  <a class="skip-link" href="#about-main">Skip to about</a>
   <header class="site-header is-solid">
     <a class="brand" href="index.html">Shreya Ramanan</a>
     <nav class="site-nav" aria-label="Primary">
-      <a href="index.html#works">Works</a>
-      <a class="nav-final" href="final-project.html">Final Project</a>
-      <a href="index.html#index">Index</a>
-      <a href="journal.html">Journal</a>
+      <a href="index.html#works">Work</a>
+      <a href="playground.html">Playground</a>
+      <a href="blog.html">Blog</a>
       <a href="about.html" aria-current="page">About</a>
     </nav>
   </header>
 
-  <main id="content">
-    <section class="section" style="border-top:0;padding-top:clamp(8rem,14vw,11rem)" aria-labelledby="title">
-      <div class="wrap two-col">
-        <div><span class="label">About</span></div>
-        <div class="prose">
-          <h1 id="title" style="font-size:clamp(2.8rem,6vw,5.6rem);margin-bottom:2rem">Made with AI. <em style="color:var(--thread)">Decided</em> by hand.</h1>
-          <p class="lead">I am Shreya Ramanan. This site collects my work from AI for Interdisciplinary Design at Arizona State University: a game, an album cover and a room, each made with generative tools and each shaped by decisions the tools could not make for me.</p>
-          <p>The thread running through the site began as a single stitch on an album cover. It became the drawing you can pull across the homepage, and it describes how I now think about these systems: carefully made, easy to unravel, and worth checking at every knot.</p>
+  <main id="about-main">
+    <section class="about-intro" aria-labelledby="about-title">
+      <div class="wrap">
+        <span class="label">About me</span>
+        <div class="about-grid">
+          <figure class="about-portrait"><img src="assets/shreya-portrait.jpg" alt="Shreya Ramanan standing in front of a wall filled with paintings" width="1179" height="1171"><figcaption>Collecting colour, texture and stories in the places I visit.</figcaption></figure>
+          <div class="about-copy">
+            <h1 id="about-title">I design where <em>systems</em> meet feeling.</h1>
+            <p class="lead">I'm Shreya Ramanan, an interdisciplinary designer exploring how images, spaces and interfaces shape what people notice, trust and remember.</p>
+            <p>I began this course interested in what AI could make. I am leaving it more interested in what a designer must decide: the rule behind an interaction, the evidence behind a claim, the material that carries an emotion and the moment a system should explain itself.</p>
+            <p>My work moves between visual design and code. Sometimes the outcome is a quiet album cover or a 3D room. Sometimes it is a browser game that changes the evidence around you. Across all of them, I use AI to generate possibilities and support implementation, while keeping concept, art direction, editing and accountability in my hands.</p>
+            <div class="about-links"><a class="btn btn-primary" href="index.html#works">See the work</a><a class="btn" href="blog.html">Read what I learned</a></div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="method-title">
+    <section class="section" aria-labelledby="approach-title">
       <div class="wrap">
-        <div class="section-head"><div><span class="label">Method</span><h2 id="method-title">Define · Measure · Refine · Audit</h2></div><p>The midterm version of this site had three steps. The final project added a fourth.</p></div>
+        <div class="section-head"><div><span class="label">My working method</span><h2 id="approach-title">Define · Measure · Refine · Audit</h2></div><p>A method developed across the semester, from the first prompt study to the final interactive work.</p></div>
         <div class="method">
-          <article><span>01</span><h3>Define</h3><p>Translate a mood or a brief into observable decisions: one heart, low and left; three zones; four anchors.</p></article>
-          <article><span>02</span><h3>Measure</h3><p>Give every decision a value you can check—placement, scale, RGB, colour temperature—so you can see what changed.</p></article>
-          <article><span>03</span><h3>Refine</h3><p>Change one variable at a time. Keep what works. Assign each reference a single role.</p></article>
-          <article class="is-new"><span>04 · new</span><h3>Audit</h3><p>Assume the system changed something you did not ask for, and look for it. The game makes this step playable.</p></article>
+          <article><span>01</span><h3>Define</h3><p>Turn a mood or question into a clear experience and a few observable choices.</p></article>
+          <article><span>02</span><h3>Measure</h3><p>Give the important decisions values—placement, scale, colour, timing—so they can be checked.</p></article>
+          <article><span>03</span><h3>Refine</h3><p>Change one variable at a time, test it with people and keep only what strengthens the concept.</p></article>
+          <article class="is-new"><span>04</span><h3>Audit</h3><p>Look for what the system changed without permission and disclose how the work was made.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="section" id="course" aria-labelledby="course-title">
-      <div class="wrap">
-        <div class="section-head"><div><span class="label">Course index</span><h2 id="course-title">What each week taught</h2></div><p>The written studies were submitted as PDFs on Canvas; the making is on this site.</p></div>
-        <ol class="course">
-          <li><span class="wk">Week 1</span><h3>Rules, code and emergence</h3><p>Conway's Game of Life, with Lovelace, Christopher Alexander and Vera Molnar: simple rules, unpredictable outcomes, and the question of where design lives.</p><span class="out">→ the game's rewrite rules</span></li>
-          <li><span class="wk">Week 2</span><h3>Feedback and creative agency</h3><p>Pask, SEEK, Harold Cohen's AARON, William Latham's Mutator, Sougwen Chung and Neri Oxman: when does a responsive system become a collaborator?</p><span class="out">→ the archive as a feedback loop</span></li>
-          <li><span class="wk">Week 3</span><h3>AI tools and what comes next</h3><p>Case studies of designers using models at a particular moment, and a speculative day in a future studio.</p><span class="out">→ the studio's “future” framing</span></li>
-          <li><span class="wk">Week 4</span><h3>Prompting for design</h3><p>A future space mockup: exact values, named furniture, emotional framing.</p><span class="out"><a href="personal-studio.html">Personal Studio</a></span></li>
-          <li><span class="wk">Week 5</span><h3>Build your own custom skill</h3><p>Packaging a repeatable AI workflow as a reusable instruction set.</p><span class="out">Course study (Canvas)</span></li>
-          <li><span class="wk">Week 6</span><h3>Designing an album cover with AI</h3><p>Composition targets, reference roles and one focused edit.</p><span class="out"><a href="stitched-heart.html">Mess It Up</a></span></li>
-          <li><span class="wk">Week 7</span><h3>Midterm: portfolio and interactive art</h3><p>The first version of this site and the thread-drawing interaction.</p><span class="out"><a href="index.html">This site</a></span></li>
-          <li><span class="wk">Weeks 8–10</span><h3>Hallucination: research, draft, refine</h3><p>A three-week web game about how machine confidence shapes human memory.</p><span class="out"><a href="prove-you-remember.html">Proposal</a> · <a href="memory-game.html">Game</a></span></li>
-          <li><span class="wk">Final</span><h3>Refine and publish</h3><p>The game's final cut with a new audit stage, two new interactive works, and this redesigned portfolio.</p><span class="out"><a href="final-project.html">Final project</a> · <a href="restitch.html">Restitch</a> · <a href="signal-garden.html">Signal Garden</a></span></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="colophon-title">
+    <section class="section about-details" aria-labelledby="details-title">
       <div class="wrap two-col">
-        <div><span class="label">Colophon</span><h2 id="colophon-title" style="font-size:2.2rem">How this site was made</h2></div>
-        <div class="prose">
-          <p><em>Design.</em> One accent—the red of the album's thread—on warm black, so the work supplies the colour. Titles are set in Boska (Indian Type Foundry, via Fontshare); everything else in Helvetica Neue. The dark, image-first works grid and per-project “make of” structure take cues from media-art portfolios, where process is shown as seriously as the result.</p>
-          <p><em>Build.</em> Plain HTML, CSS and JavaScript with no frameworks or trackers, hosted on GitHub Pages. Every page works without signing in. Interactive pieces are keyboard accessible and respect reduced-motion settings.</p>
-          <p><em>AI assistance.</em> The code was written with AI coding assistants (Codex for the midterm site and game drafts; Claude Code for the final cut and this redesign) working from my direction. All concepts, art direction, writing choices and editorial decisions are mine. Each project page has its own ledger of what AI did and what I decided.</p>
-          <p><em>Credits.</em> Game photographs from Unsplash (credited on the <a class="text-link" href="final-project.html#ai">final project page</a>). Embroidery reference: Julia Ann Fitch, <em>Sampler</em>, 1807, The Met (public domain).</p>
+        <div><span class="label">A few more things</span><h2 id="details-title">What I care about.</h2></div>
+        <div class="qa">
+          <article><h3>Material still matters.<small>Craft</small></h3><p>The cross-stitch, linen, light and room proportions are not decoration. They are how an idea becomes felt instead of merely explained.</p></article>
+          <article><h3>Interaction should reveal its rule.<small>Experience</small></h3><p>I like systems that let a visitor discover their logic through consequence: a line drifts, a memory disappears, a stitch comes back changed.</p></article>
+          <article><h3>AI use should be legible.<small>Responsibility</small></h3><p>Every case study separates what a tool generated or implemented from the concept, selection, testing and editorial decisions I made.</p></article>
         </div>
       </div>
     </section>
+
+    <section class="about-footer-note"><div class="wrap"><p>I make work that is careful enough to question the system and playful enough to invite someone in.</p><nav><a href="playground.html">Playground ↗</a><a href="blog.html">Learning blog ↗</a></nav></div></section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design (DSC 598), Arizona State University, Fall 2026.</div>
-      <nav aria-label="Footer"><a href="index.html">All works</a><a href="final-project.html">Final project</a><a href="stitched-heart.html">Mess It Up</a><a href="personal-studio.html">Personal Studio</a></nav>
-      <div>Last updated November 16, 2026.</div>
-    </div>
-  </footer>
-  <script src="portfolio.js"></script>
+  <footer class="site-footer"><div class="wrap"><div><strong>Shreya Ramanan</strong>AI for Interdisciplinary Design, Arizona State University · Fall 2026.</div><nav aria-label="Footer"><a href="index.html#works">Work</a><a href="playground.html">Playground</a><a href="blog.html">Blog</a></nav><div>Portfolio built in plain HTML, CSS and JavaScript and published on GitHub Pages.</div></div></footer>
+  <script src="portfolio.js?v=portfolio-20261128"></script>
 </body>
 </html>
